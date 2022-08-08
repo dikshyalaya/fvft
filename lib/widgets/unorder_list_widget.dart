@@ -4,7 +4,7 @@ import '../core/theme/free_visa_free_ticket_theme.dart';
 class UnorderedList extends StatelessWidget {
   const UnorderedList(this.texts, {Key? key}) : super(key: key);
 
-  final List<String> texts;
+  final List<String?> texts;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class UnorderedList extends StatelessWidget {
 class UnorderedListItem extends StatelessWidget {
   const UnorderedListItem(this.text, {Key? key}) : super(key: key);
 
-  final String text;
+  final String? text;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class UnorderedListItem extends StatelessWidget {
         const Text('• '),
         Expanded(
           child: Text(
-            text,
+            text!,
             style: FreeVisaFreeTicketTheme.bodyTextStyle,
           ),
         ),

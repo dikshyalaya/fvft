@@ -12,7 +12,7 @@ class CategoryJobsPaginationProvider with ChangeNotifier {
   bool _isFirstLoadRunning = false;
   bool _isLoadMoreRunning = false;
   List<JobModel> _jobList = [];
-  ScrollController? _controller;
+  late ScrollController? _controller;
   int? _jobCategoryId;
 
   int get page => _page;
@@ -29,7 +29,7 @@ class CategoryJobsPaginationProvider with ChangeNotifier {
     _controller = scrollController;
   }
 
-  void setJobCategoryId(int jobCategoryId) {
+  void setJobCategoryId(int? jobCategoryId) {
     _jobCategoryId = jobCategoryId;
     notifyListeners();
   }
@@ -77,7 +77,7 @@ class CategoryJobsPaginationProvider with ChangeNotifier {
     }
   }
 
-  void removeJobByJobId(int jobId) {
+  void removeJobByJobId(int? jobId) {
     _jobList.removeWhere((element) => element.jobId == jobId);
     notifyListeners();
   }

@@ -3,7 +3,7 @@ import '../core/network/api_manager.dart';
 import '../core/services/service_locator.dart';
 
 class AuthRepository {
-  static final ApiManager _apiManager = locator<ApiManager>();
+  static final ApiManager? _apiManager = locator<ApiManager>();
   static const String _loginEndPoint = '/candidate/login';
   static const String _registerEndPoint = '/candidate/register';
 
@@ -12,8 +12,8 @@ class AuthRepository {
 
   /// FUNC [loginUser] : Login User using contact and password
   static Future<Response> loginUser(
-      {required String email, required String password}) async {
-    return await _apiManager.dio!.post(_loginEndPoint, data: {
+      {required String? email, required String? password}) async {
+    return await _apiManager!.dio!.post(_loginEndPoint, data: {
       'email': email,
       'password': password,
     });
@@ -21,13 +21,13 @@ class AuthRepository {
 
   /// FUNC [registerUser] : Register User with provided data
   static Future<Response> registerUser(
-      {required String firstName,
+      {required String? firstName,
       String? middleName,
-      required String lastName,
-      required String email,
-      required String password,
-      required String confirmPassword}) async {
-    return await _apiManager.dio!.post(_registerEndPoint, data: {
+      required String? lastName,
+      required String? email,
+      required String? password,
+      required String? confirmPassword}) async {
+    return await _apiManager!.dio!.post(_registerEndPoint, data: {
       'first_name': firstName,
       if (middleName != null) 'middle_name': middleName,
       'last_name': lastName,
@@ -39,11 +39,11 @@ class AuthRepository {
 
   /// FUNC [getUserProfileData] : Get user profile data
   static Future<Response> getUserProfileData() async {
-    return await _apiManager.dio!.get(_profileEndPoint);
+    return await _apiManager!.dio!.get(_profileEndPoint);
   }
 
   /// FUNC [updateUserProfile] : Update user profile
   static Future<Response> updateUserProfile(FormData formData) async {
-    return await _apiManager.dio!.post(_profileEndPoint, data: formData);
+    return await _apiManager!.dio!.post(_profileEndPoint, data: formData);
   }
 }

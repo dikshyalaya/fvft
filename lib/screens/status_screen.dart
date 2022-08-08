@@ -135,7 +135,7 @@ class StatusScreen extends StatelessWidget {
 
   Widget _buildStatusTile({
     required void Function()? onTap,
-    required Color color,
+    required Color? color,
     required String totalValue,
     required String title,
   }) {

@@ -86,7 +86,7 @@ class MoreInfoScreen extends StatelessWidget {
       trailingButton: TextButton(
         child: const Text('Log Out'),
         onPressed: () async {
-          bool shouldLogout = await showDialog(
+          bool shouldLogout = await (showDialog(
               context: context,
               builder: (ctx) {
                 return AlertDialog(
@@ -132,7 +132,7 @@ class MoreInfoScreen extends StatelessWidget {
                         )),
                   ],
                 );
-              });
+              }) as Future<bool>);
           if (shouldLogout) {}
         },
       ),

@@ -31,7 +31,7 @@ void main() async {
   ]);
 
   var configuredApp = AppConfig(
-      child: const FreeVisaFreeTicket(),
+      child:  FreeVisaFreeTicket(),
       appTitle: productionEnv[keyAppTitle],
       buildFlavor: productionEnv[keyFlavor]);
 

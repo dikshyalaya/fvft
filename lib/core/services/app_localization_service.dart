@@ -11,7 +11,7 @@ class AppLocalizations {
   static const LocalizationsDelegate<AppLocalizations>? delegate =
       _AppLocalizationDelegate();
 
-  Map<String, dynamic>? _localizedStrings;
+  late Map<String, dynamic>? _localizedStrings;
 
   AppLocalizations(this.locale);
 

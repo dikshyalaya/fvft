@@ -13,7 +13,7 @@ class ApiInterceptor extends Interceptor {
   final Dio? dioInstance;
 
   ApiInterceptor({
-    @required this.dioInstance,
+    required this.dioInstance,
     this.refreshSession,
     this.getValidAccessToken,
   });

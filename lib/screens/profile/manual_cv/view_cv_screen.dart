@@ -24,7 +24,7 @@ class ViewCVScreen extends StatefulWidget {
 
 class _ViewCVScreenState extends State<ViewCVScreen> {
   bool isSampleDoc = true;
-  PdfController? _pdfController;
+  late PdfController? _pdfController;
 
   String pathPDF = '';
   String pdfName = '';
@@ -45,7 +45,7 @@ class _ViewCVScreenState extends State<ViewCVScreen> {
     try {
       final myCv = locator<CVProvider>().myCv;
       if (myCv!.localPath == null) {
-        final url = myCv.cvUrl;
+        final url = myCv.cvUrl!;
         final filename = url.substring(url.lastIndexOf('/') + 1);
         var request = await HttpClient().getUrl(Uri.parse(url));
         var response = await request.close();
@@ -53,7 +53,7 @@ class _ViewCVScreenState extends State<ViewCVScreen> {
         String dir = (await sysDir.getApplicationDocumentsDirectory()).path;
         File file = File('$dir/$filename');
         await file.writeAsBytes(bytes);
-        if (file != null) {
+        if (file!=null) {
           pdfName = file.toString();
           pathPDF = file.path;
           _pdfController =

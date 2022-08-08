@@ -43,9 +43,9 @@ class CountryListViewScreen extends StatelessWidget {
                 locator<NavigationService>()
                     .navigateTo(routes.countryJobsScreen);
               },
-              leading: Text(countryList[index].flagCode,
+              leading: Text(countryList[index]!.flagCode!,
                   style: FreeVisaFreeTicketTheme.heading1Style),
-              title: Text(countryList[index].countryName,
+              title: Text(countryList[index]!.countryName!,
                   style: FreeVisaFreeTicketTheme.caption1Style),
               trailing: const Icon(
                 Icons.arrow_forward_ios,

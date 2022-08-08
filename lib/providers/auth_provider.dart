@@ -17,7 +17,7 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> login({required String email, required String password}) async {
+  Future<bool> login({required String? email, required String? password}) async {
     try {
       final response =
           await AuthRepository.loginUser(email: email, password: password);
@@ -39,12 +39,12 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<bool> signUp(
-      {required String firstName,
+      {required String? firstName,
       String? middleName,
-      required String lastName,
-      required String email,
-      required String password,
-      required String confirmPassword}) async {
+      required String? lastName,
+      required String? email,
+      required String? password,
+      required String? confirmPassword}) async {
     try {
       final response = await AuthRepository.registerUser(
           middleName: middleName,
@@ -87,10 +87,10 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<bool> updateUserProfile(
-      {required String firstName,
+      {required String? firstName,
       String? middleName,
-      required String lastName,
-      required String email,
+      required String? lastName,
+      required String? email,
       String? base64,
       String? phone,
       String? imageFileSize}) async {
@@ -126,7 +126,7 @@ class AuthProvider with ChangeNotifier {
   }
 
   // ============================ Caching Logged In User Token & Data On Hive ===========================
-  Future<void> _cacheUser(UserModel userModel,
+  Future<void> _cacheUser(UserModel? userModel,
       {bool isToUpdate = false}) async {
     bool userExists = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.userData.stringValue);
@@ -138,7 +138,7 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  Future<void> _cacheUserToken(String token, {bool isToUpdate = false}) async {
+  Future<void> _cacheUserToken(String? token, {bool isToUpdate = false}) async {
     bool tokenExists = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.userToken.stringValue);
     if (!tokenExists) {

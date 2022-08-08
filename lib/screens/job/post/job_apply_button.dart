@@ -6,7 +6,7 @@ import '../../../providers/job_application_provider.dart';
 import 'package:provider/provider.dart';
 
 class JobApplyButton extends StatelessWidget {
-  final int jobId;
+  final int? jobId;
 
   const JobApplyButton({Key? key, required this.jobId}) : super(key: key);
 

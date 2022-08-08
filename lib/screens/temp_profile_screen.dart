@@ -309,7 +309,7 @@ class TempProfileScreen extends StatelessWidget {
   }
 
   Widget _buildTitleAndValue({
-    required String title,
+    required String? title,
     required String value,
   }) {
     return Padding(

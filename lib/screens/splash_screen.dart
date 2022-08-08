@@ -31,8 +31,8 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   Future? _getData;
   bool? _isInit = true;
-  AnimationController? _controller;
-  Animation<double>? _animation;
+  late AnimationController? _controller;
+  late Animation<double>? _animation;
 
   @override
   void initState() {

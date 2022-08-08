@@ -8,7 +8,7 @@ class WebViewScreen extends StatefulWidget {
 
   final String? urlToRender;
 
-  const WebViewScreen({Key? key,@required this.appBarTitle, @required this.urlToRender}):super(key: key);
+  const WebViewScreen({Key? key,required this.appBarTitle, required this.urlToRender}):super(key: key);
 
   @override
   _WebViewScreenState createState() => _WebViewScreenState();

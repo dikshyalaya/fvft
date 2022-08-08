@@ -74,7 +74,7 @@ class NewsModel with ChangeNotifier {
   final String? newsTitle;
 
   //final List<NewsContentModel>? newsContents;
-  final String newsContent;
+  final String? newsContent;
   final String? featuredImageUrl;
   final List<NewsCategoriesModel>? newsCategoryList;
   final NewsPostedUserModel? newsPostedUser;

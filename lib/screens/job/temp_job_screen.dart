@@ -93,8 +93,8 @@ final List<Widget> _tagList = [
 
 Widget _buildTag({
   required void Function()? onTap,
-  required Color color,
-  required String text,
+  required Color? color,
+   required String text,
 }) {
   return InkWell(
     onTap: onTap,
@@ -266,10 +266,10 @@ class TempJobScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(countryList[index].flagCode,
+                Text(countryList[index]!.flagCode!,
                     style: FreeVisaFreeTicketTheme.heading1Style),
                 SizedBox(width: 20.w),
-                Text(countryList[index].countryName,
+                Text(countryList[index]!.countryName!,
                     style: FreeVisaFreeTicketTheme.caption1Style),
               ],
             ),
@@ -291,7 +291,7 @@ class TempJobScreen extends StatelessWidget {
       },
       child: Padding(
         padding: EdgeInsets.only(top: 10.h, bottom: 20.h),
-        child: const CategoryListScreen(isToDisplayVertical: false),
+        child: CategoryListScreen(isToDisplayVertical: false),
       ),
       isGradientBackground: true,
     );
@@ -433,12 +433,12 @@ class TempJobScreen extends StatelessWidget {
   }
 
   Widget _globalViewLayout({
-    required double height,
+    required double? height,
     double? width,
-    required String leftHeaderTitle,
-    required String rightHeaderTitle,
-    required void Function()? onTapToRightTitle,
-    required Widget child,
+required String leftHeaderTitle,
+     required String rightHeaderTitle,
+   void Function()? onTapToRightTitle,
+     required Widget child,
     bool isGradientBackground = true,
     Color backgroundColor = FreeVisaFreeTicketTheme.whiteColor,
     Color leftTitleColor = FreeVisaFreeTicketTheme.whiteColor,

@@ -19,8 +19,8 @@ class FreeVisaFreeTicket extends StatefulWidget {
 
   static void setLocale(BuildContext context, Locale locale) {
     _FreeVisaFreeTicketState? state =
-        context.findAncestorStateOfType<_FreeVisaFreeTicketState>();
-    state!.setLocale(locale);
+        context.findAncestorStateOfType<_FreeVisaFreeTicketState>()!;
+    state.setLocale(locale);
   }
 
   @override
@@ -42,7 +42,7 @@ class _FreeVisaFreeTicketState extends State<FreeVisaFreeTicket> {
       create: (bCtx) => locator<ThemeProvider>(),
       child: ScreenUtilInit(
         designSize: const Size(750, 1334),
-        builder: () => Consumer<ThemeProvider>(
+        builder: (() => Consumer<ThemeProvider>(
           builder: (ctx, data, _) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
@@ -76,7 +76,7 @@ class _FreeVisaFreeTicketState extends State<FreeVisaFreeTicket> {
               },
             );
           },
-        ),
+        )) as Widget Function(BuildContext, Widget?),
       ),
     );
   }

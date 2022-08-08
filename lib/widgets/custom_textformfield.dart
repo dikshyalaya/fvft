@@ -11,7 +11,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool? isInitialValue;
   final IconData? suffixIcon;
   final Widget? prefixWidget;
-  final Function(String?)? onSaved;
+  final  Function(String?)? onSaved;
   final Function(String?)? onChanged;
   final String? Function(String?)? validatorFunc;
   final Function(String?)? onFieldSubmitted;
@@ -87,7 +87,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField>
       validator: (value) =>
           widget.isOptionalValidation! && (value == null || value.isEmpty)
               ? null
-              : widget.validatorFunc!(value),
+              : widget.validatorFunc!(value!),
       enabled: widget.isEnabled,
       inputFormatters: widget.textInputFormatter ?? [],
       onChanged: widget.onChanged,

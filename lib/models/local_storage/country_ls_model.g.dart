@@ -17,10 +17,10 @@ class CountryLSModelAdapter extends TypeAdapter<CountryLSModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CountryLSModel(
-      flagCode: fields[3] as String,
-      countryName: fields[1] as String,
-      countryCode: fields[2] as String,
-      id: fields[0] as int,
+      flagCode: fields[3] as String?,
+      countryName: fields[1] as String?,
+      countryCode: fields[2] as String?,
+      id: fields[0] as int?,
     );
   }
 

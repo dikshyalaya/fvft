@@ -1,5 +1,8 @@
+
+
 class Validator {
-  static String? fullNameValidator(String? value) {
+
+  static String ? fullNameValidator(String ? value) {
     if (value!.isEmpty) {
       return 'Please enter the full name';
     }
@@ -8,10 +11,11 @@ class Validator {
     }
     return null;
   }
+  
 
-  static String? _tempPassword;
+  static String ? _tempPassword;
 
-  static String? passwordValidator(String? value) {
+  static String ? passwordValidator( String ? value) {
     if (value!.isEmpty) {
       return 'Please enter the password';
     }
@@ -22,7 +26,7 @@ class Validator {
     return null;
   }
 
-  static String? confirmPasswordValidator(String? value) {
+  static String ?  confirmPasswordValidator( String ? value) {
     if (value!.isEmpty) {
       return 'Please enter the confirm password';
     }
@@ -35,14 +39,14 @@ class Validator {
     return null;
   }
 
-  static String? dobValidator(String? value) {
+  static String ?  dobValidator( String ? value) {
     if (value!.isEmpty || value.trim().length < 10) {
       return 'Please add your DOB.';
     }
     return null;
   }
 
-  static String? emailValidator(String? value) {
+  static String ?  emailValidator( String ? value) {
     if (value!.isEmpty) {
       return 'Please enter the email';
     }
@@ -52,14 +56,14 @@ class Validator {
     return null;
   }
 
-  static String? bioValidator(String? value) {
+  static String ?  bioValidator( String ?  value) {
     if (value!.isNotEmpty && value.trim().length < 15) {
       return 'Please enter bio of at least 15 characters';
     }
     return null;
   }
 
-  static String? permanentAddressValidator(String? value) {
+  static String ?  permanentAddressValidator(  String ? value) {
     if (value!.isEmpty) {
       return 'Please enter the address name';
     }
@@ -69,7 +73,7 @@ class Validator {
     return null;
   }
 
-  static String? temporaryAddressValidator(String? value) {
+  static   String ? temporaryAddressValidator( String ? value) {
     if (value!.isNotEmpty && value.trim().length < 8) {
       return 'Please enter the address name with min. 8 characters.';
     }

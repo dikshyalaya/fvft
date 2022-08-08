@@ -17,9 +17,9 @@ class CVModelAdapter extends TypeAdapter<CVModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CVModel(
-      id: fields[0] as int,
-      title: fields[1] as String,
-      cvUrl: fields[2] as String,
+      id: fields[0] as int?,
+      title: fields[1] as String?,
+      cvUrl: fields[2] as String?,
       localPath: fields[3] as String?,
     );
   }

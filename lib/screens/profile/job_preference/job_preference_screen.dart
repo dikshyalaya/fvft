@@ -19,20 +19,20 @@ class _JobPreferenceScreenState extends State<JobPreferenceScreen>
     with SingleTickerProviderStateMixin {
   bool _isInit = true;
   int _currentTabIndex = 0;
-  late TabController _controller;
+  late TabController? _controller;
   Future? _future;
 
   @override
   void initState() {
     super.initState();
     _controller = TabController(length: 2, vsync: this);
-    _controller.addListener(
+    _controller!.addListener(
       () => {
         Provider.of<JobPreferenceUIProvider>(context, listen: false)
             .setIsToVisibleDraggableSheet(false),
         setState(
           () => {
-            _currentTabIndex = _controller.index,
+            _currentTabIndex = _controller!.index,
           },
         ),
       },
@@ -50,7 +50,7 @@ class _JobPreferenceScreenState extends State<JobPreferenceScreen>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller!.dispose();
     super.dispose();
   }
 

@@ -19,7 +19,7 @@ class CVProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addNewCv({required String title, required File file}) async {
+  Future<void> addNewCv({required String? title,  required File file}) async {
     try {
       FormData formData = FormData.fromMap({
         'title': title,

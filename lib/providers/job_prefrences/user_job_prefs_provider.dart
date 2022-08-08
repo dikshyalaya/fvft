@@ -10,7 +10,7 @@ class UserJobPrefsProvider with ChangeNotifier {
   List<JobPrefsModel> get jobPrefsList => _jobPrefsList;
 
   Future<JobPrefsModel> addNewJobCategoryInPrefs(
-      {required int jobCategoryId}) async {
+      {required int? jobCategoryId}) async {
     try {
       final response = await PreferencesRepository.addNewJobCategoryInPrefs(
           jobCategoryId: jobCategoryId);
@@ -79,7 +79,7 @@ class UserJobPrefsProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> deleteParticularJobCategory({required int prefsId}) async {
+  Future<bool> deleteParticularJobCategory({required int? prefsId}) async {
     try {
       final response = await PreferencesRepository.deleteParticularJobCategory(
           prefsId: prefsId);
@@ -116,7 +116,7 @@ class UserJobPrefsProvider with ChangeNotifier {
 
 // ============= Remove job prefs by id ======================
 
-  void removeJobById(int id) {
+  void removeJobById(int? id) {
     _jobPrefsList.removeWhere((element) => element.jobCategoryId == id);
     notifyListeners();
   }

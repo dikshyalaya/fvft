@@ -13,8 +13,8 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class JobCategoryPrefsTabView extends StatelessWidget {
-  final Future future;
-  final Function refreshState;
+  final Future? future;
+  final Function? refreshState;
 
   JobCategoryPrefsTabView({
     Key? key,
@@ -73,7 +73,7 @@ class JobCategoryPrefsTabView extends StatelessWidget {
                           listen: false);
                   return snapShotData.connectionState == ConnectionState.waiting
                       ? const Center(child: CircularProgressIndicator())
-                      : jobPrefsUIProvider.jobCategoryList.isEmpty
+                      : jobPrefsUIProvider.jobCategoryList!.isEmpty
                           ? Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 20.w, vertical: 20.h),
@@ -138,7 +138,7 @@ class JobCategoryPrefsTabView extends StatelessWidget {
         Provider.of<JobPreferenceUIProvider>(context, listen: false);
     return ReorderableListView(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-      children: jobPrefsUIProvider.jobCategoryList
+      children: jobPrefsUIProvider.jobCategoryList!
           .asMap()
           .map(
             (index, e) => MapEntry(
@@ -174,7 +174,7 @@ class JobCategoryPrefsTabView extends StatelessWidget {
         final element = jobPrefsUIProvider.removeJobCategoryIndex(oldIndex);
         jobPrefsUIProvider.addNewJobCategory(
             newIndex: newIndex, value: element, oldIndex: oldIndex);
-        refreshState();
+        refreshState!();
       },
     );
   }

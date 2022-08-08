@@ -4,7 +4,7 @@ import 'post/job_post_list_view.dart';
 import '../../core/theme/free_visa_free_ticket_theme.dart';
 
 class JobListPostViewScreen extends StatelessWidget {
-  final String appBarTitle;
+  final String? appBarTitle;
 
   const JobListPostViewScreen({Key? key, required this.appBarTitle})
       : super(key: key);
@@ -19,7 +19,7 @@ class JobListPostViewScreen extends StatelessWidget {
           0.1,
         ),
         title: Text(
-          appBarTitle,
+          appBarTitle!,
           style: FreeVisaFreeTicketTheme.captionStyle.copyWith(
             color: FreeVisaFreeTicketTheme.whiteColor,
           ),

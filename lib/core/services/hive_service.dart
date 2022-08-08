@@ -32,8 +32,8 @@ class HiveService {
     }
   }
 
-  Future<List<T>> getBoxes<T>(String boxName) async {
-    List<T> boxList = <T>[];
+  Future<List<T?>> getBoxes<T>(String boxName) async {
+    List<T?> boxList = <T?>[];
 
     final openBox = await Hive.openBox(boxName);
 
@@ -46,12 +46,12 @@ class HiveService {
     return boxList;
   }
 
-  Future<T> getBox<T>(String boxName) async {
+  Future<T?> getBox<T>(String boxName) async {
     final openBox = await Hive.openBox(boxName);
     return openBox.getAt(0);
   }
 
-  Future<bool> deleteBox({required String boxName}) async {
+  Future<bool> deleteBox({ required String boxName}) async {
     final bool result = await isExists(boxName: boxName);
     if (result) {
       await Hive.deleteBoxFromDisk(boxName);

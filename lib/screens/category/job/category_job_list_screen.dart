@@ -8,8 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class CategoryJobListScreen extends StatefulWidget {
-  final int jobCategoryId;
-  final String jobCategoryName;
+  final int? jobCategoryId;
+  final String? jobCategoryName;
 
   const CategoryJobListScreen(
       {Key? key, required this.jobCategoryId, required this.jobCategoryName})

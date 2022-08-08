@@ -12,7 +12,7 @@ import 'job_apply_button.dart';
 
 /// Widget [JobPostListItem] : Contains new job information
 class JobPostListItem extends StatelessWidget {
-  final JobModel jobs;
+  final JobModel? jobs;
   final bool isHorizontalView;
 
   const JobPostListItem(
@@ -64,7 +64,7 @@ class JobPostListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                jobs.companyModel!.name!,
+                jobs!.companyModel!.name!,
                 style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
                   color: FreeVisaFreeTicketTheme.darkGrayColor,
                 ),
@@ -113,8 +113,8 @@ class JobPostListItem extends StatelessWidget {
           Radius.circular(10.w),
         ),
         child: Image.network(
-          jobs.featureImageUrl != null
-              ? jobs.featureImageUrl!
+          jobs!.featureImageUrl != null
+              ? jobs!.featureImageUrl!
               : 'https://www.oberlo.com/media/1603897950-job.jpg',
           fit: BoxFit.cover,
         ),
@@ -134,7 +134,7 @@ class JobPostListItem extends StatelessWidget {
         gradient: FreeVisaFreeTicketTheme.appLinearGradient,
       ),
       child: Text(
-        '${jobs.jobTitle!}   (${jobs.numberOfPositions})',
+        '${jobs!.jobTitle!}   (${jobs!.numberOfPositions})',
         style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
           color: FreeVisaFreeTicketTheme.whiteColor,
           fontWeight: FontWeight.w400,
@@ -223,7 +223,7 @@ class JobPostListItem extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () => Share.share(
-                  'https://demo.freevisafreeticket.com/job/${jobs.jobId}',
+                  'https://demo.freevisafreeticket.com/job/${jobs!.jobId}',
                 ),
                 icon: const Icon(
                   Icons.share,
@@ -239,7 +239,7 @@ class JobPostListItem extends StatelessWidget {
             ],
           ),
         ),
-        Expanded(child: JobApplyButton(jobId: jobs.jobId!)),
+        Expanded(child: JobApplyButton(jobId: jobs!.jobId!)),
         SizedBox(width: 20.w),
       ],
     );

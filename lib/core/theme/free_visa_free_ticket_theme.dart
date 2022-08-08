@@ -12,14 +12,13 @@ class FreeVisaFreeTicketTheme {
   );
 
   static const Gradient appLinearGradient = LinearGradient(
-    begin: Alignment(-1.0, -1.0),
+    begin:  Alignment(-1.0, -1.0),
     end: Alignment(1.0, 4.0),
-    colors: [
+    colors:  [
       FreeVisaFreeTicketTheme.primaryColor,
       FreeVisaFreeTicketTheme.secondaryColor,
     ],
   );
-
   static const Color primaryColor = Color.fromRGBO(32, 146, 255, 1);
 
   // caption color

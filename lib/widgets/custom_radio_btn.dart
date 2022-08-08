@@ -6,11 +6,11 @@ import '../core/theme/free_visa_free_ticket_theme.dart';
 import '../providers/theme_provider.dart';
 
 class MyRadioOption<T> extends StatelessWidget {
-  final T value;
-  final T groupValue;
-  final String label;
-  final String text;
-  final ValueChanged<T> onChanged;
+  final T? value;
+  final T? groupValue;
+  final String? label;
+  final String? text;
+  final ValueChanged<T?>? onChanged;
 
   const MyRadioOption({
     Key? key,
@@ -58,7 +58,7 @@ class MyRadioOption<T> extends StatelessWidget {
 
   Widget _buildText() {
     return Text(
-      text,
+      text!,
       style: FreeVisaFreeTicketTheme.caption1Style,
     );
   }
@@ -68,7 +68,7 @@ class MyRadioOption<T> extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10.h),
       child: InkWell(
-        onTap: () => onChanged(value),
+        onTap: () => onChanged!(value),
         splashColor: Colors.cyan.withOpacity(0.5),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.w),

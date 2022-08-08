@@ -243,9 +243,9 @@ class InformationScreen extends StatelessWidget {
         ),
         SizedBox(height: 20.h),
         Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [
+              colors:const [
                 FreeVisaFreeTicketTheme.secondaryColor,
                 FreeVisaFreeTicketTheme.primaryColor,
               ],
@@ -295,7 +295,7 @@ class InformationScreen extends StatelessWidget {
   Widget _buildImageTile({
     required String title,
     required String image,
-    required Color tileColor,
+    required Color? tileColor,
   }) =>
       Expanded(
         child: Column(
@@ -336,7 +336,7 @@ class InformationScreen extends StatelessWidget {
         ),
       );
 
-  Widget _buildInfoCard({required String title, required String image}) =>
+  Widget _buildInfoCard({ required String title,  required String image}) =>
       InkWell(
         onTap: () {},
         child: Card(
@@ -367,8 +367,8 @@ class InformationScreen extends StatelessWidget {
       );
 
   Widget _buildMoreInfo({
-    required String title,
-    required String value,
+    required String? title,
+    required String? value,
   }) {
     return Row(
       children: [

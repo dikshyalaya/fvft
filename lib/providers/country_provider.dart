@@ -10,9 +10,9 @@ import 'job_filter_provider.dart';
 import '../repositories/country_repository.dart';
 
 class CountryProvider with ChangeNotifier {
-  List<CountryLSModel>? _countriesList = [];
+  List<CountryLSModel?>? _countriesList = [];
 
-  List<CountryLSModel>? get countriesList => _countriesList;
+  List<CountryLSModel?>? get countriesList => _countriesList;
 
   void setCountriesList(List<CountryLSModel> updatedCountriesList) {
     _countriesList = updatedCountriesList;
@@ -37,7 +37,7 @@ class CountryProvider with ChangeNotifier {
         } else {
           final val = await locator<HiveService>()
               .getBoxes(HiveBoxName.country.stringValue);
-          _countriesList = val.map<CountryLSModel>((e) => e).toList();
+          _countriesList = val.map<CountryLSModel?>((e) => e).toList();
           notifyListeners();
         }
       }
@@ -55,8 +55,8 @@ class CountryProvider with ChangeNotifier {
     final bool result = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.allCountry.stringValue);
     if (result) {
-      List<dynamic> va = await locator<HiveService>()
-          .getBox(HiveBoxName.allCountry.stringValue);
+      List<dynamic> va = await (locator<HiveService>()
+          .getBox(HiveBoxName.allCountry.stringValue) as Future<List<dynamic>>);
       _countriesList = va.map<CountryLSModel>((e) => e as CountryLSModel).toList();
       locator<JobFilterProvider>().setCountry(_countriesList!);
       return;

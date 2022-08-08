@@ -24,7 +24,7 @@ class UploadCVScreen extends StatefulWidget {
 class _UploadCVScreenState extends State<UploadCVScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _pickedFileName;
-  File? _file;
+  late File? _file;
   String? _title;
   bool _isFileSelected = false;
   bool _hasError = false;

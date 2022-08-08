@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 class JobDetailScreen extends StatelessWidget {
-  final JobModel jobDetail;
+  final JobModel? jobDetail;
 
   const JobDetailScreen({Key? key, required this.jobDetail}) : super(key: key);
 
@@ -63,8 +63,8 @@ class JobDetailScreen extends StatelessWidget {
               bottomLeft: Radius.circular(30.w),
             ),
             child: Image.network(
-              jobDetail.featureImageUrl != null
-                  ? jobDetail.featureImageUrl!
+              jobDetail!.featureImageUrl != null
+                  ? jobDetail!.featureImageUrl!
                   : 'https://www.oberlo.com/media/1603897950-job.jpg',
               fit: BoxFit.cover,
             ),
@@ -88,7 +88,7 @@ class JobDetailScreen extends StatelessWidget {
             // onPressed: () async => await launchURL(
             //     'https://demo.freevisafreeticket.com/job/${jobDetail.jobId}'),
             onPressed: () => Share.share(
-                'https://demo.freevisafreeticket.com/job/${jobDetail.jobId}'),
+                'https://demo.freevisafreeticket.com/job/${jobDetail!.jobId}'),
             iconSize: 52.w,
             splashRadius: 5.w,
           ),
@@ -99,7 +99,7 @@ class JobDetailScreen extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 10.h),
             child: Text(
-              jobDetail.siteLocation!.country!.countryName,
+              jobDetail!.siteLocation!.country!.countryName!,
               style: TextStyle(
                 fontSize: 32.sp,
                 fontWeight: FontWeight.w600,
@@ -119,51 +119,51 @@ class JobDetailScreen extends StatelessWidget {
         children: [
           Center(
             child: Text(
-              jobDetail.jobTitle!,
+              jobDetail!.jobTitle!,
               textAlign: TextAlign.center,
               style: FreeVisaFreeTicketTheme.captionStyle,
             ),
           ),
-          Center(child: Chip(label: Text(jobDetail.jobCategory!))),
+          Center(child: Chip(label: Text(jobDetail!.jobCategory!))),
           SizedBox(height: 15.h),
           Text(
-            jobDetail.companyModel!.name!,
+            jobDetail!.companyModel!.name!,
             style: FreeVisaFreeTicketTheme.caption1Style,
           ),
           SizedBox(height: 15.h),
           // _buildJobDetailCard(),
           Text('Job Description', style: FreeVisaFreeTicketTheme.caption1Style),
           SizedBox(height: 15.h),
-          Text(jobDetail.jobDescription!,
+          Text(jobDetail!.jobDescription!,
               style: FreeVisaFreeTicketTheme.bodyTextStyle),
           SizedBox(height: 15.h),
           Text('Job Shifts', style: FreeVisaFreeTicketTheme.caption1Style),
           SizedBox(height: 15.h),
           UnorderedList(
-              [...jobDetail.jobShifts!.map((e) => e.jobShift!).toList()]),
+              [...jobDetail!.jobShifts!.map((e) => e.jobShift!).toList()]),
           SizedBox(height: 15.h),
           Text('Requirements', style: FreeVisaFreeTicketTheme.caption1Style),
           SizedBox(height: 15.h),
           UnorderedList([
-            '${jobDetail.jobExperience!} experience in this field',
-            jobDetail.educationLevel!,
+            '${jobDetail!.jobExperience!} experience in this field',
+            jobDetail!.educationLevel!,
           ]),
           SizedBox(height: 15.h),
-          if (jobDetail.benefits != null) ...[
+          if (jobDetail!.benefits != null) ...[
             Text('Benefits', style: FreeVisaFreeTicketTheme.caption1Style),
             SizedBox(height: 15.h),
-            Text(jobDetail.benefits!,
+            Text(jobDetail!.benefits!,
                 style: FreeVisaFreeTicketTheme.bodyTextStyle),
             SizedBox(height: 15.h),
           ],
-          if (!jobDetail.hideSalary!) ...[
+          if (!jobDetail!.hideSalary!) ...[
             RichText(
               text: TextSpan(
                 text:
-                    'Salary ${jobDetail.salaryCurrency == null ? ' ' : '(${jobDetail.salaryCurrency}) '}: ',
+                    'Salary ${jobDetail!.salaryCurrency == null ? ' ' : '(${jobDetail!.salaryCurrency}) '}: ',
                 children: [
                   TextSpan(
-                    text: '${jobDetail.salaryFrom} - ${jobDetail.salaryTo}',
+                    text: '${jobDetail!.salaryFrom} - ${jobDetail!.salaryTo}',
                     style: FreeVisaFreeTicketTheme.bodyTextStyle,
                   ),
                 ],
@@ -196,7 +196,7 @@ class JobDetailScreen extends StatelessWidget {
                 text: 'Apply Until: ',
                 children: [
                   TextSpan(
-                    text: DateFormat.yMMMd().format(jobDetail.expiryDate!),
+                    text: DateFormat.yMMMd().format(jobDetail!.expiryDate!),
                     style: FreeVisaFreeTicketTheme.bodyTextStyle,
                   ),
                 ],
@@ -215,7 +215,7 @@ class JobDetailScreen extends StatelessWidget {
                                 JobStatus.applyNow.stringValue
                             ? () async => await data.applyForJob(
                                   context,
-                                  jobId: jobDetail.jobId,
+                                  jobId: jobDetail!.jobId,
                                   isFromJobDetailScreen: true,
                                 )
                             : null,

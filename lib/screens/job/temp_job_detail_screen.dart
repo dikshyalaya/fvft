@@ -7,7 +7,7 @@ import '../../models/job_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TempJobDetailScreen extends StatelessWidget {
-  final JobModel jobDetail;
+  final JobModel? jobDetail;
 
   const TempJobDetailScreen({
     Key? key,
@@ -67,7 +67,7 @@ class TempJobDetailScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  jobDetail.companyModel!.name!,
+                                  jobDetail!.companyModel!.name!,
                                   style: FreeVisaFreeTicketTheme.caption1Style
                                       .copyWith(
                                     color:
@@ -120,16 +120,16 @@ class TempJobDetailScreen extends StatelessWidget {
                         horizontal: 20.w,
                         vertical: 10.h,
                       ),
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [
+                          colors: const [
                             FreeVisaFreeTicketTheme.primaryColor,
                             FreeVisaFreeTicketTheme.secondaryColor,
                           ],
                         ),
                       ),
                       child: Text(
-                        '${jobDetail.jobTitle} (${jobDetail.numberOfPositions})',
+                        '${jobDetail!.jobTitle} (${jobDetail!.numberOfPositions})',
                         style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
                           color: FreeVisaFreeTicketTheme.whiteColor,
                           fontWeight: FontWeight.w400,
@@ -259,9 +259,9 @@ class TempJobDetailScreen extends StatelessWidget {
           SizedBox(height: 40.h),
           Container(
             height: 60.h,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [
+                colors: const [
                   FreeVisaFreeTicketTheme.primaryColor,
                   FreeVisaFreeTicketTheme.secondaryColor,
                 ],
@@ -315,9 +315,9 @@ class TempJobDetailScreen extends StatelessWidget {
           ),
           Container(
             height: 60.h,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [
+                colors: const [
                   FreeVisaFreeTicketTheme.primaryColor,
                   FreeVisaFreeTicketTheme.secondaryColor,
                 ],
@@ -343,9 +343,9 @@ class TempJobDetailScreen extends StatelessWidget {
               value: 'Ex-Army, Ex-Police, Worked As Security Guard'),
           Container(
             height: 60.h,
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               gradient: LinearGradient(
-                colors: [
+                colors: const [
                   FreeVisaFreeTicketTheme.primaryColor,
                   FreeVisaFreeTicketTheme.secondaryColor,
                 ],
@@ -383,7 +383,7 @@ class TempJobDetailScreen extends StatelessWidget {
             children: [
               Align(
                 child: JobApplyButton(
-                  jobId: jobDetail.jobId!,
+                  jobId: jobDetail!.jobId!,
                 ),
                 alignment: Alignment.bottomCenter,
               ),
@@ -415,7 +415,7 @@ class TempJobDetailScreen extends StatelessWidget {
   }
 
   Widget _buildTitleValue({
-    required String title,
+    required String? title,
     required String value,
   }) {
     return Padding(

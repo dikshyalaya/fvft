@@ -45,11 +45,11 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
   Widget _switchedScreen() {
     switch (_currentIndex) {
       case 0:
-        return const StatusScreen(); //JobScreen(animationController: animationController);
+        return  StatusScreen(); //JobScreen(animationController: animationController);
       case 1:
         return InformationScreen(); //const CategoryListScreen();
       case 2:
-        return const TempJobScreen();
+        return  TempJobScreen();
       case 3:
         return const TempProfileScreen();
 
@@ -59,7 +59,7 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
             ChangeNotifierProvider.value(value: locator<AuthProvider>()),
             ChangeNotifierProvider.value(value: locator<CVProvider>()),
           ],
-          child: const MoreInfoScreen(), // const ProfileScreen(),
+          child:  MoreInfoScreen(), // const ProfileScreen(),
         );
       default:
         return Container();
@@ -80,12 +80,12 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
     final bool hasUserData = currentUser != null;
     return AppBar(
       flexibleSpace: Container(
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.topRight,
             tileMode: TileMode.repeated,
-            colors: <Color>[
+            colors: const <Color>[
               FreeVisaFreeTicketTheme.secondaryColor,
               FreeVisaFreeTicketTheme.primaryColor,
             ],
@@ -170,8 +170,8 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
 
   Widget _buildBottomNavBar() {
     return ConvexAppBar(
-      gradient: const LinearGradient(
-        colors: [
+      gradient:  LinearGradient(
+        colors:const [
           FreeVisaFreeTicketTheme.secondaryColor,
           FreeVisaFreeTicketTheme.primaryColor,
         ],

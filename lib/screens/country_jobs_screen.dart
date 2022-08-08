@@ -166,10 +166,10 @@ class CountryJobsScreen extends StatelessWidget {
                   topRight: Radius.circular(8.w),
                   bottomRight: Radius.circular(8.w),
                 ),
-                gradient: const LinearGradient(
-                  begin: Alignment(-1.0, -1.0),
-                  end: Alignment(1.0, 4.0),
-                  colors: [
+                gradient:  LinearGradient(
+                  begin:  const Alignment(-1.0, -1.0),
+                  end:const  Alignment(1.0, 4.0),
+                  colors:const  [
                     FreeVisaFreeTicketTheme.primaryColor,
                     FreeVisaFreeTicketTheme.secondaryColor,
                   ],
@@ -267,9 +267,9 @@ class CountryJobsScreen extends StatelessWidget {
         horizontal: 20.w,
         vertical: 10.h,
       ),
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
         gradient: LinearGradient(
-          colors: [
+          colors:const [
             FreeVisaFreeTicketTheme.primaryColor,
             FreeVisaFreeTicketTheme.secondaryColor,
           ],

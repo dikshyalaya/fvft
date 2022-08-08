@@ -105,7 +105,7 @@ class JobApplicationProvider with ChangeNotifier {
 
   // ==================== Apply for new job, display alert dialog related to job apply, ====================
   bool isApplyingForJob = false;
-  int selectedJobId = -1;
+  int? selectedJobId = -1;
 
   Future<void> applyForJob(final context,
       {int? jobId, bool isFromJobDetailScreen = false}) async {
@@ -216,7 +216,7 @@ class JobApplicationProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> _applyForNewJob(int jobId) async {
+  Future<bool> _applyForNewJob(int? jobId) async {
     try {
       final response = await JobRepository.applyJob(jobId);
       if (response.data != null && response.data['success']) {

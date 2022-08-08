@@ -42,9 +42,9 @@ class JobProvider with ChangeNotifier {
   Future<void> getListOfJobs({
     int limit = 10,
     int pageNo = 1,
-    int countryId = -1,
+    int? countryId = -1,
     bool isToClearJobList = false,
-    int jobCategoryId = -1,
+    int? jobCategoryId = -1,
   }) async {
     try {
       final response = await JobRepository.getListOfJobs(
@@ -86,8 +86,8 @@ class JobProvider with ChangeNotifier {
     final bool result = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.allJobCategory.stringValue);
     if (result) {
-      List<dynamic> va = await locator<HiveService>()
-          .getBox(HiveBoxName.allJobCategory.stringValue);
+      List<dynamic> va = await (locator<HiveService>()
+          .getBox(HiveBoxName.allJobCategory.stringValue) as Future<List<dynamic>>);
       _jobCategoriesList =
           va.map<JobCategoryModel>((e) => e as JobCategoryModel).toList();
       locator<JobFilterProvider>().setJobCategory(_jobCategoriesList!);
@@ -120,8 +120,8 @@ class JobProvider with ChangeNotifier {
     final bool result = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.allJobCategory.stringValue);
     if (result) {
-      List<dynamic> va = await locator<HiveService>()
-          .getBox(HiveBoxName.allJobCategory.stringValue);
+      List<dynamic> va = await (locator<HiveService>()
+          .getBox(HiveBoxName.allJobCategory.stringValue) as Future<List<dynamic>>);
       _jobCategoriesList =
           va.map<JobCategoryModel>((e) => e as JobCategoryModel).toList();
       locator<JobFilterProvider>().setJobCategory(_jobCategoriesList!);
@@ -157,11 +157,11 @@ class JobProvider with ChangeNotifier {
     }
   }
 
-  int _jobCategoryId = -1;
+  int? _jobCategoryId = -1;
   bool _isAllJobLoaded = false;
 
   Future<void> getJobListByJobCategory(
-      {int limit = 10, int pageNo = 1, required int jobCategoryId}) async {
+      {int limit = 10, int pageNo = 1, required int? jobCategoryId}) async {
     try {
       final response = await JobRepository.getJobListByJobCategoryId(
           limit: limit, pageNo: pageNo, jobCategoryId: jobCategoryId);
@@ -200,12 +200,12 @@ class JobProvider with ChangeNotifier {
   /// ======================== End Function to fetch list of job category, list of jobs based on selected job category ================
 
   /// ==================== Function to remove job from job list, once user applied to those jobs =====================
-  void removeJobByJobId(int jobId) {
+  void removeJobByJobId(int? jobId) {
     _jobList!.removeWhere((element) => element.jobId == jobId);
     notifyListeners();
   }
 
-  void removeJobFromJobCategoryByJobId(int jobId) {
+  void removeJobFromJobCategoryByJobId(int? jobId) {
     _jobListByJobCategory!.removeWhere((element) => element.jobId == jobId);
     notifyListeners();
   }

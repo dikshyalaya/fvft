@@ -18,7 +18,7 @@ class LatestNewsScreen extends StatelessWidget {
         shrinkWrap: true,
         itemCount: 50,
         itemBuilder: (context, index) {
-          return const NewsListItem();
+          return  NewsListItem();
         },
         separatorBuilder: (context, index) {
           return const Divider();

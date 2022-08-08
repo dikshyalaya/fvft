@@ -6,27 +6,27 @@ import 'paginations/job_pagination_provider.dart';
 import 'job_provider.dart';
 
 class JobFilterProvider with ChangeNotifier {
-  List<CountryLSModel> _countryList = [];
+  List<CountryLSModel?> _countryList = [];
   List<JobCategoryModel> _jobCategoryList = [];
 
   int _page = 1;
-  int _selectedCountryId = -1;
-  int _selectedJobCategoryId = -1;
+  int? _selectedCountryId = -1;
+  int? _selectedJobCategoryId = -1;
   bool _isToClearJobList = false;
 
-  List<CountryLSModel> get countryList => _countryList;
+  List<CountryLSModel?> get countryList => _countryList;
 
   List<JobCategoryModel> get jobCategoryList => _jobCategoryList;
 
   int get page => _page;
 
-  int get selectedCountryId => _selectedCountryId;
+  int? get selectedCountryId => _selectedCountryId;
 
-  int get selectedJobCategoryId => _selectedJobCategoryId;
+  int? get selectedJobCategoryId => _selectedJobCategoryId;
 
   bool get isToClearJobList => _isToClearJobList;
 
-  void setCountry(List<CountryLSModel> countries) {
+  void setCountry(List<CountryLSModel?> countries) {
     _countryList = countries;
     notifyListeners();
     setCountryNameList();
@@ -43,7 +43,7 @@ class JobFilterProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setSelectedCountryId(int countryId) {
+  void setSelectedCountryId(int? countryId) {
     _selectedCountryId = countryId;
     notifyListeners();
   }
@@ -73,18 +73,18 @@ class JobFilterProvider with ChangeNotifier {
   }
 
   // ================ Filter Country Name & Job Category Name ================
-   List<String> _countryNameList = [];
-   List<String> _jobCategoryNameList = [];
+  final List<String?> _countryNameList = [];
+  final List<String?> _jobCategoryNameList = [];
 
-  List<String> get countryNameList => _countryNameList;
+  List<String?> get countryNameList => _countryNameList;
 
-  List<String> get jobCategoryNameList => _jobCategoryNameList;
+  List<String?> get jobCategoryNameList => _jobCategoryNameList;
   final GlobalKey<FormState> filterFormKey = GlobalKey<FormState>();
 
   void setCountryNameList() {
     if (_countryList.isEmpty) return;
     for (var country in _countryList) {
-      _countryNameList.add(country.countryName);
+      _countryNameList.add(country!.countryName);
     }
     notifyListeners();
   }
@@ -100,7 +100,7 @@ class JobFilterProvider with ChangeNotifier {
   void setCountryIdByCountryName(String? countryName) {
     if (_countryList.isEmpty) return;
     _selectedCountryId = _countryList
-        .firstWhere((element) => element.countryName == countryName)
+        .firstWhere((element) => element!.countryName == countryName)!
         .id;
     notifyListeners();
   }
