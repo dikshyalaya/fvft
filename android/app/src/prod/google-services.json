@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "531089978244",
+    "project_id": "freevisafreeticket-af0df",
+    "storage_bucket": "freevisafreeticket-af0df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531089978244:android:df9f1dbc1499badf8723d1",
+        "android_client_info": {
+          "package_name": "com.byterays.free_visa_free_ticket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531089978244-bd0uofdijovghbko5pun3fo39cfdidtp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy-AdF_c06ZBcMbpy9pjBZT9DfUYdBnLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531089978244-bd0uofdijovghbko5pun3fo39cfdidtp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

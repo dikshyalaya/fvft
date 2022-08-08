@@ -1,0 +1,7 @@
+HiveTypeId: Model Name              : Adapter Name
+         0: CountryLsModel          : CountryLSModelAdapter
+         1: JobCategoryModel        : JobCategoryAdapter
+         2: UserModel               : UserModelAdapter
+         3: CVModel                 : CVModelAdapter
+         4: CountryPrefsModel       : CountryPrefsAdapterName
+         5: JobPrefsModel           : JobPrefsAdapterName
