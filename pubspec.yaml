@@ -52,12 +52,13 @@ dependencies:
   # State Management
   provider: ^6.0.3 # 6.0.1
   path_provider: ^2.0.11 #2.0.8
-  get_it: ^7.2.0
+  get_it: ^7.2.0 
   # local storage
   hive: ^2.2.3 #2.0.5
   hive_flutter: ^1.1.0
   pdf: ^3.8.2 #3.6.5
-  native_pdf_view: ^6.0.0+1 #5.0.0
+  # native_pdf_view: ^6.0.0+1 #5.0.0
+  # pdfx: ^1.0.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5 #1.0.3

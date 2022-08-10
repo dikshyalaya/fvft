@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/services/hive_service.dart';
 import 'appconfig.dart';
 import 'core/constants/environments.dart';
@@ -10,7 +13,9 @@ import 'core/services/service_locator.dart';
 import 'main.dart';
 
 void main() async {
+  HttpOverrides.global =  MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
+   await ScreenUtil.ensureScreenSize();
   await Firebase.initializeApp();
 
   if (kDebugMode) {
@@ -29,9 +34,17 @@ void main() async {
   ]);
 
   var configuredApp = AppConfig(
-      child: FreeVisaFreeTicket(),
+      child: const FreeVisaFreeTicket(),
       appTitle: developmentEnv[keyAppTitle],
       buildFlavor: developmentEnv[keyFlavor]);
 
   return runApp(configuredApp);
+}
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
 }
