@@ -10,6 +10,9 @@ import '../repositories/job_repository.dart';
 
 import 'job_filter_provider.dart';
 
+// TODO : for dev only
+import 'dart:developer';
+
 /// Provider [JobProvider] : Get list of job, list of job category, list of jobs based on selected job category
 class JobProvider with ChangeNotifier {
   List<JobModel>? _jobList = [];
@@ -54,7 +57,8 @@ class JobProvider with ChangeNotifier {
           jobCategoryId: jobCategoryId);
       if (response.data != null && response.data['success']) {
         if (isToClearJobList) _jobList = [];
-        _jobList!.addAll(response.data['data']
+        log("jobs : ${response.data['data']}");
+        _jobList!.addAll(response.data['data']['jobs']
             .map<JobModel>((e) => JobModel.fromJson(e))
             .toList());
         notifyListeners();
@@ -133,8 +137,9 @@ class JobProvider with ChangeNotifier {
             pageNo: pageNo, limit: 1);
 
         if (response.data != null && response.data['success']) {
-          final responseResult = await JobRepository.getListOfJobCategories(
-              pageNo: pageNo, limit: response.data['meta']['total_records']);
+log('data : ${response.data}');
+        final responseResult = await JobRepository.getListOfJobCategories(
+              pageNo: pageNo, limit: response.data['total']);
           tempJobCategoriesList.addAll(responseResult.data['data']
               .map<JobCategoryModel>((e) => JobCategoryModel.fromJson(e))
               .toList());
@@ -180,7 +185,7 @@ class JobProvider with ChangeNotifier {
             .toList());
         notifyListeners();
         if (_jobListByJobCategory!.length ==
-            response.data['meta']['total_records']) {
+            response.data['total']) {
           _isAllJobLoaded = true;
           notifyListeners();
         }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import '../core/network/api_manager.dart';
 import '../core/services/service_locator.dart';
@@ -15,27 +17,42 @@ class JobRepository {
       int pageNo = 1,
       int? countryId = -1,
       int? jobCategoryId = -1}) async {
-    return await _apiManager!.dio!.get(_jobListEndpoint, queryParameters: {
-      'limit': limit,
-      'page_no': pageNo,
-      'is_active': 1,
-      'only_latest': 1,
-      'include_applied': 1,
-      if (countryId != -1) 'country_id': countryId,
-      if (jobCategoryId != -1) 'job_categories_id': jobCategoryId
-    });
+    try {
+      return await _apiManager!.dio!.get(_jobListEndpoint, queryParameters: {
+        'limit': limit,
+        'page_no': pageNo,
+        'is_active': 1,
+        'only_latest': 1,
+        'include_applied': 1,
+        if (countryId != -1) 'country_id': countryId,
+        if (jobCategoryId != -1) 'job_categories_id': jobCategoryId
+      });
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   static Future<Response> getListOfJobCategories(
       {int? limit = 21, int pageNo = 1}) async {
+
+
+
+try {
     return await _apiManager!.dio!.get(_jobCategoryEndpoint, queryParameters: {
       'limit': limit,
       'page_no': pageNo,
     });
+  
+} catch (e) {
+throw Exception(e);
+}
+
   }
 
   static Future<Response> getJobListByJobCategoryId(
       {int limit = 10, int pageNo = 1, required int? jobCategoryId}) async {
+
+try {
     return await _apiManager!.dio!.get(_jobListEndpoint, queryParameters: {
       'limit': limit,
       'page_no': pageNo,
@@ -44,6 +61,12 @@ class JobRepository {
       'include_applied': 1,
       'job_categories_id': jobCategoryId
     });
+  
+} catch (e) {
+  throw Exception(e);
+  
+}
+
   }
 
   static Future<Response> applyJob(int? jobId) async {
