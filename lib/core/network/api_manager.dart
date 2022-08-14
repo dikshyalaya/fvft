@@ -4,8 +4,8 @@ import '../utilities/environment.dart';
 import 'api_interceptor.dart';
 
 class ApiManager {
-  final _connectTimeout = 8000;
-  final _receiveTimeout = 5000;
+  final _connectTimeout = 100000;
+  final _receiveTimeout = 100000;
 
   Dio? dio;
 

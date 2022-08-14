@@ -17,6 +17,7 @@ class CountryLSModelAdapter extends TypeAdapter<CountryLSModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CountryLSModel(
+      nativeName: fields[4] as String?,
       flagCode: fields[3] as String?,
       countryName: fields[1] as String?,
       countryCode: fields[2] as String?,

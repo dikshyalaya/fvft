@@ -6,11 +6,11 @@ import '../core/services/service_locator.dart';
 
 class JobRepository {
   static final ApiManager? _apiManager = locator<ApiManager>();
-  static const String _jobListEndpoint = '/candidate/job-list';
-  static const String _jobCategoryEndpoint = '/candidate/job-categories';
-  static const String _jobApplicationEndpoint = '/candidate/job-application';
+  static const String _jobListEndpoint = '/v1/candidate/job-list';
+  static const String _jobCategoryEndpoint = '/v1/candidate/job-categories';
+  static const String _jobApplicationEndpoint = '/v1/candidate/job-application';
   static const String _jobApplicationListEndpoint =
-      '/candidate/job-application-list';
+      '/v1/candidate/job-application-list';
 
   static Future<Response> getListOfJobs(
       {int limit = 10,

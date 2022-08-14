@@ -4,7 +4,7 @@ import '../core/services/service_locator.dart';
 
 class CountryRepository {
   static final ApiManager? _apiManager = locator<ApiManager>();
-  static const String _countriesEndpoint = '/countries';
+  static const String _countriesEndpoint = '/v2/countries';
 
   static Future<Response> getListOfCountries(
       {int? limit = 10, int pageNo = 1}) async {

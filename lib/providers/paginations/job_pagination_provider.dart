@@ -107,7 +107,7 @@ class JobPaginationProvider with ChangeNotifier {
       _isFirstLoadCountry = true;
       try {
         final data = locator<CountryProvider>();
-        await data.getListOfCountries(pageNo: _countryPage);
+        // await data.getListOfCountries(pageNo: _countryPage);
         if (data.countriesList!.isNotEmpty) {
           _countryList = data.countriesList!;
         }
@@ -133,7 +133,7 @@ class JobPaginationProvider with ChangeNotifier {
         _countryPage += 1;
         try {
           final data = locator<CountryProvider>();
-          await data.getListOfCountries(pageNo: _countryPage);
+          // await data.getListOfCountries(pageNo: _countryPage);
           if (data.countriesList!.isNotEmpty) {
             _countryList.addAll(data.countriesList!);
           } else {

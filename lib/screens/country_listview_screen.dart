@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import '../core/services/navigation_service.dart';
 
 import '../core/services/service_locator.dart';
@@ -43,8 +44,11 @@ class CountryListViewScreen extends StatelessWidget {
                 locator<NavigationService>()
                     .navigateTo(routes.countryJobsScreen);
               },
-              leading: Text(countryList[index]!.flagCode!,
-                  style: FreeVisaFreeTicketTheme.heading1Style),
+              leading: SvgPicture.network(
+                'https://demo.freevisafreeticket.com/${countryList[index]!.flagCode!}',
+                height: 40.h,
+                width: 40.w,
+              ),
               title: Text(countryList[index]!.countryName!,
                   style: FreeVisaFreeTicketTheme.caption1Style),
               trailing: const Icon(

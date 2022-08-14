@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,61 +21,67 @@ class CountryProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getListOfCountries({int limit = 10, int pageNo = 1}) async {
-    try {
-      final response = await CountryRepository.getListOfCountries(
-          limit: limit, pageNo: pageNo);
-      if (response.data != null && response.data['success']) {
-        bool exists = await locator<HiveService>()
-            .isExists(boxName: HiveBoxName.country.stringValue);
-        if (!exists) {
-          _countriesList!.addAll(response.data['data']
-              .map<CountryLSModel>((e) => CountryLSModel.fromJson(e))
-              .toList());
-          notifyListeners();
-          //caching country
-          await locator<HiveService>()
-              .addBoxes(_countriesList!, HiveBoxName.country.stringValue);
-        } else {
-          final val = await locator<HiveService>()
-              .getBoxes(HiveBoxName.country.stringValue);
-          _countriesList = val.map<CountryLSModel?>((e) => e).toList();
-          notifyListeners();
-        }
-      }
-    } on DioError catch (e) {
-      LogUtils.logError('Dio Error to Fetch List of countries: ${e.response}');
-      LogUtils.logError('Dio Error to Fetch List of countries: ${e.message}');
-      rethrow;
-    } catch (e) {
-      LogUtils.logError('Error to Fetch List of countries: $e');
-      rethrow;
-    }
-  }
+  /// FUNCTION TO [_CheckingTheCachedDataAndFetchingFromTheServer] : Display list of country name and its flag in horizontal list view
+
+  // Future<void> getListOfCountries({int limit = 10, int pageNo = 1}) async {
+
+  //   try {
+  //     debugPrint("hello before crash!");
+  //     final response = await CountryRepository.getListOfCountries(
+  //         limit: limit, pageNo: pageNo);
+  //     debugPrint(response.data.toString());
+
+  //     if (response.data != null) {
+  //       bool exists = await locator<HiveService>()
+  //           .isExists(boxName: HiveBoxName.country.stringValue);
+  //       if (!exists) {
+  //         _countriesList!.addAll(response.data['data']
+  //             .map<CountryLSModel>((e) => CountryLSModel.fromJson(e))
+  //             .toList());
+  //         notifyListeners();
+  //         //caching country
+  //         await locator<HiveService>()
+  //             .addBoxes(_countriesList!, HiveBoxName.country.stringValue);
+  //       } else {
+  //         final val = await locator<HiveService>()
+  //             .getBoxes(HiveBoxName.country.stringValue);
+  //         _countriesList = val.map<CountryLSModel?>((e) => e).toList();
+  //         notifyListeners();
+  //       }
+  //     }
+  //   } on DioError catch (e) {
+  //     LogUtils.logError('Dio Error to Fetch List of countries: ${e.response}');
+  //     LogUtils.logError('Dio Error to Fetch List of countries: ${e.message}');
+  //     rethrow;
+  //   } catch (e) {
+  //     LogUtils.logError('Error to Fetch List of countries: $e');
+  //     rethrow;
+  //   }
+  // }
 
   Future<void> getTotalListOfCountries({int limit = 1, int pageNo = 1}) async {
-    final bool result = await locator<HiveService>()
-        .isExists(boxName: HiveBoxName.allCountry.stringValue);
-    if (result) {
-      List<dynamic> va = await (locator<HiveService>()
-          .getBox(HiveBoxName.allCountry.stringValue) as Future<List<dynamic>>);
-      _countriesList = va.map<CountryLSModel>((e) => e as CountryLSModel).toList();
-      locator<JobFilterProvider>().setCountry(_countriesList!);
-      return;
-    }
+    // final bool result = await locator<HiveService>()
+    //     .isExists(boxName: HiveBoxName.allCountry.stringValue);
+    // if (result) {
+    //   List<dynamic> va = await (locator<HiveService>()
+    //       .getBox(HiveBoxName.allCountry.stringValue) as Future<List<dynamic>>);
+    //   _countriesList = va.map<CountryLSModel>((e) => e as CountryLSModel).toList();
+    //   locator<JobFilterProvider>().setCountry(_countriesList!);
+    //   return;
+    // }
     try {
-      List<CountryLSModel> _tempCountriesList = [];
-      final response = await CountryRepository.getListOfCountries(
+      List<CountryLSModel?>? tempCountriesList = [];
+      final response = await CountryRepository.getListOfCountries(  
           limit: limit, pageNo: pageNo);
-      if (response.data != null && response.data['success']) {
+      if (response.data != null) {
         final responseResult = await CountryRepository.getListOfCountries(
-            limit: response.data['meta']['total_records'], pageNo: pageNo);
-        _tempCountriesList.addAll(responseResult.data['data']
+            limit: 10, pageNo: pageNo);
+        tempCountriesList.addAll(responseResult.data['data']
             .map<CountryLSModel>((e) => CountryLSModel.fromJson(e))
             .toList());
       }
-      locator<JobFilterProvider>().setCountry(_tempCountriesList);
-      _countriesList = _tempCountriesList;
+      locator<JobFilterProvider>().setCountry(tempCountriesList);
+      _countriesList = tempCountriesList;
       notifyListeners();
       await locator<HiveService>()
           .addBox(_countriesList, HiveBoxName.allCountry.stringValue);

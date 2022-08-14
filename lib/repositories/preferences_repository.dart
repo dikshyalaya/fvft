@@ -8,9 +8,9 @@ import '../models/local_storage/job_prefs_model.dart';
 
 class PreferencesRepository {
   static final ApiManager? _apiManager = locator<ApiManager>();
-  static const String _countryPrefsEndPoint = '/candidate/preference/country';
+  static const String _countryPrefsEndPoint = '/v1/candidate/preference/country';
   static const String _jobCategoryPrefsEndPoint =
-      '/candidate/preference/job-category';
+      '/v1/candidate/preference/job-category';
 
   static Future<Response> addNewCountryInPrefs({required int? countryId}) async {
     return _apiManager!.dio!

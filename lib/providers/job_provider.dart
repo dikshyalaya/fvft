@@ -86,12 +86,13 @@ class JobProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getListOfJobsCategories({int limit = 21, int pageNo = 1}) async {
+  getListOfJobsCategories({int limit = 21, int pageNo = 1}) async {
     final bool result = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.allJobCategory.stringValue);
     if (result) {
       List<dynamic> va = await (locator<HiveService>()
-          .getBox(HiveBoxName.allJobCategory.stringValue) as Future<List<dynamic>>);
+              .getBox(HiveBoxName.allJobCategory.stringValue)
+          );
       _jobCategoriesList =
           va.map<JobCategoryModel>((e) => e as JobCategoryModel).toList();
       locator<JobFilterProvider>().setJobCategory(_jobCategoriesList!);
@@ -125,7 +126,8 @@ class JobProvider with ChangeNotifier {
         .isExists(boxName: HiveBoxName.allJobCategory.stringValue);
     if (result) {
       List<dynamic> va = await (locator<HiveService>()
-          .getBox(HiveBoxName.allJobCategory.stringValue) as Future<List<dynamic>>);
+              .getBox(HiveBoxName.allJobCategory.stringValue)
+          );
       _jobCategoriesList =
           va.map<JobCategoryModel>((e) => e as JobCategoryModel).toList();
       locator<JobFilterProvider>().setJobCategory(_jobCategoriesList!);
@@ -135,8 +137,9 @@ class JobProvider with ChangeNotifier {
         List<JobCategoryModel> tempJobCategoriesList = [];
         final response = await JobRepository.getListOfJobCategories(
             pageNo: pageNo, limit: 1);
+        log(response.toString());
 
-        if (response.data != null && response.data['success']) {
+        if (response.data != null) {
 log('data : ${response.data}');
         final responseResult = await JobRepository.getListOfJobCategories(
               pageNo: pageNo, limit: response.data['total']);
@@ -184,8 +187,7 @@ log('data : ${response.data}');
             .map<JobModel>((e) => JobModel.fromJson(e))
             .toList());
         notifyListeners();
-        if (_jobListByJobCategory!.length ==
-            response.data['total']) {
+        if (_jobListByJobCategory!.length == response.data['total']) {
           _isAllJobLoaded = true;
           notifyListeners();
         }

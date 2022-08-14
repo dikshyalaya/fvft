@@ -4,7 +4,7 @@ import '../core/services/service_locator.dart';
 
 class CVRepository {
   static final ApiManager? _apiManager = locator<ApiManager>();
-  static const String _cvEndpoint = '/candidate/cv';
+  static const String _cvEndpoint = '/v1/candidate/cv';
 
   static Future<Response> getCV() async {
     return await _apiManager!.dio!.get(_cvEndpoint);

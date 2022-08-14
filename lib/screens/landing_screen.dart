@@ -1,10 +1,10 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import '../core/constants/assets_source.dart';
-import 'job/temp_job_screen.dart';
+import 'job/main_job_screen.dart';
 import 'more_info_screen.dart';
 import 'status_screen.dart';
-import 'temp_profile_screen.dart';
+import 'profile_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../core/services/service_locator.dart';
@@ -45,11 +45,13 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
   Widget _switchedScreen() {
     switch (_currentIndex) {
       case 0:
-        return  StatusScreen(); //JobScreen(animationController: animationController);
+        return const StatusScreen(); //takes to the status page of the applied jobs
       case 1:
-        return InformationScreen(); //const CategoryListScreen();
+
+      // TODO : products section implement pressing functionality
+        return const  InformationScreen(); //const CategoryListScreen();
       case 2:
-        return  TempJobScreen();
+        return const TempJobScreen();
       case 3:
         return const TempProfileScreen();
 
@@ -59,7 +61,7 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
             ChangeNotifierProvider.value(value: locator<AuthProvider>()),
             ChangeNotifierProvider.value(value: locator<CVProvider>()),
           ],
-          child:  MoreInfoScreen(), // const ProfileScreen(),
+          child: const MoreInfoScreen(), // const ProfileScreen(),
         );
       default:
         return Container();
@@ -80,12 +82,12 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
     final bool hasUserData = currentUser != null;
     return AppBar(
       flexibleSpace: Container(
-        decoration:  BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.topRight,
             tileMode: TileMode.repeated,
-            colors: const <Color>[
+            colors: <Color>[
               FreeVisaFreeTicketTheme.secondaryColor,
               FreeVisaFreeTicketTheme.primaryColor,
             ],
@@ -170,8 +172,8 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
 
   Widget _buildBottomNavBar() {
     return ConvexAppBar(
-      gradient:  LinearGradient(
-        colors:const [
+      gradient: const LinearGradient(
+        colors: [
           FreeVisaFreeTicketTheme.secondaryColor,
           FreeVisaFreeTicketTheme.primaryColor,
         ],

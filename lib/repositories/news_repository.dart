@@ -4,8 +4,8 @@ import '../core/services/service_locator.dart';
 
 class NewsRepository {
   static final ApiManager? _apiManager = locator<ApiManager>();
-  static const String _newsEndPoint = '/candidate/news';
-  static const String _bannerEndPoint = '/candidate/banners';
+  static const String _newsEndPoint = '/v1/candidate/news';
+  static const String _bannerEndPoint = '/v1/candidate/banners';
 
   /// FUNC [getNewsList] : Get list of news
   static Future<Response> getNewsList() async {

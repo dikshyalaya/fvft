@@ -4,11 +4,11 @@ import '../core/services/service_locator.dart';
 
 class AuthRepository {
   static final ApiManager? _apiManager = locator<ApiManager>();
-  static const String _loginEndPoint = '/candidate/login';
-  static const String _registerEndPoint = '/candidate/register';
+  static const String _loginEndPoint = '/v1/candidate/login';
+  static const String _registerEndPoint = '/v1/candidate/register';
 
   //update user profile and get user profile data
-  static const String _profileEndPoint = '/candidate/profile';
+  static const String _profileEndPoint = '/v1/candidate/profile';
 
   /// FUNC [loginUser] : Login User using contact and password
   static Future<Response> loginUser(
