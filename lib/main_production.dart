@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'appconfig.dart';
-import 'core/constants/environments.dart';
 
-import 'core/services/hive_service.dart';
-import 'core/services/service_locator.dart';
+
+
+import 'constants/environments.dart';
 import 'main.dart';
 
 void main() async {
@@ -24,11 +24,11 @@ void main() async {
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   }
 
-  await Future.wait([
-    dotenv.load(fileName: productionEnv[keyEnvironmentFile]!),
-    setupLocator(),
-    locator<HiveService>().init()
-  ]);
+  // await Future.wait([
+  //   dotenv.load(fileName: productionEnv[keyEnvironmentFile]!),
+  //   setupLocator(),
+  //   locator<HiveService>().init()
+  // ]);
 
   var configuredApp = AppConfig(
       child:  FreeVisaFreeTicket(),
