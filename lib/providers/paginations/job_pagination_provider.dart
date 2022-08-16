@@ -30,23 +30,23 @@ class JobPaginationProvider with ChangeNotifier {
     _jobList.clear();
     notifyListeners();
   }
-
-  void loadInitialData() async {
-    _isFirstLoadRunning = true;
-    try {
-      final data = locator<JobProvider>();
-      await locator<JobFilterProvider>().loadListOfFilterJobs();
-      if (data.jobList!.isNotEmpty) {
-        _jobList = data.jobList!;
-        notifyListeners();
-      }
-    } catch (err) {
-      LogUtils.logError(
-          'Ignore This Error: Something went wrong while loading job data at initial phase!');
-    }
-    _isFirstLoadRunning = false;
-    notifyListeners();
-  }
+// TODO : UNCOMMENT THIS FUCNTION
+  // void loadInitialData() async {
+  //   _isFirstLoadRunning = true;
+  //   try {
+  //     final data = locator<JobProvider>();
+  //     // await locator<JobFilterProvider>().loadListOfFilterJobs();  TODO : Uncomment this line
+  //     if (data.jobList!.isNotEmpty) {
+  //       _jobList = data.jobList!;
+  //       notifyListeners();
+  //     }
+  //   } catch (err) {
+  //     LogUtils.logError(
+  //         'Ignore This Error: Something went wrong while loading job data at initial phase!');
+  //   }
+  //   _isFirstLoadRunning = false;
+  //   notifyListeners();
+  // }
 
   void setScrollController(ScrollController newController) {
     _controller = newController;
@@ -61,7 +61,7 @@ class JobPaginationProvider with ChangeNotifier {
       try {
         final data = locator<JobProvider>();
         locator<JobFilterProvider>().increasePageNo();
-        await locator<JobFilterProvider>().loadListOfFilterJobs();
+        // await locator<JobFilterProvider>().loadListOfFilterJobs(); // TODO : Uncomment this line
         if (data.jobList!.isNotEmpty) {
           _jobList.addAll(data.jobList!);
         } else {
@@ -165,7 +165,7 @@ class JobPaginationProvider with ChangeNotifier {
     jobFilterProvider.setSelectedJobCategoryId(-1);
     jobFilterProvider.setPage(1);
     clearJobs();
-    loadInitialData();
+    // loadInitialData(); TODO : Uncomment this function
     jobFilterProvider.setIsToClearJobList(false);
     notifyListeners();
   }

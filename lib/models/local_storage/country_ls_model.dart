@@ -15,20 +15,17 @@ class CountryLSModel {
   @HiveField(4)
   final String? nativeName;
 
-  CountryLSModel({
-    required this.flagCode,
-    required this.countryName,
-    required this.countryCode,
-    required this.id,
-    required  this.nativeName
-  });
+  CountryLSModel(
+      {required this.flagCode,
+      required this.countryName,
+      required this.countryCode,
+      required this.id,
+      required this.nativeName});
 
   factory CountryLSModel.fromJson(Map<String, dynamic> json) => CountryLSModel(
       id: json['id'],
       countryCode: json['country_code'],
       countryName: json['name'],
-      flagCode: json['flag']
-      ,nativeName: json['native']
-      );
-      
+      flagCode: json['flag'],
+      nativeName: json['native']);
 }

@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../widgets/components/job_home_page/company_list.dart';
 import '../../widgets/components/job_home_page/countries_list.dart';
+import '../../widgets/components/job_home_page/fiter_tag.dart';
+import '../../widgets/components/job_home_page/job_categories.dart';
+import '../../widgets/components/job_home_page/latest_job.dart';
+import '../../widgets/components/job_home_page/preferred_job.dart';
+import '../../widgets/components/job_home_page/search_field.dart';
 import '../../widgets/custom_image_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,27 +31,31 @@ class TempJobScreen extends StatelessWidget {
         ),
 
         // Seatch field of job page
-        // buildSearchFiled(),
-        // SizedBox(height: 20.h),
+        buildSearchFiled(),
+        SizedBox(height: 20.h),
 
         //  tags horizonatal job list
-        // buildTagList(),
-        // SizedBox(height: 20.h),
+        buildTagList(),
+        SizedBox(height: 20.h),
 
         // job countries list
         buildCountriesList(),
+        SizedBox(height: 20.h),
         // job category list
-        // buildJobCategoryList(),
+        buildJobCategoryList(),
+        SizedBox(height: 20.h),
 
         // prefered job
-        // buildPreferredJobs(),
+        buildPreferredJobs(),
+        SizedBox(height: 20.h),
         // latest job
-        // buildLatestJobs(),
+        buildLatestJobs(),
+        SizedBox(height: 20.h),
 
         // TODO : ADD ALL JOBS SECTION
 
         // companies list
-        // buildCompanyList(),
+        buildCompanyList(),
         // saved jobs
         // buildSavedJobs(),
         SizedBox(height: 150.h),

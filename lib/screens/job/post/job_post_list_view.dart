@@ -29,7 +29,7 @@ class _JobPostListViewState extends State<JobPostListView>
     super.initState();
     final jobPaginationProvider = locator<JobPaginationProvider>();
     if (jobPaginationProvider.jobList.isEmpty) {
-      jobPaginationProvider.loadInitialData();
+      // jobPaginationProvider.loadInitialData(); //TODO : uncomment this line
     }
     jobPaginationProvider.setScrollController(_controller);
     _controller.addListener(jobPaginationProvider.loadMoreData);

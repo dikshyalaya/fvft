@@ -41,37 +41,37 @@ class JobProvider with ChangeNotifier {
   }
 
   /// ========================= Function to fetch list of active jobs ========================
-
-  Future<void> getListOfJobs({
-    int limit = 10,
-    int pageNo = 1,
-    int? countryId = -1,
-    bool isToClearJobList = false,
-    int? jobCategoryId = -1,
-  }) async {
-    try {
-      final response = await JobRepository.getListOfJobs(
-          limit: limit,
-          pageNo: pageNo,
-          countryId: countryId,
-          jobCategoryId: jobCategoryId);
-      if (response.data != null && response.data['success']) {
-        if (isToClearJobList) _jobList = [];
-        log("jobs : ${response.data['data']}");
-        _jobList!.addAll(response.data['data']['jobs']
-            .map<JobModel>((e) => JobModel.fromJson(e))
-            .toList());
-        notifyListeners();
-      }
-    } on DioError catch (e) {
-      LogUtils.logError('Dio Fail to fetch list of job: ${e.response}');
-      LogUtils.logError('Dio Fail to fetch list of job: ${e.message}');
-      rethrow;
-    } catch (e) {
-      LogUtils.logError('Fail to fetch list of job: $e');
-      rethrow;
-    }
-  }
+/// TODO [GETTING_THE_LIST_OF_THE_ACTIVE_JOBS]
+  // Future<void> getListOfJobs({
+  //   int limit = 10,
+  //   int pageNo = 1,
+  //   int? countryId = -1,
+  //   bool isToClearJobList = false,
+  //   int? jobCategoryId = -1,
+  // }) async {
+  //   try {
+  //     final response = await JobRepository.getListOfJobs(
+  //         limit: limit,
+  //         pageNo: pageNo,
+  //         countryId: countryId,
+  //         jobCategoryId: jobCategoryId);
+  //     if (response.data != null && response.data['success']) {
+  //       if (isToClearJobList) _jobList = [];
+  //       log("jobs : ${response.data['data']}");
+  //       _jobList!.addAll(response.data['data']['jobs']
+  //           .map<JobModel>((e) => JobModel.fromJson(e))
+  //           .toList());
+  //       notifyListeners();
+  //     }
+  //   } on DioError catch (e) {
+  //     LogUtils.logError('Dio Fail to fetch list of job: ${e.response}');
+  //     LogUtils.logError('Dio Fail to fetch list of job: ${e.message}');
+  //     rethrow;
+  //   } catch (e) {
+  //     LogUtils.logError('Fail to fetch list of job: $e');
+  //     rethrow;
+  //   }
+  // }
 
   /// ========================= End function to fetch list of active jobs ========================
 

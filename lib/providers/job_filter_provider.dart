@@ -63,14 +63,15 @@ class JobFilterProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> loadListOfFilterJobs() async {
-    await locator<JobProvider>().getListOfJobs(
-      pageNo: _page,
-      countryId: _selectedCountryId,
-      isToClearJobList: _isToClearJobList,
-      jobCategoryId: _selectedJobCategoryId,
-    );
-  }
+// TODO :Uncomment this function
+  // Future<void> loadListOfFilterJobs() async {
+  //   await locator<JobProvider>().getListOfJobs(
+  //     pageNo: _page,
+  //     countryId: _selectedCountryId,
+  //     isToClearJobList: _isToClearJobList,
+  //     jobCategoryId: _selectedJobCategoryId,
+  //   );
+  // }
 
   // ================ Filter Country Name & Job Category Name ================
   final List<String?> _countryNameList = [];
@@ -122,7 +123,7 @@ class JobFilterProvider with ChangeNotifier {
     locator<JobPaginationProvider>().setHasError(false);
     setIsToClearJobList(true);
     locator<JobPaginationProvider>().clearJobs();
-    locator<JobPaginationProvider>().loadInitialData();
+    // locator<JobPaginationProvider>().loadInitialData(); //TODO : UNCOMMENT THIS LINE
     locator<JobPaginationProvider>().setIsToShowFilterBtn(false);
   }
 }

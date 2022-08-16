@@ -60,7 +60,7 @@ class NewsProvider with ChangeNotifier {
   Future<void> getListOfBanners() async {
     try {
       final response = await NewsRepository.getBannerList();
-      if (response.data != null && response.data['success']) {
+      if (response.data != null) {
         final List<dynamic> dynamicList =
             response.data['data'] as List<dynamic>;
         if (dynamicList.isEmpty) {

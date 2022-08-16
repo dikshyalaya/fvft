@@ -80,15 +80,18 @@ class _SplashScreenState extends State<SplashScreen>
         .isExists(boxName: HiveBoxName.userCV.stringValue);
     if (userModel != null && userModel.email != null) {
       locator<AuthProvider>().setCurrentUser(userModel);
-      unawaited(locator<JobApplicationProvider>().getOnProcessJobList());
-      unawaited(locator<JobApplicationProvider>().getPendingJobList());
-      unawaited(locator<JobApplicationProvider>().getAcceptedJobList());
-      unawaited(locator<UserCountryPrefsProvider>().getCountryFromPrefsList());
-      unawaited(locator<UserJobPrefsProvider>().getJobCategoryFromPrefsList());
+      // unawaited(locator<JobApplicationProvider>().getOnProcessJobList());
+      // unawaited(locator<JobApplicationProvider>().getPendingJobList());
+      // unawaited(locator<JobApplicationProvider>().getAcceptedJobList());
+      // unawaited(locator<UserCountryPrefsProvider>().getCountryFromPrefsList());
+
+      unawaited(locator<CountryProvider>().getTotalListOfCountries());
+      unawaited(locator<CountryProvider>().getListOfCountries());
+      // unawaited(locator<UserJobPrefsProvider>().getJobCategoryFromPrefsList());
       if (!isUserCvExists) {
-        unawaited(locator<CVProvider>().getUserCV());
+        // unawaited(locator<CVProvider>().getUserCV());
       } else {
-        unawaited(locator<CVProvider>().getUserCVFromCache());
+        // unawaited(locator<CVProvider>().getUserCVFromCache());
       }
     }
     if (languageCode == null) {
