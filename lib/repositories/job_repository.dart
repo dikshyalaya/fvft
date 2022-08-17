@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:free_visa_free_ticket/providers/job_home_provider.dart';
 import '../core/network/api_manager.dart';
 import '../core/services/service_locator.dart';
 
@@ -11,6 +12,8 @@ class JobRepository {
   static const String _jobApplicationEndpoint = '/v1/candidate/job-application';
   static const String _jobApplicationListEndpoint =
       '/v1/candidate/job-application-list';
+     
+
 
   static Future<Response> getListOfJobs(
       {int limit = 10,
@@ -88,4 +91,7 @@ try {
     return await _apiManager!.dio!
         .post(_jobApplicationListEndpoint, data: {'status': 'pending'});
   }
+
+
+
 }

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/rendering.dart';
 import '../services/hive_service.dart';
 import '../services/service_locator.dart';
 import '../utilities/enum_utils.dart';
@@ -32,7 +33,13 @@ class ApiInterceptor extends Interceptor {
     }
     return super.onRequest(options, handler);
   }
+@override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    // TODO: implement onResponse
 
+    debugPrint(response.data['countries']);
+    super.onResponse(response, handler);
+  }
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
     super.onError(err, handler);

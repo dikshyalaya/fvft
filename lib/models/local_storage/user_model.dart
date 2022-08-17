@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-part 'user_model.g.dart';
+// part 'user_model.g.dart';
 
 @HiveType(typeId: 2, adapterName: 'UserModelAdapter')
 class UserModel with ChangeNotifier {

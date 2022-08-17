@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-part 'job_category_model.g.dart';
+// part 'job_category_model.g.dart';
 
 @HiveType(typeId: 1, adapterName: 'JobCategoryAdapter')
 class JobCategoryModel with ChangeNotifier {

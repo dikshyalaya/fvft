@@ -63,7 +63,7 @@ class JobFilterProvider with ChangeNotifier {
     notifyListeners();
   }
 
-// TODO :Uncomment this function
+//! TODO :Uncomment this function
   // Future<void> loadListOfFilterJobs() async {
   //   await locator<JobProvider>().getListOfJobs(
   //     pageNo: _page,
@@ -85,7 +85,7 @@ class JobFilterProvider with ChangeNotifier {
   void setCountryNameList() {
     if (_countryList.isEmpty) return;
     for (var country in _countryList) {
-      _countryNameList.add(country!.countryName);
+      // _countryNameList.add(country!.countryName); //! TODO:  Uncomment this
     }
     notifyListeners();
   }
@@ -98,13 +98,13 @@ class JobFilterProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setCountryIdByCountryName(String? countryName) {
-    if (_countryList.isEmpty) return;
-    _selectedCountryId = _countryList
-        .firstWhere((element) => element!.countryName == countryName)!
-        .id;
-    notifyListeners();
-  }
+  // void setCountryIdByCountryName(String? countryName) {
+  //   if (_countryList.isEmpty) return;
+  //   _selectedCountryId = _countryList
+  //       .firstWhere((element) => element!.countryName == countryName)!
+  //       .id;
+  //   notifyListeners();
+  // }
 
   void setCategoryIdByCategoryName(String? categoryName) {
     if (_jobCategoryList.isEmpty) return;

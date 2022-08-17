@@ -5,3 +5,4 @@ HiveTypeId: Model Name              : Adapter Name
          3: CVModel                 : CVModelAdapter
          4: CountryPrefsModel       : CountryPrefsAdapterName
          5: JobPrefsModel           : JobPrefsAdapterName
+         6: CountryCurrencyModel    : CountryCurrencyTypeAdapter

@@ -1,3 +1,7 @@
+
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -35,6 +39,7 @@ Widget _buildCountriesItem() {
     scrollDirection: Axis.horizontal,
     itemCount: countryList!.length,
     itemBuilder: (lCtx, index) {
+      log(countryList[index].toString());
       return Padding(
         padding: EdgeInsets.only(left: 20.w, bottom: 10.h),
         child: Chip(
@@ -45,13 +50,14 @@ Widget _buildCountriesItem() {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              
               SvgPicture.network(
-                'https://demo.freevisafreeticket.com/${countryList[index]!.flagCode!}',
+                'https://demo.freevisafreeticket.com/${countryList[index]!.flag!}',
                 height: 40.h,
                 width: 40.w,
               ),
               SizedBox(width: 20.w),
-              Text(countryList[index]!.countryName!,
+              Text(countryList[index]!.name!,
                   style: FreeVisaFreeTicketTheme.caption1Style),
               Text(' ( ${countryList[index]!.nativeName} )',
                   style: FreeVisaFreeTicketTheme.caption1Style),

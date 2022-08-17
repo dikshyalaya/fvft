@@ -45,11 +45,11 @@ class CountryListViewScreen extends StatelessWidget {
                     .navigateTo(routes.countryJobsScreen);
               },
               leading: SvgPicture.network(
-                'https://demo.freevisafreeticket.com/${countryList[index]!.flagCode!}',
+                'https://demo.freevisafreeticket.com/${countryList[index]!.flag}',
                 height: 40.h,
                 width: 40.w,
               ),
-              title: Text(countryList[index]!.countryName!,
+              title: Text(countryList[index]!.name!,
                   style: FreeVisaFreeTicketTheme.caption1Style),
               trailing: const Icon(
                 Icons.arrow_forward_ios,

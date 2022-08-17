@@ -51,7 +51,7 @@ class HiveService {
     return openBox.getAt(0);
   }
 
-  Future<bool> deleteBox({ required String boxName}) async {
+  Future<bool> deleteBox({required String boxName}) async {
     final bool result = await isExists(boxName: boxName);
     if (result) {
       await Hive.deleteBoxFromDisk(boxName);
@@ -68,11 +68,12 @@ class HiveService {
     final appDocumentDir =
         await path_provider.getApplicationDocumentsDirectory();
     Hive.init(appDocumentDir.path);
-    Hive.registerAdapter(JobCategoryAdapter());
+    // Hive.registerAdapter(JobCategoryAdapter());
     Hive.registerAdapter(CountryLSModelAdapter());
-    Hive.registerAdapter(UserModelAdapter());
-    Hive.registerAdapter(CVModelAdapter());
-    Hive.registerAdapter(JobPrefsAdapterName());
-    Hive.registerAdapter(CountryPrefsAdapterName());
+
+    // Hive.registerAdapter(UserModelAdapter());
+    // Hive.registerAdapter(CVModelAdapter());
+    // Hive.registerAdapter(JobPrefsAdapterName());
+    // Hive.registerAdapter(CountryPrefsAdapterName());
   }
 }

@@ -14,10 +14,10 @@ class TempJobScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _jobScreen();
+    return _jobScreen(context);
   }
 
-  Widget _jobScreen() {
+  Widget _jobScreen(BuildContext context) {
     return ListView(
       shrinkWrap: true,
       padding: EdgeInsets.zero,

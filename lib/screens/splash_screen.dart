@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen>
     ]);
     if (hasBanner) unawaited(locator<NewsProvider>().getBannerFromCache());
     unawaited(locator<CountryProvider>().getTotalListOfCountries());
-    unawaited(locator<JobProvider>().getAllJobsCategories());
+    // unawaited(locator<JobProvider>().getAllJobsCategories());
     String? languageCode;
     final bool isLanExist = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.selectedLanCode.stringValue);

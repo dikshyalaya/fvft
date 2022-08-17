@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/theme/free_visa_free_ticket_theme.dart';
+import '../../../providers/job_provider.dart';
 
 Widget buildSearchFiled() {
   return Container(
@@ -39,8 +41,12 @@ Widget buildSearchFiled() {
             ),
           ),
         ),
+       
         InkWell(
-          onTap: () {},
+          
+          onTap: () {
+             
+          },
           borderRadius: BorderRadius.circular(10.w),
           child: Container(
             width: 200.w,

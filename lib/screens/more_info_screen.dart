@@ -113,8 +113,8 @@ class MoreInfoScreen extends StatelessWidget {
                                 boxName: HiveBoxName.banner.stringValue),
                           ]);
                           locator<AuthProvider>().setCurrentUser(null);
-                          // locator<NavigationService>()
-                          //     .pushReplacementNamed(routes.loginRoute);
+                          locator<NavigationService>()
+                              .pushReplacementNamed(routes.loginRoute);
                           locator<NavigationService>()
                               .pushReplacementNamed(routes.tempLoginScreen);
                         },

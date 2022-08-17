@@ -99,7 +99,8 @@ class JobDetailScreen extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 10.h),
             child: Text(
-              jobDetail!.siteLocation!.country!.countryName!,
+              // jobDetail!.siteLocation!.country!.countryName!, //! TODO uncommet this
+"he",
               style: TextStyle(
                 fontSize: 32.sp,
                 fontWeight: FontWeight.w600,

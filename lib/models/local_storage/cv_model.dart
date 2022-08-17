@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-part 'cv_model.g.dart';
+// part 'cv_model.g.dart';
 
 @HiveType(typeId: 3, adapterName: 'CVModelAdapter')
 class CVModel with ChangeNotifier {

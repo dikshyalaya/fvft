@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:free_visa_free_ticket/providers/job_provider.dart';
+import 'package:provider/provider.dart';
 import '../core/constants/assets_source.dart';
 import '../core/theme/free_visa_free_ticket_theme.dart';
 import '../providers/auth_provider.dart';
@@ -106,8 +108,10 @@ class TempProfileScreen extends StatelessWidget {
                             ),
                             textAlign: TextAlign.right,
                           ),
+                          
                           CustomButton(
                             onTap: () {
+                             
                             },
                             title: 'Edit Profile',
                             width: 250.w,

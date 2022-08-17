@@ -150,15 +150,16 @@ class CountryPrefsTabView extends StatelessWidget {
                 child: Column(
                   key: ValueKey(e),
                   children: [
-                    CustomListTile(
-                      key: UniqueKey(),
-                      onTap: () {},
-                      title: e,
-                      date: 'Priority Level: ${index + 1}',
-                      editTap: () async => await jobPrefsUIProvider
-                          .deleteParticularCountryFromPrefs(e),
-                      subTitle: '',
-                    ),
+                    // CustomListTile(
+                    //   key: UniqueKey(),
+                    //   onTap: () {},
+                    //   title: e,
+                    //   date: 'Priority Level: ${index + 1}',
+                    //   editTap: () async => await jobPrefsUIProvider
+                    //       .deleteParticularCountryFromPrefs(e),
+                    //   subTitle: '',
+                    // ),
+                    // ! TODO :  Uncomment this one
                     SizedBox(height: 15.h),
                   ],
                 ),

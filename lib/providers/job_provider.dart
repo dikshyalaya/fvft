@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:free_visa_free_ticket/providers/job_home_provider.dart';
 import '../core/services/hive_service.dart';
 import '../core/services/service_locator.dart';
 import '../core/utilities/enum_utils.dart';
@@ -41,7 +42,7 @@ class JobProvider with ChangeNotifier {
   }
 
   /// ========================= Function to fetch list of active jobs ========================
-/// TODO [GETTING_THE_LIST_OF_THE_ACTIVE_JOBS]
+  /// TODO [GETTING_THE_LIST_OF_THE_ACTIVE_JOBS]
   // Future<void> getListOfJobs({
   //   int limit = 10,
   //   int pageNo = 1,
@@ -91,8 +92,7 @@ class JobProvider with ChangeNotifier {
         .isExists(boxName: HiveBoxName.allJobCategory.stringValue);
     if (result) {
       List<dynamic> va = await (locator<HiveService>()
-              .getBox(HiveBoxName.allJobCategory.stringValue)
-          );
+          .getBox(HiveBoxName.allJobCategory.stringValue));
       _jobCategoriesList =
           va.map<JobCategoryModel>((e) => e as JobCategoryModel).toList();
       locator<JobFilterProvider>().setJobCategory(_jobCategoriesList!);
@@ -102,9 +102,10 @@ class JobProvider with ChangeNotifier {
         final response = await JobRepository.getListOfJobCategories(
             pageNo: pageNo, limit: limit);
         if (response.data != null && response.data['success']) {
-          _jobCategoriesList!.addAll(response.data['data']
-              .map<JobCategoryModel>((e) => JobCategoryModel.fromJson(e))
-              .toList());
+          debugPrint(response.data['data']['new_jobs']);
+          // _jobCategoriesList!.addAll(response.data['data']['new_jobs']
+          //     .map<JobCategoryModel>((e) => JobCategoryModel.fromJson(e))
+          //     .toList());
           _isToLoadCategories = false;
           notifyListeners();
         }
@@ -121,13 +122,14 @@ class JobProvider with ChangeNotifier {
     }
   }
 
+  
+
   Future<void> getAllJobsCategories({int limit = 21, int pageNo = 1}) async {
     final bool result = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.allJobCategory.stringValue);
     if (result) {
       List<dynamic> va = await (locator<HiveService>()
-              .getBox(HiveBoxName.allJobCategory.stringValue)
-          );
+          .getBox(HiveBoxName.allJobCategory.stringValue));
       _jobCategoriesList =
           va.map<JobCategoryModel>((e) => e as JobCategoryModel).toList();
       locator<JobFilterProvider>().setJobCategory(_jobCategoriesList!);
@@ -140,8 +142,8 @@ class JobProvider with ChangeNotifier {
         log(response.toString());
 
         if (response.data != null) {
-log('data : ${response.data}');
-        final responseResult = await JobRepository.getListOfJobCategories(
+          log('data : ${response.data}');
+          final responseResult = await JobRepository.getListOfJobCategories(
               pageNo: pageNo, limit: response.data['total']);
           tempJobCategoriesList.addAll(responseResult.data['data']
               .map<JobCategoryModel>((e) => JobCategoryModel.fromJson(e))
