@@ -36,7 +36,9 @@ class CountryLSModelAdapter extends TypeAdapter<CountryLSModel> {
       ..writeByte(2)
       ..write(obj.countryCode)
       ..writeByte(3)
-      ..write(obj.flagCode);
+      ..write(obj.flagCode)
+     ..writeByte(4)
+     ..write(obj.nativeName);
   }
 
   @override

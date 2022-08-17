@@ -13,7 +13,7 @@ import '../repositories/country_repository.dart';
 
 class CountryProvider with ChangeNotifier {
   CountryProvider() {
-    // getListOfCountries();
+    getListOfCountries();
     getTotalListOfCountries();
   }
   List<CountryLSModel?>? _countriesList = [];
