@@ -12,6 +12,11 @@ class AuthProvider with ChangeNotifier {
 
   UserModel? get currentUser => _currentUser;
 
+  bool _userLoggedIn =false;
+  bool get userLoggedIn => _userLoggedIn;
+
+
+
   void setCurrentUser(UserModel? user) {
     _currentUser = user;
     notifyListeners();
@@ -124,6 +129,18 @@ class AuthProvider with ChangeNotifier {
       return false;
     }
   }
+
+Future<void> loggedIn()async{
+    bool userLoggedIn =  await locator<HiveService>()
+        .isExists(boxName: HiveBoxName.userData.stringValue);
+
+        _userLoggedIn = userLoggedIn ;
+        notifyListeners();
+
+
+
+}
+
 
   // ============================ Caching Logged In User Token & Data On Hive ===========================
   Future<void> _cacheUser(UserModel? userModel,

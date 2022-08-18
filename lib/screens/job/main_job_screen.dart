@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:free_visa_free_ticket/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 import '../../widgets/components/job_home_page/company_list.dart';
 import '../../widgets/components/job_home_page/countries_list.dart';
 import '../../widgets/components/job_home_page/fiter_tag.dart';
@@ -46,7 +48,9 @@ class TempJobScreen extends StatelessWidget {
         SizedBox(height: 20.h),
 
         // prefered job
-        buildPreferredJobs(),
+        Consumer<AuthProvider>(
+            builder: (context, value, child) =>
+                value.userLoggedIn ? buildPreferredJobs() : const SizedBox()),
         SizedBox(height: 20.h),
         // latest job
         buildLatestJobs(),

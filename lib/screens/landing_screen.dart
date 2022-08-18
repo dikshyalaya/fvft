@@ -51,7 +51,11 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
       // TODO : products section implement pressing functionality
         return const  InformationScreen(); //const CategoryListScreen();
       case 2:
-        return const TempJobScreen();
+        return MultiProvider(
+          providers: [
+               ChangeNotifierProvider.value(value: locator<AuthProvider>()),
+          ],
+          child: const TempJobScreen());
       case 3:
         return const TempProfileScreen();
 
