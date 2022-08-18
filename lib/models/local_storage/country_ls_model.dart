@@ -7,38 +7,51 @@ part 'country_ls_model.g.dart';
 @HiveType(typeId: 0, adapterName: 'CountryLSModelAdapter')
 class CountryLSModel {
   @HiveField(0)
+  @JsonKey(name:'id')
   final int? id;
 
   @HiveField(1)
+  @JsonKey(name:'name')
   final String? name;
 
   @HiveField(2)
+  @JsonKey(name:'capital')
   final String? capitalCity;
 
   @HiveField(3)
+  @JsonKey(name:'native')
   final String? nativeName;
   @HiveField(4)
+  @JsonKey(name:'country_code')
   final String? countryCode;
 
   @HiveField(5)
+  @JsonKey(name:'phonecode')
   final String? phoneCode;
 
   @HiveField(6)
+  @JsonKey(name:'flag')
   final String? flag;
 
   @HiveField(7)
+  @JsonKey(name:'currency')
   final String? currency;
   @HiveField(8)
+  @JsonKey(name:'currency_name')
   final String? currencyName;
   @HiveField(9)
+  @JsonKey(name:'currency_symbol')
   final String? currencySymbol;
 
   @HiveField(10)
+  @JsonKey(name:'region')
   final String? region;
 
   @HiveField(11)
+  @JsonKey(name:'sub_region')
   final String? subregion;
 
+  
   CountryLSModel(
       {required this.id,
       required this.name,

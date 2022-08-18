@@ -84,10 +84,10 @@ class _SplashScreenState extends State<SplashScreen>
       // unawaited(locator<JobApplicationProvider>().getPendingJobList());
       // unawaited(locator<JobApplicationProvider>().getAcceptedJobList());
       // unawaited(locator<UserCountryPrefsProvider>().getCountryFromPrefsList());
-
+      unawaited(locator<JobProvider>().getListOfJobsCategories());
       unawaited(locator<CountryProvider>().getTotalListOfCountries());
       unawaited(locator<CountryProvider>().getListOfCountries());
-      // unawaited(locator<UserJobPrefsProvider>().getJobCategoryFromPrefsList());
+      unawaited(locator<UserJobPrefsProvider>().getJobCategoryFromPrefsList());
       if (!isUserCvExists) {
         // unawaited(locator<CVProvider>().getUserCV());
       } else {

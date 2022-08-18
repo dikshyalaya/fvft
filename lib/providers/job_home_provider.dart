@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:free_visa_free_ticket/models/country_model.dart';
 import 'package:free_visa_free_ticket/repositories/job_home_repository.dart';
 
 import '../core/network/api_manager.dart';
@@ -9,8 +8,6 @@ import '../core/services/service_locator.dart';
 class JobHomeProvider with ChangeNotifier { 
 static final ApiManager? _apiManager = locator<ApiManager>();
 
-  List<CountryModel>  _countries = [];
-  List<CountryModel> get countries =>_countries;
 
 bool _loading =  false;
 bool get loading =>_loading;

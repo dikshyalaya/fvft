@@ -102,10 +102,10 @@ class JobProvider with ChangeNotifier {
         final response = await JobRepository.getListOfJobCategories(
             pageNo: pageNo, limit: limit);
         if (response.data != null && response.data['success']) {
-          debugPrint(response.data['data']['new_jobs']);
-          // _jobCategoriesList!.addAll(response.data['data']['new_jobs']
-          //     .map<JobCategoryModel>((e) => JobCategoryModel.fromJson(e))
-          //     .toList());
+          debugPrint( 'Job Category : '  + response.data['data']['categories'].toString());
+          _jobCategoriesList!.addAll(response.data['data']['categories']
+              .map<JobCategoryModel>((e) => JobCategoryModel.fromJson(e))
+              .toList());
           _isToLoadCategories = false;
           notifyListeners();
         }
