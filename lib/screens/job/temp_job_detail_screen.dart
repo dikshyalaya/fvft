@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../models/jobs_model.dart';
 import 'post/job_apply_button.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -48,7 +49,7 @@ class TempJobDetailScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(40.w),
               child: SizedBox(
                 height: 400.h,
-                width: false ? 700.w : 1.sw,
+                width:  1.sw,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -67,7 +68,7 @@ class TempJobDetailScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  jobDetail!.companyModel!.name!,
+                                  jobDetail!.company!.companyName!,
                                   style: FreeVisaFreeTicketTheme.caption1Style
                                       .copyWith(
                                     color:

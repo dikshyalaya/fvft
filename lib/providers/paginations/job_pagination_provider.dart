@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/services/service_locator.dart';
 import '../../core/utilities/logutils.dart';
-import '../../models/job_model.dart';
+import '../../models/jobs_model.dart';
 import '../../models/local_storage/country_ls_model.dart';
 import '../job_provider.dart';
 
@@ -63,7 +63,7 @@ class JobPaginationProvider with ChangeNotifier {
         locator<JobFilterProvider>().increasePageNo();
         // await locator<JobFilterProvider>().loadListOfFilterJobs(); // TODO : Uncomment this line
         if (data.jobList!.isNotEmpty) {
-          _jobList.addAll(data.jobList!);
+          // _jobList.addAll(data.jobList!); // ! TODO : Uncomment this line
         } else {
           _hasNextPage = false;
         }

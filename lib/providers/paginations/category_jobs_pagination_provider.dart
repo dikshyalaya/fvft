@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/services/service_locator.dart';
-import '../../models/job_model.dart';
+
+import '../../models/jobs_model.dart';
 import '../job_provider.dart';
 
 class CategoryJobsPaginationProvider with ChangeNotifier {
@@ -41,7 +42,7 @@ class CategoryJobsPaginationProvider with ChangeNotifier {
       await data.getJobListByJobCategory(
           pageNo: _page, jobCategoryId: _jobCategoryId!);
       if (data.jobListByJobCategory!.isNotEmpty) {
-        _jobList = data.jobListByJobCategory!;
+        // _jobList = data.jobListByJobCategory!; //! TODO : Uncomment this line
         notifyListeners();
       }
     } catch (err) {
@@ -63,7 +64,7 @@ class CategoryJobsPaginationProvider with ChangeNotifier {
         await data.getJobListByJobCategory(
             pageNo: _page, jobCategoryId: _jobCategoryId!);
         if (data.jobListByJobCategory!.isNotEmpty) {
-          _jobList.addAll(data.jobListByJobCategory!);
+          // _jobList.addAll(data.jobListByJobCategory!); //! Uncomment this line
           notifyListeners();
         } else {
           _hasNextPage = false;

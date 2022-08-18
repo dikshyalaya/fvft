@@ -4,6 +4,7 @@ import '../../core/services/service_locator.dart';
 import '../../core/theme/free_visa_free_ticket_theme.dart';
 import '../../core/utilities/enum_utils.dart';
 import '../../models/job_model.dart';
+import '../../models/jobs_model.dart';
 import '../../providers/job_application_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/custom_app_bar.dart';
@@ -125,10 +126,10 @@ class JobDetailScreen extends StatelessWidget {
               style: FreeVisaFreeTicketTheme.captionStyle,
             ),
           ),
-          Center(child: Chip(label: Text(jobDetail!.jobCategory!))),
+          // Center(child: Chip(label: Text(jobDetail!!))),  //! TODO : Uncomment this line
           SizedBox(height: 15.h),
           Text(
-            jobDetail!.companyModel!.name!,
+            jobDetail!.company!.companyName!,
             style: FreeVisaFreeTicketTheme.caption1Style,
           ),
           SizedBox(height: 15.h),
@@ -140,14 +141,14 @@ class JobDetailScreen extends StatelessWidget {
           SizedBox(height: 15.h),
           Text('Job Shifts', style: FreeVisaFreeTicketTheme.caption1Style),
           SizedBox(height: 15.h),
-          UnorderedList(
-              [...jobDetail!.jobShifts!.map((e) => e.jobShift!).toList()]),
+          // UnorderedList( //! TODO : Uncomment this line
+          //     [...jobDetail!.jobShifts!.map((e) => e.jobShift!).toList()]),
           SizedBox(height: 15.h),
           Text('Requirements', style: FreeVisaFreeTicketTheme.caption1Style),
           SizedBox(height: 15.h),
           UnorderedList([
             '${jobDetail!.jobExperience!} experience in this field',
-            jobDetail!.educationLevel!,
+            // jobDetail!.educationLevel!,  //! TODO : Uncomment this line
           ]),
           SizedBox(height: 15.h),
           if (jobDetail!.benefits != null) ...[

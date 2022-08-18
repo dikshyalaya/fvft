@@ -6,6 +6,7 @@ import '../../../core/theme/free_visa_free_ticket_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/constants/routes.dart' as routes;
 import '../../../models/job_model.dart';
+import '../../../models/jobs_model.dart';
 import '../../../providers/paginations/job_pagination_provider.dart';
 
 import 'job_apply_button.dart';
@@ -64,7 +65,8 @@ class JobPostListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                jobs!.companyModel!.name!,
+                // jobs!.companyModel!.name!, //! TODO : Uncomment this line
+                "job", 
                 style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
                   color: FreeVisaFreeTicketTheme.darkGrayColor,
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'job_model.dart';
+import 'package:free_visa_free_ticket/models/jobs_model.dart';
+
 
 class JobApplicationModel with ChangeNotifier {
   final int? jobApplicationId;

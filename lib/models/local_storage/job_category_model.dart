@@ -46,4 +46,6 @@ class JobCategoryModel with ChangeNotifier {
 
   factory JobCategoryModel.fromJson(Map<String, dynamic> json) =>
       _$JobCategoryModelFromJson(json);
+
+      Map<String, dynamic >  toJson()=>_$JobCategoryModelToJson(this);
 }
