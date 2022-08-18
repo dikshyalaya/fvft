@@ -62,7 +62,7 @@ class JobPaginationProvider with ChangeNotifier {
         final data = locator<JobProvider>();
         locator<JobFilterProvider>().increasePageNo();
         // await locator<JobFilterProvider>().loadListOfFilterJobs(); // TODO : Uncomment this line
-        if (data.jobList!.isNotEmpty) {
+        if (data.newJobList!.isNotEmpty) {
           // _jobList.addAll(data.jobList!); // ! TODO : Uncomment this line
         } else {
           _hasNextPage = false;

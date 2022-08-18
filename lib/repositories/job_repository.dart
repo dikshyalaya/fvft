@@ -8,7 +8,7 @@ import '../core/services/service_locator.dart';
 class JobRepository {
   static final ApiManager? _apiManager = locator<ApiManager>();
   static const String _jobListEndpoint = '/v1/candidate/job-list';
-  static const String _jobCategoryEndpoint = '/v1/candidate/job/home';
+  static const String _jobHomeEndpoint = '/v1/candidate/job/home';
   static const String _jobApplicationEndpoint = '/v1/candidate/job-application';
   static const String _jobApplicationListEndpoint =
       '/v1/candidate/job-application-list';
@@ -21,7 +21,7 @@ class JobRepository {
       int? countryId = -1,
       int? jobCategoryId = -1}) async {
     try {
-      return await _apiManager!.dio!.get(_jobListEndpoint, queryParameters: {
+      return await _apiManager!.dio!.get(_jobHomeEndpoint, queryParameters: {
         'limit': limit,
         'page_no': pageNo,
         'is_active': 1,
@@ -41,7 +41,7 @@ class JobRepository {
 
 
 try {
-    return await _apiManager!.dio!.get(_jobCategoryEndpoint, queryParameters: {
+    return await _apiManager!.dio!.get(_jobHomeEndpoint, queryParameters: {
       'limit': limit,
       'page_no': pageNo,
     });
