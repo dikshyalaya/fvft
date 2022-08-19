@@ -220,7 +220,7 @@ class RouteGenerator {
             value: CategoryPaginationProvider(),
             child: const TempCategoryListScreen(),
           ),
-        );
+        );  
       case routes.countryListViewScreen:
         return MaterialPageRoute(
           settings: settings,
@@ -232,6 +232,7 @@ class RouteGenerator {
           settings: settings,
           builder: (context) => MultiProvider(
             providers: [
+              ChangeNotifierProvider.value(value: locator<JobProvider> ()),
               ChangeNotifierProvider.value(
                 value: JobApplicationProvider(),
               ),

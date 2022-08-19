@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/theme/free_visa_free_ticket_theme.dart';
 import '../../../providers/job_filter_provider.dart';
+import '../../../providers/job_provider.dart';
 import '../../../providers/paginations/job_pagination_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,7 @@ class JobPostListView extends StatefulWidget {
 
 class _JobPostListViewState extends State<JobPostListView>
     with AutomaticKeepAliveClientMixin<JobPostListView> {
-  ScrollController _controller = new ScrollController();
+  ScrollController _controller = ScrollController();
 
   @override
   void initState() {
@@ -50,26 +51,24 @@ class _JobPostListViewState extends State<JobPostListView>
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<JobPaginationProvider>(
+    return Consumer<JobProvider>(
       builder: (ctx, data, _) {
         return Container(
           width: 1.sw,
-          height: widget.isToDisplayVertical! ? 1.sh :400.h,
+          height: widget.isToDisplayVertical! ? 1.sh : 400.h,
           margin: EdgeInsets.zero,
           padding: EdgeInsets.zero,
           child: Column(
             children: [
-              // SizedBox(height: 20.h),
-              if (data.isFirstLoadRunning)
+              SizedBox(height: 20.h),
+              if (data.isLoading)
                 const Expanded(
                     child: Center(child: CircularProgressIndicator()))
-              else if (data.jobList.isEmpty)
+              else if (data.newJobList!.isEmpty)
                 Expanded(
                     child: Center(
                         child: Text(
-                  locator<JobFilterProvider>().selectedCountryId != -1
-                      ? 'There is no job available in selected category.'
-                      : 'There is no job available in selected country.',
+                  'No Jobs posted',
                   textAlign: TextAlign.center,
                   style: FreeVisaFreeTicketTheme.bodyTextStyle,
                 )))
@@ -85,13 +84,13 @@ class _JobPostListViewState extends State<JobPostListView>
   /// Widget [_buildCountriesJobItem] : Display list of job based on user selected countries
   Widget _buildCountriesJobItem() {
     return Expanded(
-      child: Consumer<JobPaginationProvider>(
+      child: Consumer<JobProvider>(
         builder: (ctx, data, _) {
-          return data.jobList == null
+          return data.newJobList == null
               ? const SizedBox.shrink()
               : Container(
-                  // width: 1.sw,
-                  // height: widget.isToDisplayVertical! ? 1.sh : 400.h,
+                  width: 1.sw,
+                  height: widget.isToDisplayVertical! ? 1.sh : 420.h,
                   padding: EdgeInsets.zero,
                   margin: EdgeInsets.zero,
                   child: Column(
@@ -99,18 +98,22 @@ class _JobPostListViewState extends State<JobPostListView>
                       Expanded(
                         child: ListView.builder(
                           controller: _controller,
-                          padding: EdgeInsets.symmetric(horizontal: widget.isToDisplayVertical! ?20.w:10.w),
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  widget.isToDisplayVertical! ? 20.w : 10.w),
                           scrollDirection: widget.isToDisplayVertical!
                               ? Axis.vertical
                               : Axis.horizontal,
                           itemBuilder: (lCtx, index) {
-                            return JobPostListItem(jobs: data.jobList[index], isHorizontalView: !widget.isToDisplayVertical!);
+                            return JobPostListItem(
+                                jobs: data.newJobList?[index],
+                                isHorizontalView: !widget.isToDisplayVertical!);
                           },
-                          itemCount: data.jobList.length,
+                          itemCount: data.newJobList!.length,
                         ),
                       ),
                       // when the _loadMore function is running
-                      if (data.isLoadMoreRunning)
+                      if (data.isLoading)
                         const Padding(
                           padding: EdgeInsets.symmetric(vertical: 10),
                           child: Center(child: CircularProgressIndicator()),

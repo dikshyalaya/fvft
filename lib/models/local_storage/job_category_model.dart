@@ -29,11 +29,13 @@ class JobCategoryModel with ChangeNotifier {
 
   @HiveField(5)
   @JsonKey(name: 'is_default')
-  final bool? isDefault;
+  final String? isDefault;
 
   @HiveField(6)
   @JsonKey(name: 'is_active')
-  final bool? isActive;
+  final String? isActive;
+
+  
 
   JobCategoryModel(
       {required this.id,

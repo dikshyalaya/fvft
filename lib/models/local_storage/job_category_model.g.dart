@@ -21,8 +21,8 @@ class JobCategoryAdapter extends TypeAdapter<JobCategoryModel> {
       jobCategory: fields[1] as String?,
       imageUrl: fields[2] as String?,
       sortOrder: fields[3] as String?,
-      isActive: fields[6] as bool?,
-      isDefault: fields[5] as bool?,
+      isActive: fields[6] as String?,
+      isDefault: fields[5] as String?,
       lang: fields[4] as String?,
     );
   }
@@ -68,8 +68,8 @@ JobCategoryModel _$JobCategoryModelFromJson(Map<String, dynamic> json) =>
       jobCategory: json['functional_area'] as String?,
       imageUrl: json['image_url'] as String?,
       sortOrder: json['sort_order'] as String?,
-      isActive: json['is_active'] == '1' ? true : false,
-      isDefault: json['is_default'] == '1' ? true : false,
+      isActive: json['is_active'] as String?,
+      isDefault: json['is_default'] as String?,
       lang: json['lang'] as String?,
     );
 
@@ -80,6 +80,6 @@ Map<String, dynamic> _$JobCategoryModelToJson(JobCategoryModel instance) =>
       'image_url': instance.imageUrl,
       'sort_order': instance.sortOrder,
       'lang': instance.lang,
-      'is_default': instance.isDefault == true ? '1' : '0',
-      'is_active': instance.isActive == true ? '1' : '0',
+      'is_default': instance.isDefault,
+      'is_active': instance.isActive,
     };

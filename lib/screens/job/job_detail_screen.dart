@@ -101,7 +101,7 @@ class JobDetailScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 10.h),
             child: Text(
               // jobDetail!.siteLocation!.country!.countryName!, //! TODO uncommet this
-"he",
+              "he",
               style: TextStyle(
                 fontSize: 32.sp,
                 fontWeight: FontWeight.w600,
@@ -158,7 +158,7 @@ class JobDetailScreen extends StatelessWidget {
                 style: FreeVisaFreeTicketTheme.bodyTextStyle),
             SizedBox(height: 15.h),
           ],
-          if (!jobDetail!.hideSalary!) ...[
+          if (jobDetail!.hideSalary == '0') ...[
             RichText(
               text: TextSpan(
                 text:
@@ -198,7 +198,7 @@ class JobDetailScreen extends StatelessWidget {
                 text: 'Apply Until: ',
                 children: [
                   TextSpan(
-                    text: DateFormat.yMMMd().format(jobDetail!.expiryDate!),
+                    text: DateFormat.yMMMd().format(jobDetail!.applyBefore!),
                     style: FreeVisaFreeTicketTheme.bodyTextStyle,
                   ),
                 ],

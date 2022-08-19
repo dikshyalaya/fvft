@@ -9,7 +9,7 @@ import '../../../core/constants/routes.dart' as routes;
 
 Widget buildLatestJobs() {
   return globalViewLayout(
-    height: 520.h,
+    height: 550.h,
     width: 1.sw,
     leftHeaderTitle: 'Latest Jobs',
     rightHeaderTitle: 'View All',

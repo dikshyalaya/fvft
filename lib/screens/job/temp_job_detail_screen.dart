@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:free_visa_free_ticket/core/utilities/environment.dart';
+import 'package:intl/intl.dart';
 import '../../models/jobs_model.dart';
 import 'post/job_apply_button.dart';
 import 'package:share_plus/share_plus.dart';
@@ -49,7 +52,7 @@ class TempJobDetailScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(40.w),
               child: SizedBox(
                 height: 400.h,
-                width:  1.sw,
+                width: 1.sw,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -80,20 +83,17 @@ class TempJobDetailScreen extends StatelessWidget {
                                 SizedBox(height: 20.h),
                                 Row(
                                   children: [
-                                    Text(
-                                      '🇳🇵',
-                                      style: FreeVisaFreeTicketTheme
-                                          .heading1Style
-                                          .copyWith(
-                                        color: FreeVisaFreeTicketTheme
-                                            .darkGrayColor,
-                                      ),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
+                                    // TODO :  SVG Flag
+
+                                    SvgPicture.network(
+                                      'https://demo.freevisafreeticket.com/${jobDetail!.country!.flag!}',
+                                      height: 40.h,
+                                      width: 40.w,
                                     ),
+
                                     SizedBox(width: 10.w),
                                     Text(
-                                      'Nepal',
+                                      jobDetail!.country!.name!,
                                       style: FreeVisaFreeTicketTheme
                                           .caption1Style
                                           .copyWith(
@@ -121,9 +121,9 @@ class TempJobDetailScreen extends StatelessWidget {
                         horizontal: 20.w,
                         vertical: 10.h,
                       ),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         gradient: LinearGradient(
-                          colors: const [
+                          colors: [
                             FreeVisaFreeTicketTheme.primaryColor,
                             FreeVisaFreeTicketTheme.secondaryColor,
                           ],
@@ -148,7 +148,7 @@ class TempJobDetailScreen extends StatelessWidget {
                               text: 'Salary:    ',
                               children: [
                                 TextSpan(
-                                  text: 'Rs 27,000',
+                                  text: 'Rs. ${jobDetail!.nepSalary ?? 'N/A'}',
                                   style: FreeVisaFreeTicketTheme.caption1Style
                                       .copyWith(
                                     color: FreeVisaFreeTicketTheme.primaryColor,
@@ -168,7 +168,8 @@ class TempJobDetailScreen extends StatelessWidget {
                               text: 'Apply Before:    ',
                               children: [
                                 TextSpan(
-                                  text: '15 Feb 2022',
+                                  text: DateFormat.yMMMd()
+                                      .format(jobDetail!.applyBefore!),
                                   style: FreeVisaFreeTicketTheme.caption1Style
                                       .copyWith(
                                     color: FreeVisaFreeTicketTheme.primaryColor,
@@ -222,7 +223,7 @@ class TempJobDetailScreen extends StatelessWidget {
                               children: [
                                 IconButton(
                                   onPressed: () => Share.share(
-                                      'https://demo.freevisafreeticket.com/job/10'),
+                                      'https://demo.freevisafreeticket.com/job/${jobDetail!.jobId}'),
                                   icon: const Icon(
                                     Icons.share,
                                     color:
@@ -260,9 +261,9 @@ class TempJobDetailScreen extends StatelessWidget {
           SizedBox(height: 40.h),
           Container(
             height: 60.h,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: const [
+                colors: [
                   FreeVisaFreeTicketTheme.primaryColor,
                   FreeVisaFreeTicketTheme.secondaryColor,
                 ],
@@ -279,14 +280,41 @@ class TempJobDetailScreen extends StatelessWidget {
               ),
             ),
           ),
-          _buildTitleValue(title: 'Job title', value: 'Security Guard'),
-          _buildTitleValue(title: 'Required Numbers', value: '325'),
-          _buildTitleValue(title: 'Job Category', value: 'Security Service'),
-          _buildTitleValue(title: 'Working Hours Per Day', value: '8 Hours'),
-          _buildTitleValue(title: 'Working Days Per Week', value: '6 Days'),
-          _buildTitleValue(title: 'Job Posted On', value: '22 Jan 2022'),
-          _buildTitleValue(title: 'Apply Before', value: '22 March 2022'),
-          _buildTitleValue(title: 'Contract Period', value: '2 Years'),
+          _buildTitleValue(title: 'Job title', value: jobDetail!.jobTitle!),
+          _buildTitleValue(
+              title: 'Required Numbers',
+              value: jobDetail!.numberOfPositions ?? 'null'),
+          _buildTitleValue(
+              title: 'Job Category',
+              value: jobDetail!.category!.jobCategory ??
+                  'null'), //! TODO :  implement job model in here
+          _buildTitleValue(
+              title: 'Working Hours Per Day',
+              value:
+                  '${jobDetail!.workingHours ?? 'x'} Hours'), //! TODO :  implement the working hours per day
+          _buildTitleValue(
+              title: 'Working Days Per Week',
+              value:
+                  '${jobDetail!.workingDays ?? 'x'} Days'), //! TODO : Implment the working days per week
+          _buildTitleValue(
+            title: 'Job Posted On',
+            value: jobDetail!.createdAt == null
+                ? 'NA'
+                : DateFormat.yMMMd().format(
+                    jobDetail!.createdAt!,
+                  ),
+          ), //! TODO : I
+          _buildTitleValue(
+            title: 'Apply Before',
+            value: jobDetail!.applyBefore == null
+                ? 'NA'
+                : DateFormat.yMMMd().format(
+                    jobDetail!.applyBefore!,
+                  ),
+          ),
+          _buildTitleValue(
+              title: 'Contract Period',
+              value: '${jobDetail!.contactYear ?? 'x'} Years'),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
             child: Column(
@@ -303,8 +331,9 @@ class TempJobDetailScreen extends StatelessWidget {
                   height: 10.h,
                 ),
                 Text(
-                  '1. Investigate And Respond To Security Alarms, Incidents, And Emergencies In A Timely\n'
-                  '2. Provide Support To Emergency Personnel, Including Police, Fire, Paramedics.',
+                  jobDetail!.jobDescription ??
+                      '1. Investigate And Respond To Security Alarms, Incidents, And Emergencies In A Timely\n'
+                          '2. Provide Support To Emergency Personnel, Including Police, Fire, Paramedics.',
                   style: FreeVisaFreeTicketTheme.body1TextStyle.copyWith(
                     color: FreeVisaFreeTicketTheme.darkGrayColor,
                     height: 1.5,
@@ -316,9 +345,9 @@ class TempJobDetailScreen extends StatelessWidget {
           ),
           Container(
             height: 60.h,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: const [
+                colors: [
                   FreeVisaFreeTicketTheme.primaryColor,
                   FreeVisaFreeTicketTheme.secondaryColor,
                 ],
@@ -335,18 +364,31 @@ class TempJobDetailScreen extends StatelessWidget {
               ),
             ),
           ),
-          _buildTitleValue(title: 'Minimum Qualification', value: '10 Pass'),
-          _buildTitleValue(title: 'Minimum Experience', value: '3 Years'),
-          _buildTitleValue(title: 'Age', value: '18 - 40 Years'),
-          _buildTitleValue(title: 'Skill', value: 'Good Communication Skills'),
+          _buildTitleValue(
+              title: 'Minimum Qualification',
+              value: jobDetail!.educationLevel!.title ?? 'N/A'),
+          _buildTitleValue(
+              title: 'Minimum Experience',
+              value: '${jobDetail!.minExperience ?? 'N/A'} Years'),
+          _buildTitleValue(
+              title: 'Age',
+              value:
+                  '${jobDetail!.minAge ?? '18'} - ${jobDetail!.maxAge ?? 'above'} Years'),
+          _buildTitleValue(
+              title: 'Skill',
+              value: jobDetail!.skills
+                  .toString()
+                  .replaceAll('"', '')
+                  .replaceAll('[', '')
+                  .replaceAll(']', '')),
           _buildTitleValue(
               title: 'Other Requirements',
-              value: 'Ex-Army, Ex-Police, Worked As Security Guard'),
+              value: jobDetail!.requirements ?? 'N/A'),
           Container(
             height: 60.h,
-            decoration:  BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: const [
+                colors: [
                   FreeVisaFreeTicketTheme.primaryColor,
                   FreeVisaFreeTicketTheme.secondaryColor,
                 ],
@@ -363,19 +405,21 @@ class TempJobDetailScreen extends StatelessWidget {
               ),
             ),
           ),
-          _buildTitleValue(title: 'Basic Salary', value: 'Per Month RM 900'),
           _buildTitleValue(
-              title: 'Average Earning', value: 'Per Month RM 900 - RM 1500'),
+              title: 'Basic Salary',
+              value: 'Rs. ${jobDetail!.nepSalary ?? 'N/A'}'),
+          _buildTitleValue(title: 'Average Earning', value: 'N/A'),
+          _buildTitleValue(title: 'Accomodation', value: 'N/A'),
+          _buildTitleValue(title: 'Food', value: 'N/A'),
           _buildTitleValue(
-              title: 'Accomodation', value: 'Yes (As per company rule)'),
-          _buildTitleValue(title: 'Food', value: 'No'),
+              title: 'Annual Vacation', value: jobDetail!.annualVacation!),
           _buildTitleValue(
-              title: 'Annual Vacation', value: 'Yes (As per company rule)'),
-          _buildTitleValue(
-              title: 'Over-Time', value: 'Yes (As per company rule)'),
+              title: 'Over-Time',
+              value:
+                  '${jobDetail!.overTime == '1' ? 'Yes' : 'No'} (As per company rule)'),
           _buildTitleValue(
             title: 'Other Benefits',
-            value: 'Night-shift bonus, public holiday bonus',
+            value: 'N/A',
           ),
           SizedBox(height: 50.h),
           Row(
@@ -397,19 +441,22 @@ class TempJobDetailScreen extends StatelessWidget {
   }
 
   Widget _buildJobImageItem() {
-    return Container(
-      alignment: Alignment.center,
-      width: 200.w,
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
-      margin: EdgeInsets.zero,
-      clipBehavior: Clip.none,
-      child: ClipRRect(
-        borderRadius: BorderRadius.all(
-          Radius.circular(10.w),
-        ),
-        child: Image.network(
-          'https://www.oberlo.com/media/1603897950-job.jpg',
-          fit: BoxFit.cover,
+    return Flexible(
+      fit: FlexFit.tight,
+      child: Container(
+        alignment: Alignment.center,
+        width: 200.w,
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        margin: EdgeInsets.zero,
+        clipBehavior: Clip.none,
+        child: ClipRRect(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10.w),
+          ),
+          child: Image.network(
+            'https://www.oberlo.com/media/1603897950-job.jpg',
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

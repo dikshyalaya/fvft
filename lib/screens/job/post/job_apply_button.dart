@@ -29,37 +29,40 @@ class JobApplyButton extends StatelessWidget {
             ),
             child: TextButton(
               key: UniqueKey(),
-              onPressed: data.jobStatusBtnName ==
-                      JobStatus.applyNow.stringValue
+              onPressed: data.jobStatusBtnName == JobStatus.applyNow.stringValue
                   ? () async => await data.applyForJob(context, jobId: jobId)
                   : null,
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.resolveWith((states) {
                   return Colors.transparent;
                 }),
-                // padding: MaterialStateProperty.all(
-                //   EdgeInsets.symmetric(horizontal: 20.w),
-                // ),
-                // shape: MaterialStateProperty.all(
-                //   RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.circular(10.w),
-                //   ),
-                // ),
+                padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(horizontal: 20.w),
+                ),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.w),
+                  ),
+                ),
               ),
               child: data.isApplyingForJob && data.selectedJobId == jobId
                   ? FittedBox(
                       child: Padding(
                         padding: EdgeInsets.symmetric(vertical: 10.h),
-                        child:
-                            const Center(child: CircularProgressIndicator(color: FreeVisaFreeTicketTheme.whiteColor,)),
+                        child: const Center(
+                            child: CircularProgressIndicator(
+                          color: FreeVisaFreeTicketTheme.whiteColor,
+                        )),
                       ),
                       fit: BoxFit.contain,
                     )
-                  : Text(
-                      data.jobStatusBtnName,
-                      style: FreeVisaFreeTicketTheme.caption1Style
-                          .copyWith(color: Colors.white),
-                    ),
+                  : FittedBox(
+                      child: Text(
+                        data.jobStatusBtnName,
+                        style: FreeVisaFreeTicketTheme.caption1Style
+                            .copyWith(color: Colors.white),
+                      ),
+                      fit: BoxFit.contain),
             ),
           ),
         );
