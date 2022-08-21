@@ -1,54 +1,51 @@
 import 'package:flutter/material.dart';
-import '../../../core/services/service_locator.dart';
-import '../../../core/theme/free_visa_free_ticket_theme.dart';
-import '../../../providers/job_filter_provider.dart';
-import '../../../providers/job_provider.dart';
-import '../../../providers/paginations/job_pagination_provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import 'job_post_list_item.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../core/services/navigation_service.dart';
+import '../../../core/services/service_locator.dart';
+import '../../../core/theme/free_visa_free_ticket_theme.dart';
+import '../../../providers/job_provider.dart';
+import '../../../screens/job/post/job_post_list_item.dart';
+import '../../../screens/job/post/job_post_list_view.dart';
+import '../global_view_layout.dart';
+import '../../../core/constants/routes.dart' as routes;
 
-class LatestJobListViewScreen extends StatefulWidget {
+Widget buildNewJobs() {
+  return globalViewLayout(
+    height: 550.h,
+    width: 1.sw,
+    leftHeaderTitle: 'All Jobs',
+    rightHeaderTitle: 'View All',
+    onTapToRightTitle: () {
+      locator<NavigationService>()
+          .navigateTo(routes.latestJobListScreen, arguments: {
+        'appBarTitle': 'All Jobs',
+      });
+    },
+    leftTitleColor: FreeVisaFreeTicketTheme.secondaryColor,
+    rightTitleColor: FreeVisaFreeTicketTheme.darkGrayColor,
+    isGradientBackground: false,
+    child: Padding(
+      padding: EdgeInsets.only(bottom: 10.h, left: 10.w),
+      child: AllJobsListViewScreen(),
+    ),
+  );
+}
+
+class AllJobsListViewScreen extends StatefulWidget {
   final bool? isToDisplayVertical;
-
-  const LatestJobListViewScreen({
+  AllJobsListViewScreen({
     Key? key,
     this.isToDisplayVertical = false,
   }) : super(key: key);
 
   @override
-  _LatestJobListViewScreenState createState() => _LatestJobListViewScreenState();
+  State<AllJobsListViewScreen> createState() => _AllJobsListViewScreenState();
 }
 
-class _LatestJobListViewScreenState extends State<LatestJobListViewScreen>
-    with AutomaticKeepAliveClientMixin<LatestJobListViewScreen> {
- final ScrollController _controller = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    final jobPaginationProvider = locator<JobPaginationProvider>();
-    if (jobPaginationProvider.jobList.isEmpty) {
-      // jobPaginationProvider.loadInitialData(); //TODO : uncomment this line
-    }
-    jobPaginationProvider.setScrollController(_controller);
-    _controller.addListener(jobPaginationProvider.loadMoreData);
-  }
-
-  @override
-  void setState(fn) {
-    if (mounted) {
-      super.setState(fn);
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.removeListener(locator<JobPaginationProvider>().loadMoreData);
-    super.dispose();
-  }
-
+class _AllJobsListViewScreenState extends State<AllJobsListViewScreen> {
+  final ScrollController _controller = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Consumer<JobProvider>(
@@ -64,7 +61,7 @@ class _LatestJobListViewScreenState extends State<LatestJobListViewScreen>
               if (data.isLoading)
                 const Expanded(
                     child: Center(child: CircularProgressIndicator()))
-              else if (data.newJobList!.isEmpty)
+              else if (data.allJobList!.isEmpty)
                 Expanded(
                     child: Center(
                         child: Text(
@@ -81,9 +78,7 @@ class _LatestJobListViewScreenState extends State<LatestJobListViewScreen>
     );
   }
 
-  /// Widget [_buildCountriesJobItem] : Display list of job based on user selected countries
-
- Widget _buildCountriesJobItem() {
+  _buildCountriesJobItem() {
     return Expanded(
       child: Consumer<JobProvider>(
         builder: (ctx, data, _) {
@@ -107,7 +102,7 @@ class _LatestJobListViewScreenState extends State<LatestJobListViewScreen>
                               : Axis.horizontal,
                           itemBuilder: (lCtx, index) {
                             return JobPostListItem(
-                                jobs: data.newJobList?[index],
+                                jobs: data.allJobList?[index],
                                 isHorizontalView: !widget.isToDisplayVertical!);
                           },
                           itemCount: data.newJobList!.length,
@@ -126,6 +121,4 @@ class _LatestJobListViewScreenState extends State<LatestJobListViewScreen>
       ),
     );
   }
-  @override
-  bool get wantKeepAlive => true;
 }

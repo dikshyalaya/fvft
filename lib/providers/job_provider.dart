@@ -1,13 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:free_visa_free_ticket/providers/job_home_provider.dart';
 import '../core/services/hive_service.dart';
 import '../core/services/service_locator.dart';
 import '../core/utilities/enum_utils.dart';
 import '../core/utilities/logutils.dart';
 import '../models/jobs_model.dart';
 import '../models/local_storage/job_category_model.dart';
-import '../models/job_model.dart';
 import '../repositories/job_repository.dart';
 
 import 'job_filter_provider.dart';

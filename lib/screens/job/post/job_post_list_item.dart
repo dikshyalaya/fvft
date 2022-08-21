@@ -69,11 +69,12 @@ class JobPostListItem extends StatelessWidget {
         ),
         SizedBox(width: 20.w),
         Expanded(
+          // ignore: sort_child_properties_last
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                jobs!.company!.companyName!,
+                jobs?.company?.companyName ?? 'N/A',
                 style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
                   color: FreeVisaFreeTicketTheme.darkGrayColor,
                 ),
@@ -181,7 +182,7 @@ class JobPostListItem extends StatelessWidget {
               text: 'Apply Before:    ',
               children: [
                 TextSpan(
-                  text: DateFormat.yMMMd().format(jobs!.applyBefore!),
+                  text:jobs!.applyBefore ==null ? 'N/A' :    DateFormat.yMMMd().format(jobs!.applyBefore!),
                   style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
                     color: FreeVisaFreeTicketTheme.primaryColor,
                   ),
