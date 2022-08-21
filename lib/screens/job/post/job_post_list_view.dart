@@ -55,7 +55,7 @@ class _JobPostListViewState extends State<JobPostListView>
       builder: (ctx, data, _) {
         return Container(
           width: 1.sw,
-          height: widget.isToDisplayVertical! ? 1.sh : 400.h,
+          height: widget.isToDisplayVertical! ? 1.sh : 300.h,
           margin: EdgeInsets.zero,
           padding: EdgeInsets.zero,
           child: Column(
@@ -90,7 +90,7 @@ class _JobPostListViewState extends State<JobPostListView>
               ? const SizedBox.shrink()
               : Container(
                   width: 1.sw,
-                  height: widget.isToDisplayVertical! ? 1.sh : 420.h,
+                  height: widget.isToDisplayVertical! ? 1.sh : 300.h,
                   padding: EdgeInsets.zero,
                   margin: EdgeInsets.zero,
                   child: Column(

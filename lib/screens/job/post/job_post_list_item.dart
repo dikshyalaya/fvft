@@ -39,7 +39,7 @@ class JobPostListItem extends StatelessWidget {
           fit: FlexFit.tight,
           child: SizedBox(
             width: isHorizontalView ? 700.w : 1.sw,
-            height: 300,
+            height: 420.h,
             child: Column(
               children: [
                 SizedBox(height: 9.h),
