@@ -22,7 +22,7 @@ Widget buildPreferredJobs() {
     },
     child: Padding(
       padding: EdgeInsets.only(left: 5.w, bottom: 10.h),
-      child: const JobPostListView(),
+      child: const LatestJobListViewScreen(),
     ),
     leftTitleColor: FreeVisaFreeTicketTheme.secondaryColor,
     rightTitleColor: FreeVisaFreeTicketTheme.darkGrayColor,

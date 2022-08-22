@@ -71,7 +71,7 @@ class TempJobDetailScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  jobDetail!.company!.companyName!,
+                                '${jobDetail!.company?.companyName ?? 'N/A '}',
                                   style: FreeVisaFreeTicketTheme.caption1Style
                                       .copyWith(
                                     color:
@@ -93,7 +93,7 @@ class TempJobDetailScreen extends StatelessWidget {
 
                                     SizedBox(width: 10.w),
                                     Text(
-                                      jobDetail!.country!.name!,
+                                      jobDetail!.country!.name! ?? 'N/A',
                                       style: FreeVisaFreeTicketTheme
                                           .caption1Style
                                           .copyWith(
@@ -168,8 +168,10 @@ class TempJobDetailScreen extends StatelessWidget {
                               text: 'Apply Before:    ',
                               children: [
                                 TextSpan(
-                                  text: DateFormat.yMMMd()
-                                      .format(jobDetail!.applyBefore!),
+                                  text: jobDetail!.applyBefore == null
+                                      ? 'N/A'
+                                      : DateFormat.yMMMd()
+                                          .format(jobDetail!.applyBefore!),
                                   style: FreeVisaFreeTicketTheme.caption1Style
                                       .copyWith(
                                     color: FreeVisaFreeTicketTheme.primaryColor,

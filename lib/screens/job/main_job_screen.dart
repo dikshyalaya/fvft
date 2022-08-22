@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:free_visa_free_ticket/providers/auth_provider.dart';
+import 'package:free_visa_free_ticket/widgets/components/job_home_page/all_job.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/components/job_home_page/company_list.dart';
 import '../../widgets/components/job_home_page/countries_list.dart';
@@ -57,6 +58,11 @@ class TempJobScreen extends StatelessWidget {
         SizedBox(height: 20.h),
 
         // TODO : ADD ALL JOBS SECTION
+
+        buildNewJobs(),
+        SizedBox(
+          height: 20.h,
+        ),
 
         // companies list
         buildCompanyList(),

@@ -24,7 +24,7 @@ Widget buildLatestJobs() {
     isGradientBackground: false,
     child: Padding(
       padding: EdgeInsets.only(bottom: 10.h, left: 10.w),
-      child: const JobPostListView(),
+      child: const LatestJobListViewScreen(),
     ),
   );
 }

@@ -25,7 +25,7 @@ class JobListPostViewScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: const JobPostListView(isToDisplayVertical: true),
+      body: const LatestJobListViewScreen(isToDisplayVertical: true),
     );
   }
 }

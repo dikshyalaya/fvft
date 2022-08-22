@@ -21,7 +21,7 @@ Widget buildSavedJobs() {
     },
     child: Padding(
       padding: EdgeInsets.only(bottom: 20.h, left: 10.w),
-      child: const JobPostListView(),
+      child: const LatestJobListViewScreen(),
     ),
     isGradientBackground: false,
     leftTitleColor: FreeVisaFreeTicketTheme.secondaryColor,
