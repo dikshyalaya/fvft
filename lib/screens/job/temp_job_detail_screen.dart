@@ -93,7 +93,7 @@ class TempJobDetailScreen extends StatelessWidget {
 
                                     SizedBox(width: 10.w),
                                     Text(
-                                      jobDetail!.country!.name! ?? 'N/A',
+                                      jobDetail!.country?.name! ?? 'N/A',
                                       style: FreeVisaFreeTicketTheme
                                           .caption1Style
                                           .copyWith(
