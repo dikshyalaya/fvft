@@ -3,12 +3,10 @@ import 'package:free_visa_free_ticket/core/network/api_manager.dart';
 
 import '../core/network/app_url.dart';
 
-class CompanyRepository { 
-static  ApiManager ?  _apiManager = ApiManager();
+class CompanyRepository {
+  static final ApiManager _apiManager = ApiManager();
 
-  
-
-  static Future<Response> getCompany ()async { 
-return await _apiManager!.dio!.get(jobHomePageEndpoint) ; 
+  static Future<Response> getCompany() async {
+    return await _apiManager.dio!.get(jobHomePageEndpoint);
   }
 }

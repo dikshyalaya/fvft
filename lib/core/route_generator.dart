@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:free_visa_free_ticket/core/utilities/enum_utils.dart';
+import 'package:free_visa_free_ticket/providers/company_provider.dart';
 import '../screens/auth/temp_login_screen.dart';
 import '../screens/auth/temp_signup_screen.dart';
 import '../screens/category/temp_category_list_screen.dart';
@@ -268,8 +269,12 @@ class RouteGenerator {
         );
       case routes.companyListScreen:
         return MaterialPageRoute(
-            settings: settings,
-            builder: (context) => const CompanyListViewScreen());
+          settings: settings,
+          builder: (context) => ChangeNotifierProvider.value(
+            value: locator<CompanyProvider>(),
+            child: const CompanyListViewScreen(),
+          ),
+        );
       case routes.tempLanguageSelection:
         return MaterialPageRoute(
           settings: settings,

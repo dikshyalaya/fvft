@@ -7,6 +7,7 @@ part of 'company_model.dart';
 // **************************************************************************
 
 CompanyModel _$CompanyModelFromJson(Map<String, dynamic> json) => CompanyModel(
+      companyLogo: json['company_logo'] as String?,
       city: json['city'] == null
           ? null
           : CityModel.fromJson(json['city'] as Map<String, dynamic>),
@@ -40,6 +41,7 @@ Map<String, dynamic> _$CompanyModelToJson(CompanyModel instance) =>
       'id': instance.id,
       'company_name': instance.companyName,
       'company_cover': instance.companyCover,
+      'company_logo': instance.companyLogo,
       'company_banner': instance.companyBanner,
       'company_phone': instance.companyPhone,
       'company_email': instance.companyEmail,

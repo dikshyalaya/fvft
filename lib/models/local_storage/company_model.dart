@@ -13,6 +13,9 @@ class CompanyModel {
   @JsonKey(name: 'company_cover')
   final String? companyCover;
 
+  @JsonKey(name: 'company_logo')
+  final String? companyLogo;
+
   @JsonKey(name: 'company_banner')
   final String? companyBanner;
 
@@ -65,6 +68,7 @@ class CompanyModel {
   final CityModel? city;
 
   CompanyModel({
+    this.companyLogo,
     this.city,
     this.companyAddress,
     this.companyBanner,
@@ -87,10 +91,9 @@ class CompanyModel {
     this.state,
   });
 
-  factory CompanyModel.fromJson(Map<String, dynamic> json)=>_$CompanyModelFromJson(json);
-  Map<String, dynamic >  toJson()=>_$CompanyModelToJson(this);
-
-
+  factory CompanyModel.fromJson(Map<String, dynamic> json) =>
+      _$CompanyModelFromJson(json);
+  Map<String, dynamic> toJson() => _$CompanyModelToJson(this);
 }
 
 @JsonSerializable()
