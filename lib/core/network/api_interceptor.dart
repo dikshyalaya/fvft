@@ -33,13 +33,14 @@ class ApiInterceptor extends Interceptor {
     }
     return super.onRequest(options, handler);
   }
-@override
+
+  @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     // TODO: implement onResponse
 
-    debugPrint(response.data['countries']);
     super.onResponse(response, handler);
   }
+
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
     super.onError(err, handler);

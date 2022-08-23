@@ -21,7 +21,7 @@ Widget buildNewJobs() {
     rightHeaderTitle: 'View All',
     onTapToRightTitle: () {
       locator<NavigationService>()
-          .navigateTo(routes.latestJobListScreen, arguments: {
+          .navigateTo(routes.allJobListScreen, arguments: {
         'appBarTitle': 'All Jobs',
       });
     },
@@ -104,8 +104,8 @@ class _AllJobsListViewScreenState extends State<AllJobsListViewScreen> {
                               ? Axis.vertical
                               : Axis.horizontal,
                           itemBuilder: (lCtx, index) {
-                            log('message : ${data.allJobList?[index].applyBefore}',
-                                name: "all job list ");
+                            // log('message : ${data.allJobList?[index].applyBefore}',
+                                // name: "all job list ");
                             return JobPostListItem(
                                 jobs: data.allJobList?[index],
                                 isHorizontalView: !widget.isToDisplayVertical!);

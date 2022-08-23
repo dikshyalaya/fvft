@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:free_visa_free_ticket/core/utilities/enum_utils.dart';
 import '../screens/auth/temp_login_screen.dart';
 import '../screens/auth/temp_signup_screen.dart';
 import '../screens/category/temp_category_list_screen.dart';
@@ -220,7 +221,7 @@ class RouteGenerator {
             value: CategoryPaginationProvider(),
             child: const TempCategoryListScreen(),
           ),
-        );  
+        );
       case routes.countryListViewScreen:
         return MaterialPageRoute(
           settings: settings,
@@ -232,7 +233,7 @@ class RouteGenerator {
           settings: settings,
           builder: (context) => MultiProvider(
             providers: [
-              ChangeNotifierProvider.value(value: locator<JobProvider> ()),
+              ChangeNotifierProvider.value(value: locator<JobProvider>()),
               ChangeNotifierProvider.value(
                 value: JobApplicationProvider(),
               ),
@@ -242,6 +243,26 @@ class RouteGenerator {
               //JobApplicationProvider
             ],
             child: JobListPostViewScreen(
+                appBarTitle: args!['appBarTitle'] ?? 'Jobs'),
+          ),
+        );
+      case routes.allJobListScreen:
+        final Map<String, dynamic>? args = arguments as Map<String, dynamic>?;
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => MultiProvider(
+            providers: [
+              ChangeNotifierProvider.value(value: locator<JobProvider>()),
+              ChangeNotifierProvider.value(
+                value: JobApplicationProvider(),
+              ),
+              ChangeNotifierProvider.value(
+                value: locator<JobPaginationProvider>(),
+              ),
+              //JobApplicationProvider
+            ],
+            child: JobListPostViewScreen(
+                jobScreen: JobListViewScreen.all,
                 appBarTitle: args!['appBarTitle'] ?? 'Jobs'),
           ),
         );
@@ -283,11 +304,11 @@ class RouteGenerator {
         return MaterialPageRoute(
             settings: settings,
             builder: (context) => ChangeNotifierProvider.value(
-              value: locator<JobApplicationProvider>(),
-              child: TempJobDetailScreen(
-                jobDetail: args!['jobDetail'],
-              ),
-            ));
+                  value: locator<JobApplicationProvider>(),
+                  child: TempJobDetailScreen(
+                    jobDetail: args!['jobDetail'],
+                  ),
+                ));
       case routes.countryJobsScreen:
         return MaterialPageRoute(
           settings: settings,

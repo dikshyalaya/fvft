@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:free_visa_free_ticket/providers/company_provider.dart';
+
 import '../core/constants/assets_source.dart';
 import '../core/constants/routes.dart' as routes;
 import 'package:flutter/material.dart';
@@ -86,6 +88,7 @@ class _SplashScreenState extends State<SplashScreen>
       // unawaited(locator<UserCountryPrefsProvider>().getCountryFromPrefsList());
       unawaited(locator<JobProvider>().getListOfJobsCategories());
       unawaited(locator<JobProvider>().getListOfAllJobs());
+      unawaited(locator<CompanyProvider>().getCompanies());
       unawaited(locator<JobProvider>().getListOfNewJobs());
       unawaited(locator<CountryProvider>().getTotalListOfCountries());
       unawaited(locator<CountryProvider>().getListOfCountries());

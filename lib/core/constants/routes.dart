@@ -20,6 +20,7 @@ const String informationScreen = '/information-screen';
 const String viewAllJobCategory = '/view-all-job-category-screen';
 const String countryListViewScreen = '/country-listview-screen';
 const String latestJobListScreen = '/latest-job-list-screen';
+const String allJobListScreen = '/all-job-list-screen';
 const String companyListScreen = '/company-list-screen';
 const String tempLanguageSelection = '/temp-language-selection-screen';
 const String tempLoginScreen = '/temp-login-screen';

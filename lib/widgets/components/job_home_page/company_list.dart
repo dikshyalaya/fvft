@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:free_visa_free_ticket/providers/company_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/constants/assets_source.dart';
 import '../../../core/services/navigation_service.dart';
@@ -18,57 +20,61 @@ Widget buildCompanyList() {
         routes.companyListScreen,
       );
     },
-    child: ListView.builder(
-      padding: EdgeInsets.only(left: 20.w, bottom: 10.h),
-      itemBuilder: (ctx, index) {
-        return Card(
-          elevation: 3,
-          child: SizedBox(
-            height: 200.h,
-            width: 600.w,
-            child: Row(
-              children: [
-                Image.asset(
-                  AssetsSource.freeVisaFreeTicketLogo,
-                  width: 200.w,
+    child: Consumer<CompanyProvider>(
+      builder: ((context, value, child) => ListView.builder(
+            padding: EdgeInsets.only(left: 20.w, bottom: 10.h),
+            itemBuilder: (ctx, index) {
+              return Card(
+                elevation: 3,
+                child: SizedBox(
                   height: 200.h,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          'Huwaei Malaysia Sdn. Bhd.',
-                          style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
-                            color: FreeVisaFreeTicketTheme.secondaryColor,
-                            fontWeight: FontWeight.w600,
+                  width: 600.w,
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        AssetsSource.freeVisaFreeTicketLogo,
+                        width: 200.w,
+                        height: 200.h,
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'Huwaei Malaysia Sdn. Bhd.',
+                                style: FreeVisaFreeTicketTheme.caption1Style
+                                    .copyWith(
+                                  color: FreeVisaFreeTicketTheme.secondaryColor,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                '(550)',
+                                style: FreeVisaFreeTicketTheme.caption1Style
+                                    .copyWith(
+                                  color: FreeVisaFreeTicketTheme.secondaryColor,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
                         ),
-                        Text(
-                          '(550)',
-                          style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
-                            color: FreeVisaFreeTicketTheme.secondaryColor,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        );
-      },
-      itemCount: 5,
-      scrollDirection: Axis.horizontal,
+              );
+            },
+            itemCount: value.companiesList.length,
+            scrollDirection: Axis.horizontal,
+          )),
     ),
     isGradientBackground: true,
   );

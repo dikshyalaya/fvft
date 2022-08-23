@@ -1,6 +1,7 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import '../core/constants/assets_source.dart';
+import '../providers/company_provider.dart';
 import 'job/main_job_screen.dart';
 import 'more_info_screen.dart';
 import 'status_screen.dart';
@@ -54,6 +55,7 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
         return MultiProvider(
           providers: [
                ChangeNotifierProvider.value(value: locator<AuthProvider>()),
+               ChangeNotifierProvider.value(value: locator<CompanyProvider>())
           ],
           child: const TempJobScreen());
       case 3:

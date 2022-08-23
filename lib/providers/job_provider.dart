@@ -194,7 +194,7 @@ class JobProvider with ChangeNotifier {
         log(response.toString());
 
         if (response.data != null) {
-          log('data : ${response.data}');
+          // log('data : ${response.data}');
           final responseResult = await JobRepository.getListOfJobCategories(
               pageNo: pageNo, limit: response.data['total']);
           tempJobCategoriesList.addAll(responseResult.data['data']
