@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:free_visa_free_ticket/providers/job_provider.dart';
 
 import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
@@ -8,7 +9,7 @@ import '../../../screens/job/post/job_post_list_view.dart';
 import '../global_view_layout.dart';
 import '../../../core/constants/routes.dart' as routes;
 
-Widget buildPreferredJobs() {
+Widget buildPreferredJobs(JobProvider value) {
   return globalViewLayout(
     height: 520.h,
     width: 1.sw,
@@ -22,7 +23,7 @@ Widget buildPreferredJobs() {
     },
     child: Padding(
       padding: EdgeInsets.only(left: 5.w, bottom: 10.h),
-      child: const LatestJobListViewScreen(),
+      child:  JobListViewScreen(data: value.jobListByJobCategory!,), //! TODO : prefered job
     ),
     leftTitleColor: FreeVisaFreeTicketTheme.secondaryColor,
     rightTitleColor: FreeVisaFreeTicketTheme.darkGrayColor,

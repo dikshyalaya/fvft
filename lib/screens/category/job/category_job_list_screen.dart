@@ -51,6 +51,7 @@ class _CategoryJobListScreenState extends State<CategoryJobListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(
+        backBtnColor: Theme.of(context).primaryColor,
         isToShowBackButton: true,
         appBarTitle: "${widget.jobCategoryName}'s Job",
         titleFontSize: 36.sp,

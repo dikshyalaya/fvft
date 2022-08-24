@@ -29,6 +29,7 @@ class AuthProvider with ChangeNotifier {
       if (response.data != null && response.data['success']) {
         print('Login: ${response.data['data']['user']}');
         _currentUser = UserModel.fromJson(response.data['data']['user']);
+        _userLoggedIn = true;
         notifyListeners();
         await Future.wait([
           _cacheUser(_currentUser!),
@@ -60,6 +61,7 @@ class AuthProvider with ChangeNotifier {
           password: password);
       if (response.data != null && response.data['success']) {
         _currentUser = UserModel.fromJson(response.data['data']['user']);
+         _userLoggedIn = true;
         notifyListeners();
         await Future.wait([
           _cacheUser(_currentUser!),
@@ -83,6 +85,7 @@ class AuthProvider with ChangeNotifier {
       final response = await AuthRepository.getUserProfileData();
       if (response.data != null && response.data['success']) {
         _currentUser = UserModel.fromJson(response.data['data']);
+         _userLoggedIn = true;
         notifyListeners();
         await _cacheUser(_currentUser!, isToUpdate: true);
       }

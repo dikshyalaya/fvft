@@ -5,6 +5,8 @@ import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/theme/free_visa_free_ticket_theme.dart';
 import '../../../core/constants/routes.dart' as routes;
+import '../../../models/jobs_model.dart';
+import '../../../providers/job_provider.dart';
 
 Widget buildTagList() {
   return SizedBox(
@@ -24,14 +26,12 @@ Widget buildTagList() {
   );
 }
 
-
+final value = locator<JobProvider>();
 final List<Widget> _tagList = [
   _buildTag(
     onTap: () {
-      locator<NavigationService>()
-          .navigateTo(routes.latestJobListScreen, arguments: {
-        'appBarTitle': 'All Jobs',
-      });
+      locator<NavigationService>().navigateTo(routes.latestJobListScreen,
+          arguments: {'appBarTitle': 'All Jobs', 'jobs': value.allJobList!});
     },
     color: FreeVisaFreeTicketTheme.darkGreenColor,
     text: 'All Jobs',
@@ -41,6 +41,7 @@ final List<Widget> _tagList = [
       locator<NavigationService>()
           .navigateTo(routes.latestJobListScreen, arguments: {
         'appBarTitle': 'Latest Jobs',
+        'jobs': value.newJobList!,
       });
     },
     color: FreeVisaFreeTicketTheme.darkBlueColor,

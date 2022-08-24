@@ -81,4 +81,3 @@ extension JobStatusString on JobStatus {
   }
 }
 
-enum JobListViewScreen {latest, all, featured, saved, preferred }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:free_visa_free_ticket/providers/auth_provider.dart';
+import 'package:free_visa_free_ticket/providers/job_provider.dart';
 import 'package:free_visa_free_ticket/widgets/components/job_home_page/all_job.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/components/job_home_page/company_list.dart';
@@ -21,55 +22,61 @@ class TempJobScreen extends StatelessWidget {
   }
 
   Widget _jobScreen(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      padding: EdgeInsets.zero,
-      addRepaintBoundaries: false,
-      addAutomaticKeepAlives: false,
-      children: [
-        // Image slider of inital home page
-        CustomImageSlider(
-          height: 300.h,
-          isHeightRequired: false,
-        ),
+    return Consumer<JobProvider>(
+      builder: (context, value, child) => ListView(
+        shrinkWrap: true,
+        padding: EdgeInsets.zero,
+        addRepaintBoundaries: false,
+        addAutomaticKeepAlives: false,
+        children: [
+          // Image slider of inital home page
+          CustomImageSlider(
+            height: 300.h,
+            isHeightRequired: false,
+          ),
 
-        // Seatch field of job page
-        buildSearchFiled(),
-        SizedBox(height: 20.h),
+          // Seatch field of job page
+          buildSearchFiled(),
+          SizedBox(height: 20.h),
 
-        //  tags horizonatal job list
-        buildTagList(),
-        SizedBox(height: 20.h),
+          //  tags horizonatal job list
+          buildTagList(),
+          SizedBox(height: 20.h),
 
-        // job countries list
-        buildCountriesList(),
-        SizedBox(height: 20.h),
-        // job category list
-        buildJobCategoryList(),
-        SizedBox(height: 20.h),
+          // job countries list
+          buildCountriesList(),
+          SizedBox(height: 20.h),
+          // job category list
+          buildJobCategoryList(),
+          SizedBox(height: 20.h),
 
-        // prefered job
-        Consumer<AuthProvider>(
-            builder: (context, value, child) =>
-                value.userLoggedIn ? buildPreferredJobs() : const SizedBox()),
-        SizedBox(height: 20.h),
-        // latest job
-        buildLatestJobs(),
-        SizedBox(height: 20.h),
+          // prefered job
 
-        // TODO : ADD ALL JOBS SECTION
+          // latest job
+          buildLatestJobs(value),
+          SizedBox(height: 20.h),
 
-        buildNewJobs(),
-        SizedBox(
-          height: 20.h,
-        ),
+          // TODO : ADD ALL JOBS SECTION
 
-        // companies list
-        buildCompanyList(),
-        // saved jobs
-        // buildSavedJobs(),
-        SizedBox(height: 150.h),
-      ],
+          buildAllJobs(value),
+          SizedBox(
+            height: 20.h,
+          ),
+          Consumer2<AuthProvider, JobProvider>(
+              builder: (context, auth, job, child) => auth.userLoggedIn
+                  ? buildPreferredJobs(job)
+                  : const SizedBox()),
+          SizedBox(height: 20.h),
+
+          // companies list
+          buildCompanyList(),
+
+          
+          // saved jobs
+          // buildSavedJobs(),
+          SizedBox(height: 150.h),
+        ],
+      ),
     );
   }
 }

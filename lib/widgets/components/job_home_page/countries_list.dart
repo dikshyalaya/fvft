@@ -1,5 +1,3 @@
-
-
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -40,28 +38,32 @@ Widget _buildCountriesItem() {
     itemCount: countryList!.length,
     itemBuilder: (lCtx, index) {
       log(countryList[index].toString());
-      return Padding(
-        padding: EdgeInsets.only(left: 20.w, bottom: 10.h),
-        child: Chip(
-          elevation: 5,
-          backgroundColor: FreeVisaFreeTicketTheme.whiteColor,
-          labelPadding: EdgeInsets.symmetric(horizontal: 20.w),
-          label: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              
-              SvgPicture.network(
-                'https://demo.freevisafreeticket.com/${countryList[index]!.flag!}',
-                height: 40.h,
-                width: 40.w,
-              ),
-              SizedBox(width: 20.w),
-              Text(countryList[index]!.name!,
-                  style: FreeVisaFreeTicketTheme.caption1Style),
-              Text(' ( ${countryList[index]!.nativeName} )',
-                  style: FreeVisaFreeTicketTheme.caption1Style),
-            ],
+      return InkWell(
+        onTap: () {
+          locator<NavigationService>().navigateTo(routes.countryJobsScreen);
+        },
+        child: Padding(
+          padding: EdgeInsets.only(left: 20.w, bottom: 10.h),
+          child: Chip(
+            elevation: 5,
+            backgroundColor: FreeVisaFreeTicketTheme.whiteColor,
+            labelPadding: EdgeInsets.symmetric(horizontal: 20.w),
+            label: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SvgPicture.network(
+                  'https://demo.freevisafreeticket.com/${countryList[index]!.flag!}',
+                  height: 40.h,
+                  width: 40.w,
+                ),
+                SizedBox(width: 20.w),
+                Text(countryList[index]!.name!,
+                    style: FreeVisaFreeTicketTheme.caption1Style),
+                Text(' (${countryList[index]!.nativeName})',
+                    style: FreeVisaFreeTicketTheme.caption1Style),
+              ],
+            ),
           ),
         ),
       );

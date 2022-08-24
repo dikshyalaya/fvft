@@ -15,8 +15,7 @@ import 'dart:developer';
 
 /// Provider [JobProvider] : Get list of job, list of job category, list of jobs based on selected job category
 class JobProvider with ChangeNotifier {
-
-  JobProvider (){
+  JobProvider() {
     getListOfAllJobs();
     getListOfNewJobs();
   }
@@ -25,8 +24,12 @@ class JobProvider with ChangeNotifier {
 
   List<JobModel>? _newJobList = [];
   List<JobModel>? get newJobList => _newJobList;
+
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+
+  List<JobModel?> _featuredJobs = [];
+  List<JobModel?> get featuredJob => _featuredJobs;
 
   setLoading(bool value) {
     _isLoading = value;
@@ -56,7 +59,7 @@ class JobProvider with ChangeNotifier {
   }
 
   /// ========================= Function to fetch list of active jobs ========================
-  /// TODO [GETTING_THE_LIST_OF_THE_ACTIVE_JOBS]
+  ///  [GETTING_THE_LIST_OF_THE_ACTIVE_JOBS]
   Future<void> getListOfAllJobs({
     int limit = 10,
     int pageNo = 1,
@@ -109,12 +112,46 @@ class JobProvider with ChangeNotifier {
           jobCategoryId: jobCategoryId);
       if (response.data != null && response.data['success']) {
         if (isToClearJobList) _newJobList = [];
-        log("jobs : ${response.data['data']['new_jobs']}");
         _newJobList!.addAll(response.data['data']['new_jobs']
             .map<JobModel>((e) => JobModel.fromJson(e))
             .toList());
+        notifyListeners();
+      }
+    } on DioError catch (e) {
+      LogUtils.logError('Dio Fail to fetch list of job: ${e.response}');
+      LogUtils.logError('Dio Fail to fetch list of job: ${e.message}');
+      rethrow;
+    } catch (e) {
+      LogUtils.logError('Fail to fetch list of job: $e');
+      rethrow;
+    }
 
-        log("New Jobs : $_newJobList ");
+    setLoading(false);
+  }
+
+  Future<void> getListOfFeaturedJobs({
+    int limit = 10,
+    int pageNo = 1,
+    int? countryId = -1,
+    bool isToClearJobList = false,
+    int? jobCategoryId = -1,
+  }) async {
+    setLoading(true);
+
+    try {
+      final response = await JobRepository.getListOfJobs(
+          limit: limit,
+          pageNo: pageNo,
+          countryId: countryId,
+          jobCategoryId: jobCategoryId);
+      if (response.data != null && response.data['success']) {
+        if (isToClearJobList) _featuredJobs = [];
+
+        _featuredJobs.addAll(response.data['data']['featured_jobs']
+            .map<JobModel>((e) => JobModel.fromJson(e))
+            .toList());
+
+        log("Features  Jobs : $_featuredJobs ");
         notifyListeners();
       }
     } on DioError catch (e) {

@@ -244,29 +244,33 @@ class RouteGenerator {
               //JobApplicationProvider
             ],
             child: JobListPostViewScreen(
-                appBarTitle: args!['appBarTitle'] ?? 'Jobs'),
+              appBarTitle: args!['appBarTitle'] ?? 'Jobs',
+              jobs: args['jobs']!,
+              fromScreen: args['screen'],
+              
+            ),
           ),
         );
-      case routes.allJobListScreen:
-        final Map<String, dynamic>? args = arguments as Map<String, dynamic>?;
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (context) => MultiProvider(
-            providers: [
-              ChangeNotifierProvider.value(value: locator<JobProvider>()),
-              ChangeNotifierProvider.value(
-                value: JobApplicationProvider(),
-              ),
-              ChangeNotifierProvider.value(
-                value: locator<JobPaginationProvider>(),
-              ),
-              //JobApplicationProvider
-            ],
-            child: JobListPostViewScreen(
-                jobScreen: JobListViewScreen.all,
-                appBarTitle: args!['appBarTitle'] ?? 'Jobs'),
-          ),
-        );
+      // case routes.allJobListScreen:
+      //   final Map<String, dynamic>? args = arguments as Map<String, dynamic>?;
+      //   return MaterialPageRoute(
+      //     settings: settings,
+      //     builder: (context) => MultiProvider(
+      //       providers: [
+      //         ChangeNotifierProvider.value(value: locator<JobProvider>()),
+      //         ChangeNotifierProvider.value(
+      //           value: JobApplicationProvider(),
+      //         ),
+      //         ChangeNotifierProvider.value(
+      //           value: locator<JobPaginationProvider>(),
+      //         ),
+      //         //JobApplicationProvider
+      //       ],
+      //       child: JobListPostViewScreen(
+      //           // jobScreen: JobListViewScreen.all,
+      //           appBarTitle: args!['appBarTitle'] ?? 'Jobs'),
+      //     ),
+      //   );
       case routes.companyListScreen:
         return MaterialPageRoute(
           settings: settings,

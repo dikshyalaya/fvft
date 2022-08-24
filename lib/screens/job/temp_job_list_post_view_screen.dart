@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:free_visa_free_ticket/widgets/components/job_home_page/all_job.dart';
 import '../../core/utilities/enum_utils.dart';
+import '../../models/jobs_model.dart';
 import 'post/job_post_list_view.dart';
 
 import '../../core/theme/free_visa_free_ticket_theme.dart';
 
 class JobListPostViewScreen extends StatelessWidget {
   final String? appBarTitle;
-  final JobListViewScreen jobScreen;
+  final List<JobModel> jobs;
+  final String? fromScreen;
 
   const JobListPostViewScreen(
       {Key? key,
       required this.appBarTitle,
-      this.jobScreen = JobListViewScreen.latest})
+      required this.jobs,
+      this.fromScreen})
       : super(key: key);
 
   @override
@@ -29,12 +32,10 @@ class JobListPostViewScreen extends StatelessWidget {
                 color: FreeVisaFreeTicketTheme.whiteColor,
               )),
         ),
-        body: jobScreen == JobListViewScreen.latest
-            ? const LatestJobListViewScreen(
-                isToDisplayVertical: true,
-              )
-            : AllJobsListViewScreen(
-                isToDisplayVertical: true,
-              ));
+        body: JobListViewScreen(
+          data: jobs,
+          isToDisplayVertical: true,
+          fromScreen: fromScreen,
+        ));
   }
 }
