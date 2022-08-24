@@ -87,8 +87,8 @@ class _SplashScreenState extends State<SplashScreen>
       // unawaited(locator<JobApplicationProvider>().getAcceptedJobList());
       // unawaited(locator<UserCountryPrefsProvider>().getCountryFromPrefsList());
       unawaited(locator<JobProvider>().getListOfJobsCategories());
-      unawaited(locator<JobProvider>().getListOfAllJobs());
       unawaited(locator<JobProvider>().getListOfFeaturedJobs());
+      unawaited(locator<JobProvider>().getListOfAllJobs());
       unawaited(locator<CompanyProvider>().getCompanies());
       unawaited(locator<JobProvider>().getListOfNewJobs());
       unawaited(locator<CountryProvider>().getTotalListOfCountries());

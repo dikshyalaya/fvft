@@ -5,6 +5,7 @@ import 'package:free_visa_free_ticket/widgets/components/job_home_page/all_job.d
 import 'package:provider/provider.dart';
 import '../../widgets/components/job_home_page/company_list.dart';
 import '../../widgets/components/job_home_page/countries_list.dart';
+import '../../widgets/components/job_home_page/featured_jobs.dart';
 import '../../widgets/components/job_home_page/fiter_tag.dart';
 import '../../widgets/components/job_home_page/job_categories.dart';
 import '../../widgets/components/job_home_page/latest_job.dart';
@@ -67,11 +68,11 @@ class TempJobScreen extends StatelessWidget {
                   ? buildPreferredJobs(job)
                   : const SizedBox()),
           SizedBox(height: 20.h),
-
           // companies list
           buildCompanyList(),
 
-          
+          SizedBox(height: 20.h),
+          buildFeaturedJobs(value),
           // saved jobs
           // buildSavedJobs(),
           SizedBox(height: 150.h),

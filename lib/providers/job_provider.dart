@@ -18,6 +18,7 @@ class JobProvider with ChangeNotifier {
   JobProvider() {
     getListOfAllJobs();
     getListOfNewJobs();
+    getListOfFeaturedJobs();
   }
   List<JobModel>? _allJobList = [];
   List<JobModel>? get allJobList => _allJobList;
@@ -28,8 +29,8 @@ class JobProvider with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  List<JobModel?> _featuredJobs = [];
-  List<JobModel?> get featuredJob => _featuredJobs;
+  List<JobModel>? _featuredJobs = [];
+  List<JobModel>? get featuredJob => _featuredJobs;
 
   setLoading(bool value) {
     _isLoading = value;
@@ -44,6 +45,16 @@ class JobProvider with ChangeNotifier {
   List<JobCategoryModel>? get jobCategoriesList => _jobCategoriesList;
 
   void setAllJobList(List<JobModel>? jobs) {
+    _allJobList = jobs;
+    notifyListeners();
+  }
+
+  void setFeaturedJobList(List<JobModel>? jobs) {
+    _allJobList = jobs;
+    notifyListeners();
+  }
+
+  void setNewJobList(List<JobModel>? jobs) {
     _allJobList = jobs;
     notifyListeners();
   }
@@ -103,7 +114,7 @@ class JobProvider with ChangeNotifier {
     int? jobCategoryId = -1,
   }) async {
     setLoading(true);
-    print("Getting the list of the new jobs");
+
     try {
       final response = await JobRepository.getListOfJobs(
           limit: limit,
@@ -115,7 +126,10 @@ class JobProvider with ChangeNotifier {
         _newJobList!.addAll(response.data['data']['new_jobs']
             .map<JobModel>((e) => JobModel.fromJson(e))
             .toList());
+
         notifyListeners();
+
+        setNewJobList(_newJobList);
       }
     } on DioError catch (e) {
       LogUtils.logError('Dio Fail to fetch list of job: ${e.response}');
@@ -147,11 +161,13 @@ class JobProvider with ChangeNotifier {
       if (response.data != null && response.data['success']) {
         if (isToClearJobList) _featuredJobs = [];
 
-        _featuredJobs.addAll(response.data['data']['featured_jobs']
+        _featuredJobs!.addAll(response.data['data']['featured_jobs']
             .map<JobModel>((e) => JobModel.fromJson(e))
             .toList());
 
-        log("Features  Jobs : $_featuredJobs ");
+       
+        setFeaturedJobList(_featuredJobs);
+
         notifyListeners();
       }
     } on DioError catch (e) {

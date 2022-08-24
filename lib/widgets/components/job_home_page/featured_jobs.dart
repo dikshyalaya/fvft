@@ -12,17 +12,17 @@ import '../../../screens/job/post/job_post_list_view.dart';
 import '../global_view_layout.dart';
 import '../../../core/constants/routes.dart' as routes;
 
-Widget buildAllJobs(JobProvider value) {
+Widget buildFeaturedJobs(JobProvider value) {
   return globalViewLayout(
     height: 550.h,
     width: 1.sw,
-    leftHeaderTitle: 'All Jobs',
+    leftHeaderTitle: 'Featured Jobs',
     rightHeaderTitle: 'View All',
     onTapToRightTitle: () {
       locator<NavigationService>()
           .navigateTo(routes.latestJobListScreen, arguments: {
         'appBarTitle': 'Featured Jobs',
-        'jobs': value.allJobList!,
+        'jobs': value.featuredJob!,
       });
     },
     leftTitleColor: FreeVisaFreeTicketTheme.secondaryColor,
