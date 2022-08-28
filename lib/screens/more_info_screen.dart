@@ -18,9 +18,7 @@ class MoreInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return locator<AuthProvider>().currentUser == null
-        ? const Center(child: LoginToContinueWidget())
-        : _buildListOfActionTile(context);
+    return _buildListOfActionTile(context);
   }
 
   Widget _buildListOfActionTile(final context) {
@@ -29,14 +27,22 @@ class MoreInfoScreen extends StatelessWidget {
       width: 1.sw,
       child: ListView(
         children: [
-          _buildNewsTitle(),
-          _buildLatestNews(),
-          _buildAccountSetting(context),
+          locator<AuthProvider>().currentUser == null
+              ? const SizedBox()
+              : _buildAccountSetting(context),
           ..._buildProfileSettings(context),
-          _buildJobSetting(),
-          _buildPreferredJobs(),
-          Divider(thickness: 4.w),
-          _buildJobAlert(),
+          locator<AuthProvider>().currentUser == null
+              ? const SizedBox()
+              : _buildJobSetting(),
+          locator<AuthProvider>().currentUser == null
+              ? const SizedBox()
+              : _buildPreferredJobs(),
+          locator<AuthProvider>().currentUser == null
+              ? const SizedBox()
+              : Divider(thickness: 4.w),
+          locator<AuthProvider>().currentUser == null
+              ? const SizedBox()
+              : _buildJobAlert(),
           _buildSupport(),
           _buildSettings(),
           Divider(thickness: 4.w),
@@ -151,8 +157,7 @@ class MoreInfoScreen extends StatelessWidget {
         ),
         Divider(thickness: 4.w),
         _buildListTile(
-          onTap: () {
-          },
+          onTap: () {},
           icon: Icons.account_circle_outlined,
           title: 'Upload Profile',
         ),

@@ -67,7 +67,7 @@ class _CategoryJobListScreenState extends State<CategoryJobListScreen> {
                   padding: EdgeInsets.zero,
                   child: Column(
                     children: [
-                      SizedBox(height: 20.h),
+                      SizedBox(height: 10.h),
                       _buildCountriesJobItem(data),
                     ],
                   ),

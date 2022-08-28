@@ -60,8 +60,6 @@ Widget _buildCountriesItem() {
                 SizedBox(width: 20.w),
                 Text(countryList[index]!.name!,
                     style: FreeVisaFreeTicketTheme.caption1Style),
-                Text(' (${countryList[index]!.nativeName})',
-                    style: FreeVisaFreeTicketTheme.caption1Style),
               ],
             ),
           ),

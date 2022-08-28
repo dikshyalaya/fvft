@@ -18,8 +18,8 @@ Widget buildJobCategoryList() {
       );
     },
     child: Padding(
-      padding: EdgeInsets.only(top: 10.h, bottom: 20.h),
-      child:const CategoryListScreen(isToDisplayVertical: false),
+      padding: EdgeInsets.only(top: 5.h, bottom: 20.h),
+      child: const CategoryListScreen(isToDisplayVertical: false),
     ),
     isGradientBackground: true,
   );

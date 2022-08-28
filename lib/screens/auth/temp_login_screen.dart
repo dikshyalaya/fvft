@@ -27,7 +27,7 @@ class TempLoginScreen extends StatelessWidget {
               height: 1.sh,
               width: 1.sw,
               child: ListView(
-              shrinkWrap: true,
+                shrinkWrap: true,
                 addAutomaticKeepAlives: false,
                 addRepaintBoundaries: false,
                 children: [
@@ -48,14 +48,14 @@ class TempLoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 10.h),
                   Text(
-                    'Find your dream abroad job\nwith ZERO cost',
+                    'Find your dream abroad job with ZERO cost',
                     style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
                       fontWeight: FontWeight.w400,
                       color: FreeVisaFreeTicketTheme.darkGrayColor,
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 40.h),
+                  SizedBox(height: 20.h),
                   Text(
                     'LOGIN',
                     style: FreeVisaFreeTicketTheme.heading1Style.copyWith(
@@ -65,7 +65,7 @@ class TempLoginScreen extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 40.h),
+                  SizedBox(height: 20.h),
                   _buildLoginForm(context),
                 ],
               ),
@@ -107,7 +107,7 @@ class TempLoginScreen extends StatelessWidget {
             _buildPasswordTextField(context),
             SizedBox(height: 10.h),
             _buildForgotPasswordBtn(),
-            SizedBox(height: 20.h),
+            SizedBox(height: 10.h),
             _buildSignInBtn(context),
             SizedBox(height: 20.h),
             Text(
