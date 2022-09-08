@@ -19,7 +19,7 @@ class PasswordResetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      appBar: customAppBar(
+      appBar: customAppBar(context , 
         isToShowTitle: false,
       ),
       body: ListView(

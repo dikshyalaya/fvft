@@ -19,7 +19,7 @@ class NewsDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar(context, 
         isToShowBackButton: true,
         isToShowTitle: false,
         titleFontSize: 36.sp,

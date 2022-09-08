@@ -117,7 +117,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar( context , 
         appBarTitle: 'Edit Profile',
       ),
       body: FutureBuilder(

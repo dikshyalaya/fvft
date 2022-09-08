@@ -18,7 +18,7 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar( context , 
         isToShowBackButton: true,
         appBarTitle: 'Settings',
         titleFontSize: 36.sp,

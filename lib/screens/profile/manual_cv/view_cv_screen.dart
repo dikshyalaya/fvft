@@ -86,7 +86,7 @@ class _ViewCVScreenState extends State<ViewCVScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar( context , 
         appBarTitle: locator<CVProvider>().myCv!.title,
         actions: [
           if (!_isToDeleteCV)

@@ -17,7 +17,7 @@ class PasswordResetRequestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar(context, 
         isToShowTitle: false,
         backBtnColor: FreeVisaFreeTicketTheme.whiteColor,
       ),

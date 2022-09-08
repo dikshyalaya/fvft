@@ -19,7 +19,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar(context , 
         isToShowBackButton: true,
         isToShowTitle: false,
       ),

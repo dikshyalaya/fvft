@@ -62,7 +62,7 @@ class _JobPreferenceScreenState extends State<JobPreferenceScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar( context , 
         appBarTitle: 'Job Preference',
         // backgroundColor: FreeVisaFreeTicketTheme.primaryColor,
         bottomWidget: TabBar(

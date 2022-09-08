@@ -9,7 +9,7 @@ class LatestNewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar( context , 
         appBarTitle: 'Latest News',
         titleFontSize: 36.sp,
       ),

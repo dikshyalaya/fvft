@@ -64,7 +64,7 @@ class _UploadCVScreenState extends State<UploadCVScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: customAppBar(appBarTitle: 'Upload Your CV'),
+      appBar: customAppBar( context , appBarTitle: 'Upload Your CV'),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Form(

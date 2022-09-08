@@ -30,7 +30,7 @@ class JobDetailScreen extends StatelessWidget {
           clipBehavior: Clip.none,
           padding: EdgeInsets.zero,
           children: [
-            _buildJobImage(),
+            _buildJobImage(context),
             SizedBox(height: 30.h),
             _buildJobDetail(),
           ],
@@ -39,7 +39,7 @@ class JobDetailScreen extends StatelessWidget {
         floatingActionButton: _buildApplyBtn(context));
   }
 
-  Widget _buildJobImage() {
+  Widget _buildJobImage(BuildContext context) {
     return Stack(
       children: [
         Container(
@@ -74,7 +74,7 @@ class JobDetailScreen extends StatelessWidget {
         Positioned(
           left: 10.w,
           top: AppBar().preferredSize.height,
-          child: customBackButton(),
+          child: customBackButton(context),
         ),
         Positioned(
           right: 10.w,
