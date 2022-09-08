@@ -33,39 +33,40 @@ class MoreInfoScreen extends StatelessWidget {
           ..._buildProfileSettings(context),
           locator<AuthProvider>().currentUser == null
               ? const SizedBox()
-              : _buildJobSetting(),
+              : _buildJobSetting(context),
           locator<AuthProvider>().currentUser == null
               ? const SizedBox()
-              : _buildPreferredJobs(),
+              : _buildPreferredJobs(context),
           locator<AuthProvider>().currentUser == null
               ? const SizedBox()
               : Divider(thickness: 4.w),
           locator<AuthProvider>().currentUser == null
               ? const SizedBox()
-              : _buildJobAlert(),
-          _buildSupport(),
-          _buildSettings(),
+              : _buildJobAlert(context),
+          _buildSupport(context),
+          _buildSettings(context),
           Divider(thickness: 4.w),
-          _buildJobApplicationGuide(),
+          _buildJobApplicationGuide(context),
           Divider(thickness: 4.w),
-          _buildAbout(),
+          _buildAbout(context),
           Divider(thickness: 4.w),
-          _buildContact(),
+          _buildContact(context),
           Divider(thickness: 4.w),
-          _buildTermsAndCondition(),
+          _buildTermsAndCondition(context),
           Divider(thickness: 4.w),
-          _buildPrivacy(),
+          _buildPrivacy(context),
           Divider(thickness: 4.w),
-          _buildFeedbackAndSupport(),
+          _buildFeedbackAndSupport(context),
           Divider(thickness: 4.w),
-          _buildAboutApp(),
+          _buildAboutApp(context),
         ],
       ),
     );
   }
 
-  Widget _buildNewsTitle() {
+  Widget _buildNewsTitle(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {
         locator<NavigationService>().navigateTo(routes.allNewsRoute);
       },
@@ -74,8 +75,9 @@ class MoreInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLatestNews() {
+  Widget _buildLatestNews(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {
         locator<NavigationService>().navigateTo(routes.allNewsRoute);
       },
@@ -86,6 +88,7 @@ class MoreInfoScreen extends StatelessWidget {
 
   Widget _buildAccountSetting(final context) {
     return _buildListTile(
+      context,
       onTap: () {},
       title: 'Account Settings',
       isMenuTitle: true,
@@ -145,10 +148,11 @@ class MoreInfoScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildProfileSettings(final context) {
+  List<Widget> _buildProfileSettings(BuildContext context) {
     return [
       if (locator<AuthProvider>().currentUser != null) ...[
         _buildListTile(
+          context,
           onTap: () {
             locator<NavigationService>().navigateTo(routes.editProfileRoute);
           },
@@ -157,6 +161,7 @@ class MoreInfoScreen extends StatelessWidget {
         ),
         Divider(thickness: 4.w),
         _buildListTile(
+          context,
           onTap: () {},
           icon: Icons.account_circle_outlined,
           title: 'Upload Profile',
@@ -165,6 +170,7 @@ class MoreInfoScreen extends StatelessWidget {
         Consumer<CVProvider>(
           builder: (ctx, data, _) {
             return _buildListTile(
+              context,
               onTap: () {
                 if (data.myCv == null) {
                   locator<NavigationService>().navigateTo(routes.uploadCvRoute);
@@ -179,6 +185,7 @@ class MoreInfoScreen extends StatelessWidget {
         ),
         Divider(thickness: 4.w),
         _buildListTile(
+          context,
           onTap: () {
             locator<NavigationService>().navigateTo(routes.changePasswordRoute);
           },
@@ -187,6 +194,7 @@ class MoreInfoScreen extends StatelessWidget {
         ),
         Divider(thickness: 4.w),
         _buildListTile(
+          context,
           onTap: () {},
           icon: Icons.person_remove_outlined,
           title: 'Delete My Account',
@@ -195,16 +203,18 @@ class MoreInfoScreen extends StatelessWidget {
     ];
   }
 
-  Widget _buildJobSetting() {
+  Widget _buildJobSetting(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {},
       title: 'Job Settings',
       isMenuTitle: true,
     );
   }
 
-  Widget _buildPreferredJobs() {
+  Widget _buildPreferredJobs(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {
         locator<NavigationService>().navigateTo(routes.jobPreferenceRoute);
       },
@@ -213,24 +223,27 @@ class MoreInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildJobAlert() {
+  Widget _buildJobAlert(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {},
       icon: Icons.notifications_none,
       title: 'Job Alerts',
     );
   }
 
-  Widget _buildSupport() {
+  Widget _buildSupport(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {},
       title: 'Support',
       isMenuTitle: true,
     );
   }
 
-  Widget _buildSettings() {
+  Widget _buildSettings(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {
         locator<NavigationService>().navigateTo(routes.settingsRoute);
       },
@@ -239,32 +252,36 @@ class MoreInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildJobApplicationGuide() {
+  Widget _buildJobApplicationGuide(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {},
       icon: Icons.book_outlined,
       title: 'Job Application Guideline',
     );
   }
 
-  Widget _buildAbout() {
+  Widget _buildAbout(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {},
       icon: Icons.info_outline,
       title: 'About Free Visa Free Ticket',
     );
   }
 
-  Widget _buildContact() {
+  Widget _buildContact(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {},
       icon: Icons.mail_outline,
       title: 'Contact Us',
     );
   }
 
-  Widget _buildTermsAndCondition() {
+  Widget _buildTermsAndCondition(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {
         locator<NavigationService>().navigateTo(
           routes.webViewRoute,
@@ -279,8 +296,9 @@ class MoreInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPrivacy() {
+  Widget _buildPrivacy(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {
         locator<NavigationService>().navigateTo(
           routes.webViewRoute,
@@ -295,23 +313,26 @@ class MoreInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFeedbackAndSupport() {
+  Widget _buildFeedbackAndSupport(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {},
       icon: Icons.feedback_outlined,
       title: 'Feedback & Support',
     );
   }
 
-  Widget _buildAboutApp() {
+  Widget _buildAboutApp(BuildContext context) {
     return _buildListTile(
+      context,
       onTap: () {},
       icon: Icons.mobile_screen_share,
       title: 'About Application',
     );
   }
 
-  Widget _buildListTile({
+  Widget _buildListTile(
+    BuildContext context, {
     required void Function()? onTap,
     required String title,
     Widget? trailingButton,
@@ -320,17 +341,14 @@ class MoreInfoScreen extends StatelessWidget {
   }) =>
       ListTile(
         onTap: onTap,
-        hoverColor: Colors.transparent,
-        tileColor: isMenuTitle
-            ? FreeVisaFreeTicketTheme.lightWhiteColor
-            : Colors.white,
+        tileColor: Theme.of(context).primaryColor,
         leading: icon != null ? Icon(icon) : null,
         title: Text(
           title,
-          style: FreeVisaFreeTicketTheme.body3TextStyle.copyWith(
-            fontSize: 28.sp,
-            fontWeight: isMenuTitle ? FontWeight.bold : FontWeight.normal,
-          ),
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontSize: 28.sp,
+                fontWeight: isMenuTitle ? FontWeight.bold : FontWeight.normal,
+              ),
         ),
         trailing: trailingButton,
       );
