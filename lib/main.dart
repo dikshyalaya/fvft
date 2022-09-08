@@ -45,14 +45,13 @@ class _FreeVisaFreeTicketState extends State<FreeVisaFreeTicket> {
       create: (_) => locator<ThemeProvider>(),
       child: ScreenUtilInit(
         designSize: const Size(750, 1334),
-        builder: ((_,__) => Consumer<ThemeProvider>(
-              builder: (ctx, data,  _) {
+        builder: ((_, __) => Consumer<ThemeProvider>(
+              builder: (ctx, data, _) {
                 return MaterialApp(
-                
                   debugShowCheckedModeBanner: false,
                   title: AppConfig.of(context)!.appTitle ??
                       'Free Visa Free Ticket',
-                  // themeMode: data.themeMode,
+                  themeMode: data.themeMode,
                   theme: FreeVisaFreeTicketTheme.primaryThemeData,
                   darkTheme: FreeVisaFreeTicketTheme.darkThemeData,
                   onGenerateRoute: RouteGenerator.generateRoute,
@@ -80,7 +79,7 @@ class _FreeVisaFreeTicketState extends State<FreeVisaFreeTicket> {
                   },
                 );
               },
-            )) ,
+            )),
       ),
     );
   }
