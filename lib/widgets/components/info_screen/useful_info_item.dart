@@ -16,12 +16,12 @@ final Map<String, String> _infoItems = {
   'Foreign Jobs': AssetsSource.foreignJob
 };
 
-
-List<Widget> usefulInfoCardItems() {
+List<Widget> usefulInfoCardItems(BuildContext context) {
   List<Widget> items = [];
   _infoItems.forEach((key, value) {
     items.add(
       _buildInfoCard(
+        context,
         title: key,
         image: value,
       ),
@@ -30,11 +30,12 @@ List<Widget> usefulInfoCardItems() {
   return items;
 }
 
-Widget _buildInfoCard({required String title, required String image}) =>
+Widget _buildInfoCard(BuildContext context,
+        {required String title, required String image}) =>
     InkWell(
       onTap: () {},
       child: Card(
-        color: FreeVisaFreeTicketTheme.lightGray,
+        color: Theme.of(context).primaryColor,
         child: Row(
           children: [
             Image.asset(
@@ -48,8 +49,7 @@ Widget _buildInfoCard({required String title, required String image}) =>
               child: Text(
                 title,
                 style: FreeVisaFreeTicketTheme.body1TextStyle.copyWith(
-                  color: Colors.black,
-                ),
+                    color: Theme.of(context).textTheme.bodySmall!.color),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,

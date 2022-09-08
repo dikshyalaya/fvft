@@ -18,33 +18,32 @@ class InformationScreen extends StatelessWidget {
       children: [
         // =========== BLOG AND NEWS SECTION=============
         // title
-        blogNewsTitle(),
-//vertical spacing 
+        blogNewsTitle(context),
+//vertical spacing
         verticalSpacing(20.h),
-        
+
 // news/blog card
-        newsBlogCard(), 
+        newsBlogCard(),
 //vertical spacing
         dividerWithThickness(4),
 
-//blog card        
+//blog card
         newsBlogCard(
             title: 'Dynamically passed news title and blog',
-        
             date: 'dd/mm/yyyy'),
-//vertical spacing            
+//vertical spacing
         dividerWithThickness(4),
 
         // ============USEFUL INFORMATION SECTION ============
 
 //useful information section
-        usefulInformationHeading(),
+        usefulInformationHeading(context),
 
- //vertical spacing
+        //vertical spacing
         verticalSpacing(20.h),
 
         // ======PRODUCTS SECTION ===========
-//Products section        
+//Products section
         products(),
 //vertical spacing
         verticalSpacing(20.h),
