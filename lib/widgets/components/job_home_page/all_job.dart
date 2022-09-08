@@ -13,8 +13,9 @@ import '../../../screens/job/post/job_post_list_view.dart';
 import '../global_view_layout.dart';
 import '../../../core/constants/routes.dart' as routes;
 
-Widget buildAllJobs(JobProvider value) {
+Widget buildAllJobs(BuildContext context, JobProvider value) {
   return globalViewLayout(
+    context,
     height: 550.h,
     width: 1.sw,
     leftHeaderTitle: 'All Jobs',
@@ -26,8 +27,6 @@ Widget buildAllJobs(JobProvider value) {
         'jobs': value.allJobList!,
       });
     },
-    leftTitleColor: FreeVisaFreeTicketTheme.secondaryColor,
-    rightTitleColor: FreeVisaFreeTicketTheme.darkGrayColor,
     isGradientBackground: false,
     child: Padding(
         padding: EdgeInsets.only(bottom: 10.h, left: 10.w),

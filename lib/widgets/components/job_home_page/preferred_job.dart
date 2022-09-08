@@ -9,8 +9,8 @@ import '../../../screens/job/post/job_post_list_view.dart';
 import '../global_view_layout.dart';
 import '../../../core/constants/routes.dart' as routes;
 
-Widget buildPreferredJobs(JobProvider value) {
-  return globalViewLayout(
+Widget buildPreferredJobs(BuildContext context,  JobProvider value) {
+  return globalViewLayout(context , 
     height: 520.h,
     width: 1.sw,
     leftHeaderTitle: 'Preferred Jobs',
@@ -25,9 +25,7 @@ Widget buildPreferredJobs(JobProvider value) {
       padding: EdgeInsets.only(left: 5.w, bottom: 10.h),
       child:  JobListViewScreen(data: value.jobListByJobCategory!,), //! TODO : prefered job
     ),
-    leftTitleColor: FreeVisaFreeTicketTheme.secondaryColor,
-    rightTitleColor: FreeVisaFreeTicketTheme.darkGrayColor,
-    backgroundColor: FreeVisaFreeTicketTheme.lightGrayColor.withOpacity(0.15),
+  
     isGradientBackground: false,
   );
 }

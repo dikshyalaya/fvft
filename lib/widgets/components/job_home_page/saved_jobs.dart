@@ -8,8 +8,9 @@ import '../../../providers/job_provider.dart';
 import '../../../screens/job/post/job_post_list_view.dart';
 import '../global_view_layout.dart';
 
-Widget buildSavedJobs(JobProvider value) {
+Widget buildSavedJobs( BuildContext context , JobProvider value) {
   return globalViewLayout(
+context , 
     height: 520.h,
     width: 1.sw,
     leftHeaderTitle: 'Saved Jobs',
@@ -26,7 +27,6 @@ Widget buildSavedJobs(JobProvider value) {
       child: JobListViewScreen(data: value.newJobList!,),  //! Saved Jobs
     ),
     isGradientBackground: false,
-    leftTitleColor: FreeVisaFreeTicketTheme.secondaryColor,
-    rightTitleColor: FreeVisaFreeTicketTheme.darkGrayColor,
+   
   );
 }

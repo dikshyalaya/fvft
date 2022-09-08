@@ -12,9 +12,9 @@ class FreeVisaFreeTicketTheme {
   );
 
   static const Gradient appLinearGradient = LinearGradient(
-    begin:  Alignment(-1.0, -1.0),
+    begin: Alignment(-1.0, -1.0),
     end: Alignment(1.0, 4.0),
-    colors:  [
+    colors: [
       FreeVisaFreeTicketTheme.primaryColor,
       FreeVisaFreeTicketTheme.secondaryColor,
     ],
@@ -61,8 +61,21 @@ class FreeVisaFreeTicketTheme {
   static const FlexScheme usedFlexScheme = FlexScheme.green;
 
   /// FUNC [primaryThemeData] : get the primary theme for app
-  static ThemeData get primaryThemeData => FlexColorScheme.light(
+  static ThemeData get lightTheme => FlexColorScheme.light(
         scheme: usedFlexScheme,
+        textTheme: TextTheme(
+          caption: captionStyle,
+          subtitle1: caption1Style,
+          subtitle2: bodyTextStyle,
+          bodyText1: body1TextStyle,
+          bodyText2: body2TextStyle,
+          headline1: heading1Style,
+          headline2: heading2Style,
+          headline3: heading3Style,
+          headline4: captionStyle,
+          headline5: caption1Style,
+          headline6: bodyTextStyle,
+        ),
         colorScheme: ThemeData().colorScheme.copyWith(
               primary: Color.lerp(
                 FreeVisaFreeTicketTheme.primaryColor,
@@ -76,8 +89,21 @@ class FreeVisaFreeTicketTheme {
       ).toTheme;
 
   /// FUNC [darkThemeData] : get the dark theme for app
-  static ThemeData get darkThemeData => FlexColorScheme.dark(
-        scheme: usedFlexScheme,
+  static ThemeData get darkTheme => FlexColorScheme.dark(
+        primary: Colors.black,
+        textTheme: TextTheme(
+          caption: captionStyle,
+          subtitle1: caption1Style,
+          subtitle2: bodyTextStyle,
+          bodyText1: body1TextStyle,
+          bodyText2: body2TextStyle,
+          headline1: heading1Style,
+          headline2: heading2Style,
+          headline3: heading3Style,
+          headline4: captionStyle,
+          headline5: caption1Style,
+          headline6: bodyTextStyle,
+        ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
         fontFamily: 'Poppins',
       ).toTheme;

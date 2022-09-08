@@ -52,8 +52,8 @@ class _FreeVisaFreeTicketState extends State<FreeVisaFreeTicket> {
                   title: AppConfig.of(context)!.appTitle ??
                       'Free Visa Free Ticket',
                   themeMode: data.themeMode,
-                  theme: FreeVisaFreeTicketTheme.primaryThemeData,
-                  darkTheme: FreeVisaFreeTicketTheme.darkThemeData,
+                  theme: FreeVisaFreeTicketTheme.lightTheme,
+                  darkTheme: FreeVisaFreeTicketTheme.darkTheme,
                   onGenerateRoute: RouteGenerator.generateRoute,
                   navigatorKey: NavigationService.navigatorKey,
                   supportedLocales: LanguageUtils.getSupportedLanguage(),

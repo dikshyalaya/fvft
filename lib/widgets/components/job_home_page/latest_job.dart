@@ -8,8 +8,8 @@ import '../../../screens/job/post/job_post_list_view.dart';
 import '../global_view_layout.dart';
 import '../../../core/constants/routes.dart' as routes;
 
-Widget buildLatestJobs(JobProvider value) {
-  return globalViewLayout(
+Widget buildLatestJobs(BuildContext context,  JobProvider value) {
+  return globalViewLayout(context , 
     height: 550.h,
     width: 1.sw,
     leftHeaderTitle: 'Latest Jobs',
@@ -22,8 +22,7 @@ Widget buildLatestJobs(JobProvider value) {
       
       });
     },
-    leftTitleColor: FreeVisaFreeTicketTheme.secondaryColor,
-    rightTitleColor: FreeVisaFreeTicketTheme.darkGrayColor,
+   
     isGradientBackground: false,
     child: Padding(
       padding: EdgeInsets.only(bottom: 10.h, left: 10.w),

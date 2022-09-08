@@ -45,34 +45,34 @@ class TempJobScreen extends StatelessWidget {
           SizedBox(height: 20.h),
 
           // job countries list
-          buildCountriesList(),
+          buildCountriesList(context),
           SizedBox(height: 20.h),
           // job category list
-          buildJobCategoryList(),
+          buildJobCategoryList(context),
           SizedBox(height: 20.h),
 
           // prefered job
 
           // latest job
-          buildLatestJobs(value),
+          buildLatestJobs(context, value),
           SizedBox(height: 20.h),
 
           // TODO : ADD ALL JOBS SECTION
 
-          buildAllJobs(value),
+          buildAllJobs(context, value),
           SizedBox(
             height: 20.h,
           ),
           Consumer2<AuthProvider, JobProvider>(
               builder: (context, auth, job, child) => auth.userLoggedIn
-                  ? buildPreferredJobs(job)
+                  ? buildPreferredJobs(context, job)
                   : const SizedBox()),
           SizedBox(height: 20.h),
           // companies list
-          buildCompanyList(),
+          buildCompanyList(context),
 
           SizedBox(height: 20.h),
-          buildFeaturedJobs(value),
+          buildFeaturedJobs(context, value),
           // saved jobs
           // buildSavedJobs(),
           SizedBox(height: 150.h),

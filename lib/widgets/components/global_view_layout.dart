@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/theme/free_visa_free_ticket_theme.dart';
 
-Widget globalViewLayout({
+Widget globalViewLayout(
+  BuildContext context , 
+  {
   required double? height,
   double? width,
   required String leftHeaderTitle,
@@ -11,9 +13,9 @@ Widget globalViewLayout({
   void Function()? onTapToRightTitle,
   required Widget child,
   bool isGradientBackground = true,
-  Color backgroundColor = FreeVisaFreeTicketTheme.whiteColor,
-  Color leftTitleColor = FreeVisaFreeTicketTheme.whiteColor,
-  Color rightTitleColor = FreeVisaFreeTicketTheme.whiteColor,
+  // Color backgroundColor =Theme.of(context).primaryColor,
+  // Color leftTitleColor = FreeVisaFreeTicketTheme.whiteColor,
+  // Color rightTitleColor = FreeVisaFreeTicketTheme.whiteColor,
 }) {
   return Container(
     height: height,
@@ -26,7 +28,7 @@ Widget globalViewLayout({
         ? const BoxDecoration(
             gradient: FreeVisaFreeTicketTheme.appLinearGradient,
           )
-        : BoxDecoration(color: backgroundColor),
+        : BoxDecoration(color: Theme.of(context).primaryColor),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -38,7 +40,7 @@ Widget globalViewLayout({
               child: Text(
                 leftHeaderTitle,
                 style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
-                  color: leftTitleColor,
+                  color: Theme.of(context).textTheme.caption!.color,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -54,7 +56,7 @@ Widget globalViewLayout({
                 child: Text(
                   rightHeaderTitle,
                   style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
-                    color: rightTitleColor,
+                    color: Theme.of(context).textTheme.caption!.color,
                   ),
                 ),
               ),

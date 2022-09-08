@@ -11,8 +11,10 @@ import '../../../core/theme/free_visa_free_ticket_theme.dart';
 import '../../../core/constants/routes.dart' as routes;
 import '../global_view_layout.dart';
 
-Widget buildCompanyList() {
-  return globalViewLayout(
+Widget buildCompanyList(
+  BuildContext context,
+) {
+  return globalViewLayout(context , 
     height: 300.h,
     leftHeaderTitle: 'Browse By Company',
     rightHeaderTitle: 'View All',

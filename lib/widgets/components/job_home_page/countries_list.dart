@@ -11,8 +11,11 @@ import '../../../providers/country_provider.dart';
 import '../global_view_layout.dart';
 import '../../../core/constants/routes.dart' as routes;
 
-Widget buildCountriesList() {
+Widget buildCountriesList(
+  BuildContext context,
+) {
   return globalViewLayout(
+    context,
     height: 150.h,
     leftHeaderTitle: 'Country',
     rightHeaderTitle: 'View All',
@@ -21,16 +24,15 @@ Widget buildCountriesList() {
         routes.countryListViewScreen,
       );
     },
-    child: _buildCountriesItem(),
-    leftTitleColor: FreeVisaFreeTicketTheme.secondaryColor,
-    rightTitleColor: FreeVisaFreeTicketTheme.darkGrayColor,
-    backgroundColor: FreeVisaFreeTicketTheme.lightGrayColor.withOpacity(0.15),
+    child: _buildCountriesItem(context),
     isGradientBackground: false,
   );
 }
 
 /// Widget [_buildCountriesItem] : Display list of country name and its flag in horizontal list view
-Widget _buildCountriesItem() {
+Widget _buildCountriesItem(
+  BuildContext context,
+) {
   final countryList = locator<CountryProvider>().countriesList;
 
   return ListView.builder(
@@ -46,7 +48,7 @@ Widget _buildCountriesItem() {
           padding: EdgeInsets.only(left: 20.w, bottom: 10.h),
           child: Chip(
             elevation: 5,
-            backgroundColor: FreeVisaFreeTicketTheme.whiteColor,
+            backgroundColor: Theme.of(context).primaryColor,
             labelPadding: EdgeInsets.symmetric(horizontal: 20.w),
             label: Row(
               mainAxisSize: MainAxisSize.min,
