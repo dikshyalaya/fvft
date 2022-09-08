@@ -4,8 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/free_visa_free_ticket_theme.dart';
 
 Widget globalViewLayout(
-  BuildContext context , 
-  {
+  BuildContext context, {
   required double? height,
   double? width,
   required String leftHeaderTitle,
@@ -25,8 +24,15 @@ Widget globalViewLayout(
       vertical: 5.h,
     ),
     decoration: isGradientBackground
-        ? const BoxDecoration(
-            gradient: FreeVisaFreeTicketTheme.appLinearGradient,
+        ? BoxDecoration(
+            gradient: LinearGradient(
+              begin: const Alignment(-1.0, -1.0),
+              end: const Alignment(1.0, 4.0),
+              colors: [
+                Theme.of(context).primaryColor,
+                Theme.of(context).primaryColorLight,
+              ],
+            ),
           )
         : BoxDecoration(color: Theme.of(context).primaryColor),
     child: Column(

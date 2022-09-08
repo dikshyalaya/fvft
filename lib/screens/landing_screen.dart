@@ -49,15 +49,13 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
         return const StatusScreen(); //takes to the status page of the applied jobs
       case 1:
 
-      // TODO : products section implement pressing functionality
-        return const  InformationScreen(); //const CategoryListScreen();
+        // TODO : products section implement pressing functionality
+        return const InformationScreen(); //const CategoryListScreen();
       case 2:
-        return MultiProvider(
-          providers: [
-               ChangeNotifierProvider.value(value: locator<AuthProvider>()),
-               ChangeNotifierProvider.value(value: locator<CompanyProvider>())
-          ],
-          child: const TempJobScreen());
+        return MultiProvider(providers: [
+          ChangeNotifierProvider.value(value: locator<AuthProvider>()),
+          ChangeNotifierProvider.value(value: locator<CompanyProvider>())
+        ], child: const TempJobScreen());
       case 3:
         return const TempProfileScreen();
 
@@ -88,14 +86,14 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
     final bool hasUserData = currentUser != null;
     return AppBar(
       flexibleSpace: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.topRight,
             tileMode: TileMode.repeated,
             colors: <Color>[
-              FreeVisaFreeTicketTheme.secondaryColor,
-              FreeVisaFreeTicketTheme.primaryColor,
+              Theme.of(context).primaryColor,
+              Theme.of(context).secondaryHeaderColor,
             ],
           ),
         ),
@@ -178,10 +176,10 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
 
   Widget _buildBottomNavBar() {
     return ConvexAppBar(
-      gradient: const LinearGradient(
+      gradient: LinearGradient(
         colors: [
-          FreeVisaFreeTicketTheme.secondaryColor,
-          FreeVisaFreeTicketTheme.primaryColor,
+          Theme.of(context).primaryColor,
+          Theme.of(context).secondaryHeaderColor
         ],
       ),
       color: FreeVisaFreeTicketTheme.whiteColor.withOpacity(0.7),

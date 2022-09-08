@@ -63,6 +63,7 @@ class FreeVisaFreeTicketTheme {
   /// FUNC [primaryThemeData] : get the primary theme for app
   static ThemeData get lightTheme => FlexColorScheme.light(
         scheme: usedFlexScheme,
+        
         textTheme: TextTheme(
           caption: captionStyle,
           subtitle1: caption1Style,
@@ -76,6 +77,7 @@ class FreeVisaFreeTicketTheme {
           headline5: caption1Style,
           headline6: bodyTextStyle,
         ),
+        
         colorScheme: ThemeData().colorScheme.copyWith(
               primary: Color.lerp(
                 FreeVisaFreeTicketTheme.primaryColor,
