@@ -44,11 +44,64 @@ class ProfileHome extends StatelessWidget {
             const Divider(
               thickness: 1.5,
             ),
+            const SizedBox(
+              height: 40,
+            ),
           ],
         ),
       ),
     );
   }
+
+  Widget _profileCompletionStatus() => Container(
+        height: 250.h,
+        color: Colors.blue.shade300,
+        child: Align(
+          alignment: Alignment.center,
+          child: Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 10.0),
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 42,
+                  child: Text(
+                    '75%',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 180, 139, 77), fontSize: 30),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Profile Completeness',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(color: Colors.white, fontSize: 24),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FittedBox(
+                      fit: BoxFit.fill,
+                      child: Text(
+                        'Complete your profile to 100% to increase the chance \nof getting shortlisted for the right job!',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      );
 
   Widget _cardHeader({required IconData icon, required String title}) =>
       ListTile(
