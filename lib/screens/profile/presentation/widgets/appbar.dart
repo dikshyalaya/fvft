@@ -4,68 +4,71 @@ import 'package:free_visa_free_ticket/core/theme/free_visa_free_ticket_theme.dar
 
 import '../../../../core/constants/assets_source.dart';
 
-AppBar profileScreenAppBar() => AppBar(
+AppBar profileScreenAppBar({required String title}) => AppBar(
       leading: Padding(
         padding: const EdgeInsets.all(2.0),
         child: Image.asset(
           AssetsSource.freeVisaFreeTicketLogo,
         ),
       ),
-      title: const Text(
-        'PROFILE',
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+      title: Text(
+        title,
+        style: const TextStyle(
+            color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12),
       ),
       actions: [
         const Center(
           child: Text(
             'ENG',
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 16),
           ),
         ),
         _iconWithNotification(icon: Icons.email_outlined, notificationCount: 4),
         const SizedBox(
-          width: 5,
+          width: 2,
         ),
         _iconWithNotification(
             icon: Icons.notifications_on_outlined, notificationCount: 3),
         const SizedBox(
-          width: 10,
+          width: 2,
         ),
         CircleAvatar(
-          radius: 25,
+          radius: 18,
           backgroundColor: Colors.white,
           child: CircleAvatar(
-            radius: 23,
+            radius: 16,
             backgroundImage:
                 Image.asset(AssetsSource.freeVisaFreeTicketLogo).image,
           ),
         ),
         const SizedBox(
-          width: 15,
+          width: 2,
         )
       ],
     );
 
 Widget _iconWithNotification(
         {required IconData icon, int notificationCount = 0}) =>
-    Stack(
-      children: [
-        IconButton(
-            onPressed: () {},
-            icon: Icon(
-              icon,
-              size: 40,
-            )),
-        Positioned(
-            top: 5,
-            right: 0,
-            child: CircleAvatar(
-              radius: 10,
-              backgroundColor: Colors.red,
-              child: Text(
-                '$notificationCount',
-                style: const TextStyle(color: Colors.white, fontSize: 10),
-              ),
-            ))
-      ],
+    Center(
+      child: Stack(
+        children: [
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                icon,
+                size: 20,
+              )),
+          Positioned(
+              top: 5,
+              right: 0,
+              child: CircleAvatar(
+                radius: 8,
+                backgroundColor: Colors.red,
+                child: Text(
+                  '$notificationCount',
+                  style: const TextStyle(color: Colors.white, fontSize: 10),
+                ),
+              ))
+        ],
+      ),
     );
