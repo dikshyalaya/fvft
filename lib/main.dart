@@ -49,7 +49,7 @@ class _FreeVisaFreeTicketState extends State<FreeVisaFreeTicket> {
         builder: ((_, __) => Consumer<ThemeProvider>(
               builder: (ctx, data, _) {
                 return MaterialApp(
-                  // home: const ProfileHome(),
+                  home: const ProfileHome(),
                   debugShowCheckedModeBanner: false,
                   title: AppConfig.of(context)!.appTitle ??
                       'Free Visa Free Ticket',
