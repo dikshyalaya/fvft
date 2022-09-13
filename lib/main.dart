@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:free_visa_free_ticket/core/constants/routes.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/contact_info.dart';
+import 'package:free_visa_free_ticket/screens/profile/presentation/personal_info.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/profile_home.dart';
 import 'core/services/service_locator.dart';
 import 'core/theme/free_visa_free_ticket_theme.dart';
@@ -51,7 +52,8 @@ class _FreeVisaFreeTicketState extends State<FreeVisaFreeTicket> {
               builder: (ctx, data, _) {
                 return MaterialApp(
                   // home: const ProfileHome(),
-                  home: const ContactInformation(),
+                  // home: const ContactInformation(),
+                  home: const PersonalInformation(),
                   debugShowCheckedModeBanner: false,
                   title: AppConfig.of(context)!.appTitle ??
                       'Free Visa Free Ticket',

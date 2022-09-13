@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/widgets/appbar.dart';
+import 'package:free_visa_free_ticket/screens/profile/presentation/widgets/bottom_sheet.dart';
 
 class ContactInformation extends StatelessWidget {
   const ContactInformation({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class ContactInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: profileScreenAppBar(title: 'Contact Information'),
+      bottomSheet: bottomSheet(),
       body: SingleChildScrollView(
         child: Column(
           children: [

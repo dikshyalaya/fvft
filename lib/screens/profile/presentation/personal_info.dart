@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/widgets/appbar.dart';
+import 'package:free_visa_free_ticket/screens/profile/presentation/widgets/bottom_sheet.dart';
 
-class ContactInformation extends StatelessWidget {
-  const ContactInformation({Key? key}) : super(key: key);
+class PersonalInformation extends StatelessWidget {
+  const PersonalInformation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: profileScreenAppBar(title: 'Contact Information'),
+      appBar: profileScreenAppBar(title: 'Personal Information'),
+      bottomSheet: bottomSheet(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -19,9 +21,8 @@ class ContactInformation extends StatelessWidget {
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: const [
-                  Icon(Icons.contacts_outlined,
-                      size: 40, color: Colors.black26),
-                  Text('Contact Information',
+                  Icon(Icons.person, size: 40, color: Colors.black26),
+                  Text('Personal Information',
                       style: TextStyle(color: Colors.black54, fontSize: 20)),
                   CircleAvatar(
                     radius: 60,
@@ -30,7 +31,7 @@ class ContactInformation extends StatelessWidget {
                       radius: 50,
                       backgroundColor: Colors.white,
                       child: Text(
-                        '2 of 6',
+                        '1 of 6',
                         style: TextStyle(color: Colors.black26, fontSize: 24),
                       ),
                     ),
@@ -46,15 +47,71 @@ class ContactInformation extends StatelessWidget {
                 color: Colors.black12,
               ),
             ),
-            _customLabelField(label: 'Mobile Number', fields: [
+            _customLabelField(label: 'First name*', fields: [
               const SizedBox(
                 height: 10,
               ),
-              _textField(hint: 'Mobile Number 1'),
+              _textField(hint: 'Enter your first name'),
+            ]),
+            const SizedBox(
+              height: 10,
+            ),
+            _customLabelField(label: 'Last Name*', fields: [
+              _textField(hint: 'Enter your last name'),
+            ]),
+            const SizedBox(
+              height: 10,
+            ),
+            _customLabelField(label: 'Gender*', fields: [
               const SizedBox(
                 height: 10,
               ),
-              _textField(hint: 'Mobile Number 2'),
+              _textField(hint: 'Choose Gender'),
+              const SizedBox(
+                height: 10,
+              ),
+            ]),
+            _customLabelField(label: 'Martial Status', fields: [
+              const SizedBox(
+                height: 10,
+              ),
+              _textField(hint: 'Select Martial Status'),
+              const SizedBox(
+                height: 10,
+              ),
+            ]),
+            _customLabelField(label: 'Date of Birth(B.S)', fields: [
+              const SizedBox(
+                height: 10,
+              ),
+              _textField(hint: 'Select DOB (Nepali Date)'),
+              const SizedBox(
+                height: 10,
+              ),
+            ]),
+            _customLabelField(label: 'Date of Birth(A.D)*', fields: [
+              const SizedBox(
+                height: 10,
+              ),
+              _textField(hint: 'Select DOB (English Date)'),
+              const SizedBox(
+                height: 10,
+              ),
+            ]),
+            _customLabelField(label: 'Height', fields: [
+              const SizedBox(
+                height: 10,
+              ),
+              _textField(hint: 'Height in CM'),
+              const SizedBox(
+                height: 10,
+              ),
+            ]),
+            _customLabelField(label: 'Weight', fields: [
+              const SizedBox(
+                height: 10,
+              ),
+              _textField(hint: 'Height in KG'),
               const SizedBox(
                 height: 10,
               ),
@@ -62,50 +119,8 @@ class ContactInformation extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            _customLabelField(label: 'Email', fields: [
-              _textField(hint: 'Email'),
-            ]),
             const SizedBox(
-              height: 10,
-            ),
-            _customLabelField(label: 'Address', fields: [
-              const SizedBox(
-                height: 10,
-              ),
-              _textField(hint: 'Country'),
-              const SizedBox(
-                height: 10,
-              ),
-              _textField(hint: 'State'),
-              const SizedBox(
-                height: 10,
-              ),
-              _textField(hint: 'District'),
-              const SizedBox(
-                height: 10,
-              ),
-              _textField(hint: 'Municipality'),
-              const SizedBox(
-                height: 10,
-              ),
-              _textField(hint: 'Ward'),
-              const SizedBox(
-                height: 10,
-              ),
-              _textField(hint: 'City/Street/Tole/Town/Village'),
-              const SizedBox(
-                height: 10,
-              ),
-              _textField(hint: 'Address Line'),
-              const SizedBox(
-                height: 10,
-              ),
-            ]),
-            const SizedBox(
-              height: 10,
-            ),
-            const SizedBox(
-              height: 10,
+              height: 40,
             ),
           ],
         ),
