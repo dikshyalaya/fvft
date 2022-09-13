@@ -137,7 +137,7 @@ class JobPostListItem extends StatelessWidget {
         horizontal: 20.w,
         vertical: 10.h,
       ),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: FreeVisaFreeTicketTheme.appLinearGradient,
       ),
       child: Text(

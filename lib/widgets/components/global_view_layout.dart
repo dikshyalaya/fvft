@@ -25,14 +25,7 @@ Widget globalViewLayout(
     ),
     decoration: isGradientBackground
         ? BoxDecoration(
-            gradient: LinearGradient(
-              begin: const Alignment(-1.0, -1.0),
-              end: const Alignment(1.0, 4.0),
-              colors: [
-                Theme.of(context).primaryColor,
-                Theme.of(context).primaryColorLight,
-              ],
-            ),
+            gradient: FreeVisaFreeTicketTheme.appLinearGradient,
           )
         : BoxDecoration(color: Theme.of(context).primaryColor),
     child: Column(

@@ -135,7 +135,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
               bottomLeft: Radius.circular(10.w),
             ),
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: FreeVisaFreeTicketTheme.appLinearGradient,
               ),

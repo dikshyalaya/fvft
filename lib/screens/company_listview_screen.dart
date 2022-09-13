@@ -51,17 +51,30 @@ class CompanyListViewScreen extends StatelessWidget {
                                 width: 150.w,
                                 height: 150.h,
                               ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        value.companiesList[index].companyName!,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      value.companiesList[index].companyName!,
+                                      style: FreeVisaFreeTicketTheme
+                                          .caption1Style
+                                          .copyWith(
+                                        color: FreeVisaFreeTicketTheme
+                                            .secondaryColor,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        value.companiesList[index]
+                                            .companyAddress!,
                                         style: FreeVisaFreeTicketTheme
                                             .caption1Style
                                             .copyWith(
@@ -72,23 +85,8 @@ class CompanyListViewScreen extends StatelessWidget {
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                       ),
-                                      FittedBox(
-                                        child: Text(
-                                          value.companiesList[index]
-                                              .companyAddress!,
-                                          style: FreeVisaFreeTicketTheme
-                                              .caption1Style
-                                              .copyWith(
-                                            color: FreeVisaFreeTicketTheme
-                                                .secondaryColor,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],

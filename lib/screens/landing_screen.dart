@@ -87,15 +87,7 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
     return AppBar(
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.topRight,
-            tileMode: TileMode.repeated,
-            colors: <Color>[
-              Theme.of(context).primaryColor,
-              Theme.of(context).secondaryHeaderColor,
-            ],
-          ),
+          gradient: FreeVisaFreeTicketTheme.appLinearGradient,
         ),
       ),
       leading: Padding(
@@ -176,12 +168,7 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
 
   Widget _buildBottomNavBar() {
     return ConvexAppBar(
-      gradient: LinearGradient(
-        colors: [
-          Theme.of(context).primaryColor,
-          Theme.of(context).secondaryHeaderColor
-        ],
-      ),
+      gradient: FreeVisaFreeTicketTheme.appLinearGradient,
       color: FreeVisaFreeTicketTheme.whiteColor.withOpacity(0.7),
       items: const [
         TabItem(icon: Icons.dashboard, title: 'Status', isIconBlend: true),
