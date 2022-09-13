@@ -45,7 +45,31 @@ class ProfileHome extends StatelessWidget {
               thickness: 1.5,
             ),
             const SizedBox(
-              height: 40,
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: _profileCompletionStatus(),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: 50,
+              width: 150,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Text(
+                  'Save',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
           ],
         ),
