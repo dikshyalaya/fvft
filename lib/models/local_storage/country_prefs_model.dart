@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-part 'country_prefs_model.g.dart';
+// part 'country_prefs_model.g.dart';
 
 @HiveType(typeId: 4, adapterName: 'CountryPrefsAdapterName')
 class CountryPrefsModel with ChangeNotifier {

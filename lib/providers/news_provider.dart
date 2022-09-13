@@ -43,11 +43,11 @@ class NewsProvider with ChangeNotifier {
 
   // ======================== Banner ==================================
 
-  List<String> _bannerUrlList = [];
+  List<String?> _bannerUrlList = [];
 
-  List<String> get bannerUrlList => _bannerUrlList;
+  List<String?> get bannerUrlList => _bannerUrlList;
 
-  void setBannerUrlList(List<String> bannerUrlList) {
+  void setBannerUrlList(List<String?> bannerUrlList) {
     _bannerUrlList = bannerUrlList;
     notifyListeners();
   }
@@ -60,7 +60,7 @@ class NewsProvider with ChangeNotifier {
   Future<void> getListOfBanners() async {
     try {
       final response = await NewsRepository.getBannerList();
-      if (response.data != null && response.data['success']) {
+      if (response.data != null) {
         final List<dynamic> dynamicList =
             response.data['data'] as List<dynamic>;
         if (dynamicList.isEmpty) {
@@ -69,7 +69,7 @@ class NewsProvider with ChangeNotifier {
           return;
         }
         _bannerUrlList = [];
-        await Future.forEach(dynamicList, (e) async {
+        await Future.forEach(dynamicList, (dynamic e) async {
           final ex = e as Map<String, dynamic>;
           _bannerUrlList.add(ex['url']);
           final ByteData imageData =

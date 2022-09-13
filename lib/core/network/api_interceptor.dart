@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/rendering.dart';
 import '../services/hive_service.dart';
 import '../services/service_locator.dart';
 import '../utilities/enum_utils.dart';
@@ -13,7 +13,7 @@ class ApiInterceptor extends Interceptor {
   final Dio? dioInstance;
 
   ApiInterceptor({
-    @required this.dioInstance,
+    required this.dioInstance,
     this.refreshSession,
     this.getValidAccessToken,
   });
@@ -32,6 +32,13 @@ class ApiInterceptor extends Interceptor {
       options.headers.putIfAbsent('Authorization', () => 'Bearer $accessToken');
     }
     return super.onRequest(options, handler);
+  }
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    // TODO: implement onResponse
+
+    super.onResponse(response, handler);
   }
 
   @override

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:free_visa_free_ticket/core/utilities/enum_utils.dart';
+import 'package:free_visa_free_ticket/providers/company_provider.dart';
 import '../screens/auth/temp_login_screen.dart';
 import '../screens/auth/temp_signup_screen.dart';
 import '../screens/category/temp_category_list_screen.dart';
@@ -9,8 +11,8 @@ import '../screens/job/temp_job_accepted_screen.dart';
 import '../screens/job/temp_job_applied_screen.dart';
 import '../screens/job/temp_job_detail_screen.dart';
 import '../screens/job/temp_job_rejected_screen.dart';
-import '../screens/temp_landing_screen.dart';
-import '../screens/temp_language_selection_screen.dart';
+import '../screens/landing_screen.dart';
+import '../screens/language_selection_screen.dart';
 import '../providers/auth_provider.dart';
 import '../screens/job/temp_job_list_post_view_screen.dart';
 import 'services/service_locator.dart';
@@ -129,13 +131,13 @@ class RouteGenerator {
             settings: settings,
             builder: (context) => const ChangePasswordScreen());
       case routes.jobDetailRoute:
-        final args = arguments as Map<String, dynamic>;
+        final args = arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
             settings: settings,
             builder: (context) => ChangeNotifierProvider.value(
                   value: locator<JobApplicationProvider>(),
                   child: JobDetailScreen(
-                    jobDetail: args['jobDetail'],
+                    jobDetail: args!['jobDetail'],
                   ),
                 ));
       case routes.jobPreferenceRoute:
@@ -154,16 +156,16 @@ class RouteGenerator {
           ),
         );
       case routes.webViewRoute:
-        final args = arguments as Map<String, dynamic>;
+        final args = arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => WebViewScreen(
-            appBarTitle: args['appBarTitle'],
+            appBarTitle: args!['appBarTitle'],
             urlToRender: args['urlToRender'],
           ),
         );
       case routes.categoryJobListRoute:
-        final args = arguments as Map<String, dynamic>;
+        final args = arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
             settings: settings,
             builder: (context) => MultiProvider(
@@ -175,7 +177,7 @@ class RouteGenerator {
                         value: locator<CategoryJobsPaginationProvider>()),
                   ],
                   child: CategoryJobListScreen(
-                    jobCategoryId: args['jobCategoryId'],
+                    jobCategoryId: args!['jobCategoryId'],
                     jobCategoryName: args['jobCategoryName'],
                   ),
                 ));
@@ -190,10 +192,10 @@ class RouteGenerator {
                   value: NewsProvider(),
                 ));
       case routes.newsDetailRoute:
-        final Map<String, dynamic> args = arguments as Map<String, dynamic>;
+        final Map<String, dynamic>? args = arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
             settings: settings,
-            builder: (context) => NewsDetailScreen(news: args['news']));
+            builder: (context) => NewsDetailScreen(news: args!['news']));
       case routes.latestNewsRoute:
         return MaterialPageRoute(
             settings: settings, builder: (context) => const LatestNewsScreen());
@@ -227,11 +229,12 @@ class RouteGenerator {
           builder: (context) => const CountryListViewScreen(),
         );
       case routes.latestJobListScreen:
-        final Map<String, dynamic> args = arguments as Map<String, dynamic>;
+        final Map<String, dynamic>? args = arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => MultiProvider(
             providers: [
+              ChangeNotifierProvider.value(value: locator<JobProvider>()),
               ChangeNotifierProvider.value(
                 value: JobApplicationProvider(),
               ),
@@ -241,13 +244,41 @@ class RouteGenerator {
               //JobApplicationProvider
             ],
             child: JobListPostViewScreen(
-                appBarTitle: args['appBarTitle'] ?? 'Jobs'),
+              appBarTitle: args!['appBarTitle'] ?? 'Jobs',
+              jobs: args['jobs']!,
+              fromScreen: args['screen'],
+              
+            ),
           ),
         );
+      // case routes.allJobListScreen:
+      //   final Map<String, dynamic>? args = arguments as Map<String, dynamic>?;
+      //   return MaterialPageRoute(
+      //     settings: settings,
+      //     builder: (context) => MultiProvider(
+      //       providers: [
+      //         ChangeNotifierProvider.value(value: locator<JobProvider>()),
+      //         ChangeNotifierProvider.value(
+      //           value: JobApplicationProvider(),
+      //         ),
+      //         ChangeNotifierProvider.value(
+      //           value: locator<JobPaginationProvider>(),
+      //         ),
+      //         //JobApplicationProvider
+      //       ],
+      //       child: JobListPostViewScreen(
+      //           // jobScreen: JobListViewScreen.all,
+      //           appBarTitle: args!['appBarTitle'] ?? 'Jobs'),
+      //     ),
+      //   );
       case routes.companyListScreen:
         return MaterialPageRoute(
-            settings: settings,
-            builder: (context) => const CompanyListViewScreen());
+          settings: settings,
+          builder: (context) => ChangeNotifierProvider.value(
+            value: locator<CompanyProvider>(),
+            child: const CompanyListViewScreen(),
+          ),
+        );
       case routes.tempLanguageSelection:
         return MaterialPageRoute(
           settings: settings,
@@ -278,15 +309,15 @@ class RouteGenerator {
           ),
         );
       case routes.tempJobDetailScreen:
-        final args = arguments as Map<String, dynamic>;
+        final args = arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
             settings: settings,
             builder: (context) => ChangeNotifierProvider.value(
-              value: locator<JobApplicationProvider>(),
-              child: TempJobDetailScreen(
-                jobDetail: args['jobDetail'],
-              ),
-            ));
+                  value: locator<JobApplicationProvider>(),
+                  child: TempJobDetailScreen(
+                    jobDetail: args!['jobDetail'],
+                  ),
+                ));
       case routes.countryJobsScreen:
         return MaterialPageRoute(
           settings: settings,

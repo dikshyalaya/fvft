@@ -42,11 +42,12 @@ List<NewsCategoriesModel>? convertDynamicListToNewsCategories(
       .toList();
 }
 
-List<JobShiftModel>? convertDynamicListToJobShift(List<dynamic> dynamicValue) {
-  return dynamicValue
-      .map((dynamicData) => JobShiftModel.fromJson(dynamicData))
-      .toList();
-}
+// ! TODO : Uncomment this line
+// List<JobShiftModel>? convertDynamicListToJobShift(List<dynamic> dynamicValue) {
+//   return dynamicValue
+//       .map((dynamicData) => JobShiftModel.fromJson(dynamicData))
+//       .toList();
+// }
 
 List<CountryLSModel>? convertDynamicListToCountry(List<dynamic> dynamicValue) {
   return dynamicValue

@@ -5,7 +5,7 @@ import '../core/services/navigation_service.dart';
 import '../core/services/service_locator.dart';
 import '../core/theme/free_visa_free_ticket_theme.dart';
 
-PreferredSizeWidget customAppBar({
+PreferredSizeWidget customAppBar( BuildContext context , {
   String? appBarTitle,
   bool isToShowTitle = true,
   bool isToCenterTitle = true,
@@ -26,19 +26,19 @@ PreferredSizeWidget customAppBar({
     centerTitle: isToCenterTitle,
     leading: !isToShowBackButton
         ? null
-        : customBackButton(backBtnColor: backBtnColor),
+        : customBackButton( context , backBtnColor: backBtnColor),
     actions: actions ?? [],
     bottom: bottomWidget,
   );
 }
 
-Widget customBackButton({final Color? backBtnColor}) {
+Widget customBackButton(BuildContext context , {final Color? backBtnColor}) {
   return IconButton(
     icon: CircleAvatar(
-      backgroundColor: backBtnColor ?? FlexColor.greenLightPrimary,
+      backgroundColor:   Theme.of(context).primaryColor,
       child: Icon(
         Icons.arrow_back,
-        color: FreeVisaFreeTicketTheme.darkGrayColor,
+        color: FreeVisaFreeTicketTheme.whiteColor,
         size: 60.w,
       ),
     ),

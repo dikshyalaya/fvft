@@ -1,3 +1,5 @@
+import 'package:free_visa_free_ticket/providers/company_provider.dart';
+
 import '../network/api_manager.dart';
 import 'hive_service.dart';
 import '../../providers/auth_provider.dart';
@@ -42,4 +44,5 @@ Future<void> setupLocator() async {
       () => UserJobPrefsProvider());
   locator.registerLazySingleton<UserCountryPrefsProvider>(
       () => UserCountryPrefsProvider());
+      locator.registerLazySingleton<CompanyProvider>(()=>CompanyProvider());
 }

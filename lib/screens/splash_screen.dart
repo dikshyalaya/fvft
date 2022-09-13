@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:free_visa_free_ticket/providers/company_provider.dart';
+
 import '../core/constants/assets_source.dart';
 import '../core/constants/routes.dart' as routes;
 import 'package:flutter/material.dart';
@@ -31,8 +33,8 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   Future? _getData;
   bool? _isInit = true;
-  AnimationController? _controller;
-  Animation<double>? _animation;
+  late AnimationController? _controller;
+  late Animation<double>? _animation;
 
   @override
   void initState() {
@@ -80,15 +82,22 @@ class _SplashScreenState extends State<SplashScreen>
         .isExists(boxName: HiveBoxName.userCV.stringValue);
     if (userModel != null && userModel.email != null) {
       locator<AuthProvider>().setCurrentUser(userModel);
-      unawaited(locator<JobApplicationProvider>().getOnProcessJobList());
-      unawaited(locator<JobApplicationProvider>().getPendingJobList());
-      unawaited(locator<JobApplicationProvider>().getAcceptedJobList());
-      unawaited(locator<UserCountryPrefsProvider>().getCountryFromPrefsList());
+      // unawaited(locator<JobApplicationProvider>().getOnProcessJobList());
+      // unawaited(locator<JobApplicationProvider>().getPendingJobList());
+      // unawaited(locator<JobApplicationProvider>().getAcceptedJobList());
+      // unawaited(locator<UserCountryPrefsProvider>().getCountryFromPrefsList());
+      unawaited(locator<JobProvider>().getListOfJobsCategories());
+      unawaited(locator<JobProvider>().getListOfFeaturedJobs());
+      unawaited(locator<JobProvider>().getListOfAllJobs());
+      unawaited(locator<CompanyProvider>().getCompanies());
+      unawaited(locator<JobProvider>().getListOfNewJobs());
+      unawaited(locator<CountryProvider>().getTotalListOfCountries());
+      unawaited(locator<CountryProvider>().getListOfCountries());
       unawaited(locator<UserJobPrefsProvider>().getJobCategoryFromPrefsList());
       if (!isUserCvExists) {
-        unawaited(locator<CVProvider>().getUserCV());
+        // unawaited(locator<CVProvider>().getUserCV());
       } else {
-        unawaited(locator<CVProvider>().getUserCVFromCache());
+        // unawaited(locator<CVProvider>().getUserCVFromCache());
       }
     }
     if (languageCode == null) {

@@ -6,7 +6,7 @@ import '../../../core/theme/free_visa_free_ticket_theme.dart';
 import '../../../core/utilities/enum_utils.dart';
 import '../../../models/local_storage/cv_model.dart';
 import '../../../widgets/custom_snackbar.dart';
-import 'package:native_pdf_view/native_pdf_view.dart';
+// import 'package:native_pdf_view/native_pdf_view.dart'; TODO : UNcomment this one
 import 'package:path_provider/path_provider.dart' as sysDir;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class ViewCVScreen extends StatefulWidget {
 
 class _ViewCVScreenState extends State<ViewCVScreen> {
   bool isSampleDoc = true;
-  PdfController? _pdfController;
+  // late PdfController? _pdfController; //TODO : uncomment this one
 
   String pathPDF = '';
   String pdfName = '';
@@ -45,7 +45,7 @@ class _ViewCVScreenState extends State<ViewCVScreen> {
     try {
       final myCv = locator<CVProvider>().myCv;
       if (myCv!.localPath == null) {
-        final url = myCv.cvUrl;
+        final url = myCv.cvUrl!;
         final filename = url.substring(url.lastIndexOf('/') + 1);
         var request = await HttpClient().getUrl(Uri.parse(url));
         var response = await request.close();
@@ -53,11 +53,11 @@ class _ViewCVScreenState extends State<ViewCVScreen> {
         String dir = (await sysDir.getApplicationDocumentsDirectory()).path;
         File file = File('$dir/$filename');
         await file.writeAsBytes(bytes);
-        if (file != null) {
+        if (file!=null) {
           pdfName = file.toString();
           pathPDF = file.path;
-          _pdfController =
-              PdfController(document: PdfDocument.openFile(pathPDF));
+          // _pdfController = //TODO : uncomment this one
+          //     PdfController(document: PdfDocument.openFile(pathPDF));
           CVModel cvModel = CVModel(
             id: myCv.id,
             title: myCv.title,
@@ -71,11 +71,12 @@ class _ViewCVScreenState extends State<ViewCVScreen> {
           locator<CVProvider>().setUpdatedCV(cvModel);
         }
       } else {
-        _pdfController = PdfController(
-          document: PdfDocument.openFile(
-            locator<CVProvider>().myCv!.localPath!,
-          ),
-        );
+        // _pdfController = PdfController(
+        //   document: PdfDocument.openFile(
+        //     locator<CVProvider>().myCv!.localPath!,
+        //   ),
+        // );
+        //TODO uncomment this one
       }
     } catch (e) {
       return;
@@ -85,7 +86,7 @@ class _ViewCVScreenState extends State<ViewCVScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar( context , 
         appBarTitle: locator<CVProvider>().myCv!.title,
         actions: [
           if (!_isToDeleteCV)
@@ -126,14 +127,16 @@ class _ViewCVScreenState extends State<ViewCVScreen> {
               builder: (fCtx, snapShotData) {
                 return snapShotData.connectionState == ConnectionState.waiting
                     ? const Center(child: CircularProgressIndicator())
-                    : PdfView(
-                        pageSnapping: false,
-                        documentLoader:
-                            const Center(child: CircularProgressIndicator()),
-                        pageLoader:
-                            const Center(child: CircularProgressIndicator()),
-                        controller: _pdfController!,
-                      );
+                    :const  SizedBox();
+                    // TODO uncomment and remove sizedBox
+                    // PdfView(
+                    //     pageSnapping: false,
+                    //     documentLoader:
+                    //         const Center(child: CircularProgressIndicator()),
+                    //     pageLoader:
+                    //         const Center(child: CircularProgressIndicator()),
+                    //     controller: _pdfController!,
+                    //   );
               },
             ),
     );

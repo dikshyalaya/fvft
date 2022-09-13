@@ -9,7 +9,7 @@ class LatestNewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar( context , 
         appBarTitle: 'Latest News',
         titleFontSize: 36.sp,
       ),
@@ -18,7 +18,7 @@ class LatestNewsScreen extends StatelessWidget {
         shrinkWrap: true,
         itemCount: 50,
         itemBuilder: (context, index) {
-          return const NewsListItem();
+          return  NewsListItem();
         },
         separatorBuilder: (context, index) {
           return const Divider();

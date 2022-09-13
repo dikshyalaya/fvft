@@ -4,26 +4,58 @@ import '../core/services/hive_service.dart';
 import '../core/services/service_locator.dart';
 import '../core/utilities/enum_utils.dart';
 import '../core/utilities/logutils.dart';
+import '../models/jobs_model.dart';
 import '../models/local_storage/job_category_model.dart';
-import '../models/job_model.dart';
 import '../repositories/job_repository.dart';
 
 import 'job_filter_provider.dart';
 
+// TODO : for dev only
+import 'dart:developer';
+
 /// Provider [JobProvider] : Get list of job, list of job category, list of jobs based on selected job category
 class JobProvider with ChangeNotifier {
-  List<JobModel>? _jobList = [];
+  JobProvider() {
+    getListOfAllJobs();
+    getListOfNewJobs();
+    getListOfFeaturedJobs();
+  }
+  List<JobModel>? _allJobList = [];
+  List<JobModel>? get allJobList => _allJobList;
+
+  List<JobModel>? _newJobList = [];
+  List<JobModel>? get newJobList => _newJobList;
+
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  List<JobModel>? _featuredJobs = [];
+  List<JobModel>? get featuredJob => _featuredJobs;
+
+  setLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+
   List<JobCategoryModel>? _jobCategoriesList = [];
   List<JobModel>? _jobListByJobCategory = [];
-
-  List<JobModel>? get jobList => _jobList;
 
   List<JobModel>? get jobListByJobCategory => _jobListByJobCategory;
 
   List<JobCategoryModel>? get jobCategoriesList => _jobCategoriesList;
 
-  void setJobList(List<JobModel>? jobs) {
-    _jobList = jobs;
+  void setAllJobList(List<JobModel>? jobs) {
+    _allJobList = jobs;
+    notifyListeners();
+  }
+
+  void setFeaturedJobList(List<JobModel>? jobs) {
+    _allJobList = jobs;
+    notifyListeners();
+  }
+
+  void setNewJobList(List<JobModel>? jobs) {
+    _allJobList = jobs;
     notifyListeners();
   }
 
@@ -38,14 +70,15 @@ class JobProvider with ChangeNotifier {
   }
 
   /// ========================= Function to fetch list of active jobs ========================
-
-  Future<void> getListOfJobs({
+  ///  [GETTING_THE_LIST_OF_THE_ACTIVE_JOBS]
+  Future<void> getListOfAllJobs({
     int limit = 10,
     int pageNo = 1,
-    int countryId = -1,
+    int? countryId = -1,
     bool isToClearJobList = false,
-    int jobCategoryId = -1,
+    int? jobCategoryId = -1,
   }) async {
+    setLoading(true);
     try {
       final response = await JobRepository.getListOfJobs(
           limit: limit,
@@ -53,10 +86,88 @@ class JobProvider with ChangeNotifier {
           countryId: countryId,
           jobCategoryId: jobCategoryId);
       if (response.data != null && response.data['success']) {
-        if (isToClearJobList) _jobList = [];
-        _jobList!.addAll(response.data['data']
+        if (isToClearJobList) _allJobList = [];
+        // log("jobs : ${response.data['data']['all_jobs']}");
+        _allJobList!.addAll(response.data['data']['all_jobs']
             .map<JobModel>((e) => JobModel.fromJson(e))
             .toList());
+        notifyListeners();
+        setAllJobList(_allJobList);
+      }
+    } on DioError catch (e) {
+      LogUtils.logError('Dio Fail to fetch list of job: ${e.response}');
+      LogUtils.logError('Dio Fail to fetch list of job: ${e.message}');
+      rethrow;
+    } catch (e) {
+      LogUtils.logError('Fail to fetch list of job: $e');
+      rethrow;
+    }
+    setLoading(false);
+  }
+
+  /// TODO [GETTING_THE_LIST_OF_THE_ACTIVE_JOBS]
+  Future<void> getListOfNewJobs({
+    int limit = 10,
+    int pageNo = 1,
+    int? countryId = -1,
+    bool isToClearJobList = false,
+    int? jobCategoryId = -1,
+  }) async {
+    setLoading(true);
+
+    try {
+      final response = await JobRepository.getListOfJobs(
+          limit: limit,
+          pageNo: pageNo,
+          countryId: countryId,
+          jobCategoryId: jobCategoryId);
+      if (response.data != null && response.data['success']) {
+        if (isToClearJobList) _newJobList = [];
+        _newJobList!.addAll(response.data['data']['new_jobs']
+            .map<JobModel>((e) => JobModel.fromJson(e))
+            .toList());
+
+        notifyListeners();
+
+        setNewJobList(_newJobList);
+      }
+    } on DioError catch (e) {
+      LogUtils.logError('Dio Fail to fetch list of job: ${e.response}');
+      LogUtils.logError('Dio Fail to fetch list of job: ${e.message}');
+      rethrow;
+    } catch (e) {
+      LogUtils.logError('Fail to fetch list of job: $e');
+      rethrow;
+    }
+
+    setLoading(false);
+  }
+
+  Future<void> getListOfFeaturedJobs({
+    int limit = 10,
+    int pageNo = 1,
+    int? countryId = -1,
+    bool isToClearJobList = false,
+    int? jobCategoryId = -1,
+  }) async {
+    setLoading(true);
+
+    try {
+      final response = await JobRepository.getListOfJobs(
+          limit: limit,
+          pageNo: pageNo,
+          countryId: countryId,
+          jobCategoryId: jobCategoryId);
+      if (response.data != null && response.data['success']) {
+        if (isToClearJobList) _featuredJobs = [];
+
+        _featuredJobs!.addAll(response.data['data']['featured_jobs']
+            .map<JobModel>((e) => JobModel.fromJson(e))
+            .toList());
+
+       
+        setFeaturedJobList(_featuredJobs);
+
         notifyListeners();
       }
     } on DioError catch (e) {
@@ -67,6 +178,8 @@ class JobProvider with ChangeNotifier {
       LogUtils.logError('Fail to fetch list of job: $e');
       rethrow;
     }
+
+    setLoading(false);
   }
 
   /// ========================= End function to fetch list of active jobs ========================
@@ -82,12 +195,12 @@ class JobProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getListOfJobsCategories({int limit = 21, int pageNo = 1}) async {
+  getListOfJobsCategories({int limit = 21, int pageNo = 1}) async {
     final bool result = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.allJobCategory.stringValue);
     if (result) {
-      List<dynamic> va = await locator<HiveService>()
-          .getBox(HiveBoxName.allJobCategory.stringValue);
+      List<dynamic> va = await (locator<HiveService>()
+          .getBox(HiveBoxName.allJobCategory.stringValue));
       _jobCategoriesList =
           va.map<JobCategoryModel>((e) => e as JobCategoryModel).toList();
       locator<JobFilterProvider>().setJobCategory(_jobCategoriesList!);
@@ -97,7 +210,7 @@ class JobProvider with ChangeNotifier {
         final response = await JobRepository.getListOfJobCategories(
             pageNo: pageNo, limit: limit);
         if (response.data != null && response.data['success']) {
-          _jobCategoriesList!.addAll(response.data['data']
+          _jobCategoriesList!.addAll(response.data['data']['categories']
               .map<JobCategoryModel>((e) => JobCategoryModel.fromJson(e))
               .toList());
           _isToLoadCategories = false;
@@ -120,8 +233,8 @@ class JobProvider with ChangeNotifier {
     final bool result = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.allJobCategory.stringValue);
     if (result) {
-      List<dynamic> va = await locator<HiveService>()
-          .getBox(HiveBoxName.allJobCategory.stringValue);
+      List<dynamic> va = await (locator<HiveService>()
+          .getBox(HiveBoxName.allJobCategory.stringValue));
       _jobCategoriesList =
           va.map<JobCategoryModel>((e) => e as JobCategoryModel).toList();
       locator<JobFilterProvider>().setJobCategory(_jobCategoriesList!);
@@ -131,10 +244,12 @@ class JobProvider with ChangeNotifier {
         List<JobCategoryModel> tempJobCategoriesList = [];
         final response = await JobRepository.getListOfJobCategories(
             pageNo: pageNo, limit: 1);
+        log(response.toString());
 
-        if (response.data != null && response.data['success']) {
+        if (response.data != null) {
+          // log('data : ${response.data}');
           final responseResult = await JobRepository.getListOfJobCategories(
-              pageNo: pageNo, limit: response.data['meta']['total_records']);
+              pageNo: pageNo, limit: response.data['total']);
           tempJobCategoriesList.addAll(responseResult.data['data']
               .map<JobCategoryModel>((e) => JobCategoryModel.fromJson(e))
               .toList());
@@ -157,11 +272,11 @@ class JobProvider with ChangeNotifier {
     }
   }
 
-  int _jobCategoryId = -1;
+  int? _jobCategoryId = -1;
   bool _isAllJobLoaded = false;
 
   Future<void> getJobListByJobCategory(
-      {int limit = 10, int pageNo = 1, required int jobCategoryId}) async {
+      {int limit = 10, int pageNo = 1, required int? jobCategoryId}) async {
     try {
       final response = await JobRepository.getJobListByJobCategoryId(
           limit: limit, pageNo: pageNo, jobCategoryId: jobCategoryId);
@@ -179,8 +294,7 @@ class JobProvider with ChangeNotifier {
             .map<JobModel>((e) => JobModel.fromJson(e))
             .toList());
         notifyListeners();
-        if (_jobListByJobCategory!.length ==
-            response.data['meta']['total_records']) {
+        if (_jobListByJobCategory!.length == response.data['total']) {
           _isAllJobLoaded = true;
           notifyListeners();
         }
@@ -200,12 +314,12 @@ class JobProvider with ChangeNotifier {
   /// ======================== End Function to fetch list of job category, list of jobs based on selected job category ================
 
   /// ==================== Function to remove job from job list, once user applied to those jobs =====================
-  void removeJobByJobId(int jobId) {
-    _jobList!.removeWhere((element) => element.jobId == jobId);
+  void removeJobByJobId(int? jobId) {
+    _allJobList!.removeWhere((element) => element.jobId == jobId);
     notifyListeners();
   }
 
-  void removeJobFromJobCategoryByJobId(int jobId) {
+  void removeJobFromJobCategoryByJobId(int? jobId) {
     _jobListByJobCategory!.removeWhere((element) => element.jobId == jobId);
     notifyListeners();
   }

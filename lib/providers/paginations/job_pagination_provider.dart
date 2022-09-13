@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/services/service_locator.dart';
 import '../../core/utilities/logutils.dart';
-import '../../models/job_model.dart';
+import '../../models/jobs_model.dart';
 import '../../models/local_storage/country_ls_model.dart';
 import '../job_provider.dart';
 
@@ -16,7 +16,7 @@ class JobPaginationProvider with ChangeNotifier {
   bool _isFirstLoadRunning = false;
   bool _isLoadMoreRunning = false;
   List<JobModel> _jobList = [];
-  ScrollController? _controller;
+  late ScrollController? _controller;
 
   bool get hasNextPage => _hasNextPage;
 
@@ -30,23 +30,23 @@ class JobPaginationProvider with ChangeNotifier {
     _jobList.clear();
     notifyListeners();
   }
-
-  void loadInitialData() async {
-    _isFirstLoadRunning = true;
-    try {
-      final data = locator<JobProvider>();
-      await locator<JobFilterProvider>().loadListOfFilterJobs();
-      if (data.jobList!.isNotEmpty) {
-        _jobList = data.jobList!;
-        notifyListeners();
-      }
-    } catch (err) {
-      LogUtils.logError(
-          'Ignore This Error: Something went wrong while loading job data at initial phase!');
-    }
-    _isFirstLoadRunning = false;
-    notifyListeners();
-  }
+// TODO : UNCOMMENT THIS FUCNTION
+  // void loadInitialData() async {
+  //   _isFirstLoadRunning = true;
+  //   try {
+  //     final data = locator<JobProvider>();
+  //     // await locator<JobFilterProvider>().loadListOfFilterJobs();  TODO : Uncomment this line
+  //     if (data.jobList!.isNotEmpty) {
+  //       _jobList = data.jobList!;
+  //       notifyListeners();
+  //     }
+  //   } catch (err) {
+  //     LogUtils.logError(
+  //         'Ignore This Error: Something went wrong while loading job data at initial phase!');
+  //   }
+  //   _isFirstLoadRunning = false;
+  //   notifyListeners();
+  // }
 
   void setScrollController(ScrollController newController) {
     _controller = newController;
@@ -61,9 +61,9 @@ class JobPaginationProvider with ChangeNotifier {
       try {
         final data = locator<JobProvider>();
         locator<JobFilterProvider>().increasePageNo();
-        await locator<JobFilterProvider>().loadListOfFilterJobs();
-        if (data.jobList!.isNotEmpty) {
-          _jobList.addAll(data.jobList!);
+        // await locator<JobFilterProvider>().loadListOfFilterJobs(); // TODO : Uncomment this line
+        if (data.newJobList!.isNotEmpty) {
+          // _jobList.addAll(data.jobList!); // ! TODO : Uncomment this line
         } else {
           _hasNextPage = false;
         }
@@ -85,8 +85,8 @@ class JobPaginationProvider with ChangeNotifier {
   bool _countryHasNextPage = true;
   bool _isFirstLoadCountry = false;
   bool _isLoadMoreCountry = false;
-  List<CountryLSModel> _countryList = [];
-  ScrollController? _countryController;
+  List<CountryLSModel?> _countryList = [];
+  late ScrollController? _countryController;
 
   int get countryPage => _countryPage;
 
@@ -96,7 +96,7 @@ class JobPaginationProvider with ChangeNotifier {
 
   bool get isLoadMoreCountry => _isLoadMoreCountry;
 
-  List<CountryLSModel> get countryList => _countryList;
+  List<CountryLSModel?> get countryList => _countryList;
 
   void setCountryScrollController(ScrollController newController) {
     _countryController = newController;
@@ -107,7 +107,7 @@ class JobPaginationProvider with ChangeNotifier {
       _isFirstLoadCountry = true;
       try {
         final data = locator<CountryProvider>();
-        await data.getListOfCountries(pageNo: _countryPage);
+        // await data.getListOfCountries(pageNo: _countryPage);
         if (data.countriesList!.isNotEmpty) {
           _countryList = data.countriesList!;
         }
@@ -133,7 +133,7 @@ class JobPaginationProvider with ChangeNotifier {
         _countryPage += 1;
         try {
           final data = locator<CountryProvider>();
-          await data.getListOfCountries(pageNo: _countryPage);
+          // await data.getListOfCountries(pageNo: _countryPage);
           if (data.countriesList!.isNotEmpty) {
             _countryList.addAll(data.countriesList!);
           } else {
@@ -156,16 +156,16 @@ class JobPaginationProvider with ChangeNotifier {
 
   Future<void> selectedCountryJob(int index) async {
     final jobFilterProvider = locator<JobFilterProvider>();
-    if (jobFilterProvider.selectedCountryId == _countryList[index].id) {
+    if (jobFilterProvider.selectedCountryId == _countryList[index]!.id) {
       jobFilterProvider.setSelectedCountryId(-1);
     } else {
-      jobFilterProvider.setSelectedCountryId(_countryList[index].id);
+      jobFilterProvider.setSelectedCountryId(_countryList[index]!.id);
     }
     jobFilterProvider.setIsToClearJobList(true);
     jobFilterProvider.setSelectedJobCategoryId(-1);
     jobFilterProvider.setPage(1);
     clearJobs();
-    loadInitialData();
+    // loadInitialData(); TODO : Uncomment this function
     jobFilterProvider.setIsToClearJobList(false);
     notifyListeners();
   }
@@ -196,7 +196,7 @@ class JobPaginationProvider with ChangeNotifier {
 
 //===============End of Filter Job Option ==================
 
-  void removeJobByJobId(int jobId) {
+  void removeJobByJobId(int? jobId) {
     _jobList.removeWhere((element) => element.jobId == jobId);
     notifyListeners();
   }

@@ -8,8 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class CategoryJobListScreen extends StatefulWidget {
-  final int jobCategoryId;
-  final String jobCategoryName;
+  final int? jobCategoryId;
+  final String? jobCategoryName;
 
   const CategoryJobListScreen(
       {Key? key, required this.jobCategoryId, required this.jobCategoryName})
@@ -50,7 +50,8 @@ class _CategoryJobListScreenState extends State<CategoryJobListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar( context , 
+        backBtnColor: Theme.of(context).primaryColor,
         isToShowBackButton: true,
         appBarTitle: "${widget.jobCategoryName}'s Job",
         titleFontSize: 36.sp,
@@ -66,7 +67,7 @@ class _CategoryJobListScreenState extends State<CategoryJobListScreen> {
                   padding: EdgeInsets.zero,
                   child: Column(
                     children: [
-                      SizedBox(height: 20.h),
+                      SizedBox(height: 10.h),
                       _buildCountriesJobItem(data),
                     ],
                   ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-part 'job_prefs_model.g.dart';
+// part 'job_prefs_model.g.dart';
 
 @HiveType(typeId: 5, adapterName: 'JobPrefsAdapterName')
 class JobPrefsModel with ChangeNotifier {

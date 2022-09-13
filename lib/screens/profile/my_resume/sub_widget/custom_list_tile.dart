@@ -11,11 +11,11 @@ class CustomListTile extends StatelessWidget {
 
   const CustomListTile(
       {Key? key,
-      @required this.title,
-      @required this.subTitle,
-      @required this.date,
-      @required this.onTap,
-      @required this.editTap})
+      required this.title,
+      required this.subTitle,
+      required this.date,
+      required this.onTap,
+      required this.editTap})
       : super(key: key);
 
   @override

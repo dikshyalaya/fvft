@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 bool checkTextMaxLineExceedOrNot(
-    {required String title, int? maxLines, double? maxWidth}) {
+    {required String? title, int? maxLines, double? maxWidth}) {
   final tp = TextPainter(
       text: TextSpan(text: title),
       maxLines: maxLines ?? 1,

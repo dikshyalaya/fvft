@@ -10,7 +10,7 @@ class UserCountryPrefsProvider with ChangeNotifier {
   List<CountryPrefsModel> get countryPrefsList => _countryPrefsList;
 
   Future<CountryPrefsModel> addNewCountryInPrefs(
-      {required int countryId}) async {
+      {required int? countryId}) async {
     try {
       final response = await PreferencesRepository.addNewCountryInPrefs(
           countryId: countryId);
@@ -79,7 +79,7 @@ class UserCountryPrefsProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> deleteParticularCountry({required int prefsId}) async {
+  Future<bool> deleteParticularCountry({required int? prefsId}) async {
     try {
       final response =
           await PreferencesRepository.deleteParticularCountry(prefsId: prefsId);
@@ -115,7 +115,7 @@ class UserCountryPrefsProvider with ChangeNotifier {
 
 // ============= Remove country prefs by id ======================
 
-  void removeCountryById(int id) {
+  void removeCountryById(int? id) {
     _countryPrefsList.removeWhere((element) => element.countryId == id);
     notifyListeners();
   }

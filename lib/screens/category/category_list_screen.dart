@@ -50,7 +50,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
                 ? Center(
                     child: Text(
                       'There is no any job category',
-                      style: FreeVisaFreeTicketTheme.caption1Style,
+                      style: Theme.of(context).textTheme.caption,
                     ),
                   )
                 : _buildCategoryList(data);
@@ -65,7 +65,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
             controller: data.controller,
             children: [
               ...data.jobCategoryList.map((e) {
-                return _buildCategoryItem(e);
+                return _buildCategoryItem(context, e);
               }).toList(),
               // when the _loadMore function is running
               if (data.isLoadingMoreData)
@@ -117,7 +117,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
           );
   }
 
-  Widget _buildCategoryItem(JobCategoryModel e) {
+  Widget _buildCategoryItem(BuildContext context, JobCategoryModel e) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -135,9 +135,9 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
               bottomLeft: Radius.circular(10.w),
             ),
             child: Container(
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: FreeVisaFreeTicketTheme.appLinearGradient,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: FreeVisaFreeTicketTheme.appLinearGradient,
               ),
               child: CircleAvatar(
                 // backgroundColor: FreeVisaFreeTicketTheme.secondaryColor,
@@ -145,12 +145,8 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
                 child: Builder(
                   builder: (context) {
                     final textArr = e.jobCategory!.split(' ');
-                    return Text(
-                      textArr.first[0] + ' ' + textArr.last[0],
-                      style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
-                        color: FreeVisaFreeTicketTheme.whiteColor,
-                      ),
-                    );
+                    return Text(textArr.first[0] + ' ' + textArr.last[0],
+                        style: Theme.of(context).textTheme.caption);
                   },
                 ),
               ),
@@ -223,7 +219,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
 
   Widget _buildCategoryItemHorizontal(JobCategoryModel e) {
     return Card(
-      color: FreeVisaFreeTicketTheme.whiteColor,
+      color: Theme.of(context).primaryColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.w),
       ),

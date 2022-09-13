@@ -18,17 +18,17 @@ class JobPreferenceUIProvider with ChangeNotifier {
   String? _jobCategoryName;
   String? _countryName;
   CountryLSModel? _countryLSModel;
-  JobCategoryModel? _jobCategoryModel;
-  List<String> _countryList = [];
-  List<String> _jobCategoryList = [];
+  late JobCategoryModel? _jobCategoryModel;
+  List<String?>? _countryList = [];
+  List<String?>? _jobCategoryList = [];
 
   String? get jobCategoryName => _jobCategoryName;
 
   String? get countryName => _countryName;
 
-  List<String> get countryList => _countryList;
+  List<String?>? get countryList => _countryList;
 
-  List<String> get jobCategoryList => _jobCategoryList;
+  List<String?>? get jobCategoryList => _jobCategoryList;
 
   void setJobCategoryName(String? value) {
     _jobCategoryName = value!;
@@ -49,13 +49,14 @@ class JobPreferenceUIProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void _filterCountryByName() {
-    final CountryLSModel countryModel = locator<JobFilterProvider>()
-        .countryList
-        .firstWhere((country) => country.countryName == _countryName);
-    _countryLSModel = countryModel;
-    notifyListeners();
-  }
+// ! TODO :  Uncomment this one
+  // void _filterCountryByName() {
+  //   final CountryLSModel? countryModel = locator<JobFilterProvider>()
+  //       .countryList
+  //       .firstWhere((country) => country!.countryName == _countryName);
+  //   _countryLSModel = countryModel;
+  //   notifyListeners();
+  // }
 
   bool _isCountryInPrefs = false;
   bool _isJobCategoryInPrefs = false;
@@ -81,13 +82,13 @@ class JobPreferenceUIProvider with ChangeNotifier {
       List<JobPrefsModel> _jobPrefsList =
           locator<UserJobPrefsProvider>().jobPrefsList;
       if (_jobPrefsList.isEmpty) return;
-      await Future.forEach(_jobPrefsList, (e) async {
+      await Future.forEach(_jobPrefsList, (dynamic e) async {
         final element = e as JobPrefsModel;
         await Future.forEach(locator<JobFilterProvider>().jobCategoryList,
-            (exs) {
+            (dynamic exs) {
           final ex = exs as JobCategoryModel;
           if (ex.id == element.jobCategoryId) {
-            _jobCategoryList.add(ex.jobCategory!);
+            _jobCategoryList!.add(ex.jobCategory!);
           }
         });
       });
@@ -106,12 +107,13 @@ class JobPreferenceUIProvider with ChangeNotifier {
       List<CountryPrefsModel> _countryPrefsList =
           locator<UserCountryPrefsProvider>().countryPrefsList;
       if (_countryPrefsList.isEmpty) return;
-      await Future.forEach(_countryPrefsList, (e) async {
+      await Future.forEach(_countryPrefsList, (dynamic e) async {
         final element = e as CountryPrefsModel;
-        await Future.forEach(locator<JobFilterProvider>().countryList, (exs) {
+        await Future.forEach(locator<JobFilterProvider>().countryList,
+            (dynamic exs) {
           final ex = exs as CountryLSModel;
           if (ex.id == element.countryId) {
-            _countryList.add(ex.countryName);
+            _countryList!.add(ex.name); // ! TODO :  Uncomment this one
           }
         });
       });
@@ -131,29 +133,29 @@ class JobPreferenceUIProvider with ChangeNotifier {
 
 // ======================= Re-Order List Index ==================================================
 
-  String removeCountryByIndex(int index) {
-    return _countryList.removeAt(index);
+  String? removeCountryByIndex(int index) {
+    return _countryList!.removeAt(index);
   }
 
   void addNewCountry(
-      {required int newIndex, required int oldIndex, required String value}) {
+      {required int newIndex, required int oldIndex, required String? value}) {
     final CountryPrefsModel cModel =
         locator<UserCountryPrefsProvider>().removeCountryIndex(oldIndex);
-    _countryList.insert(newIndex, value);
+    _countryList!.insert(newIndex, value);
     locator<UserCountryPrefsProvider>().addNewCountry(newIndex, cModel);
     //call update function - update on background
     unawaited(locator<UserCountryPrefsProvider>().updateCountryPrefsList());
   }
 
-  String removeJobCategoryIndex(int index) {
-    return _jobCategoryList.removeAt(index);
+  String? removeJobCategoryIndex(int index) {
+    return _jobCategoryList!.removeAt(index);
   }
 
   void addNewJobCategory(
-      {required int newIndex, required int oldIndex, required String value}) {
+      {required int newIndex, required int oldIndex, required String? value}) {
     final JobPrefsModel jpModel =
         locator<UserJobPrefsProvider>().removeJobCategoryByIndex(oldIndex);
-    _jobCategoryList.insert(newIndex, value);
+    _jobCategoryList!.insert(newIndex, value);
     locator<UserJobPrefsProvider>().addNewJobCategory(newIndex, jpModel);
     //call update function - update on background
     unawaited(locator<UserJobPrefsProvider>().updateJobCategoryPrefsList());
@@ -194,26 +196,28 @@ class JobPreferenceUIProvider with ChangeNotifier {
     if (!formKey1.currentState!.validate()) return;
     formKey1.currentState!.save();
     setIsLoading(true);
-    _filterCountryByName();
+    // _filterCountryByName();
     final CountryPrefsModel countryPrefsModel =
         await locator<UserCountryPrefsProvider>()
             .addNewCountryInPrefs(countryId: _countryLSModel!.id);
     if (countryPrefsModel.id != null) {
-      _countryList.add(_countryLSModel!.countryName);
+      // _countryList!.add(_countryLSModel!.countryName); // ! TODO :  Uncomment this one
       _countryName = null;
       notifyListeners();
       await cacheCountryPrefs();
       showCustomSnackBar(
         context: locator<NavigationService>().getNavigationContext(),
         message:
-            'Country ${_countryLSModel!.countryName} has been added to your preferences',
+            // 'Country ${_countryLSModel!.countryName} has been added to your preferences', // ! TODO :  Uncomment this one
+            "",
         isError: false,
       );
     } else {
       showCustomSnackBar(
         context: locator<NavigationService>().getNavigationContext(),
         message:
-            'Failed to add country ${_countryLSModel!.countryName} to your preferences',
+            // 'Failed to add country ${_countryLSModel!.countryName} to your preferences',
+            "",
         isError: true,
       );
     }
@@ -229,7 +233,7 @@ class JobPreferenceUIProvider with ChangeNotifier {
     final JobPrefsModel jobPrefsModel = await locator<UserJobPrefsProvider>()
         .addNewJobCategoryInPrefs(jobCategoryId: _jobCategoryModel!.id!);
     if (jobPrefsModel.id != null) {
-      _jobCategoryList.add(_jobCategoryModel!.jobCategory!);
+      _jobCategoryList!.add(_jobCategoryModel!.jobCategory!);
       _jobCategoryName = null;
       notifyListeners();
       await cacheJobCategoryPrefs();
@@ -254,7 +258,7 @@ class JobPreferenceUIProvider with ChangeNotifier {
 // ========================= End To Handle Form ===================================
 
 // ======================== Delete Particular Prefs ===============================
-  Future<void> deleteParticularJobFromPrefs(String jobCategory) async {
+  Future<void> deleteParticularJobFromPrefs(String? jobCategory) async {
     final JobCategoryModel jobCategoryModel = locator<JobFilterProvider>()
         .jobCategoryList
         .firstWhere((jb) => jb.jobCategory == jobCategory);
@@ -266,7 +270,7 @@ class JobPreferenceUIProvider with ChangeNotifier {
         .deleteParticularJobCategory(prefsId: jobPrefsModel.id!);
     if (result) {
       locator<UserJobPrefsProvider>().removeJobById(jobPrefsModel.id!);
-      _jobCategoryList
+      _jobCategoryList!
           .removeWhere((element) => element == jobCategoryModel.jobCategory);
       notifyListeners();
       await cacheJobCategoryPrefs();
@@ -284,36 +288,37 @@ class JobPreferenceUIProvider with ChangeNotifier {
     }
   }
 
-  Future<void> deleteParticularCountryFromPrefs(String country) async {
-    final CountryLSModel countryModel = locator<JobFilterProvider>()
-        .countryList
-        .firstWhere((cs) => cs.countryName == country);
+// ! TODO :  Uncomment this one
+  // Future<void> deleteParticularCountryFromPrefs(String? country) async {
+  //   final CountryLSModel? countryModel = locator<JobFilterProvider>()
+  //       .countryList
+  //       .firstWhere((cs) => cs!.countryName == country);
 
-    final CountryPrefsModel countryPrefsModel =
-        locator<UserCountryPrefsProvider>()
-            .countryPrefsList
-            .firstWhere((element) => element.countryId == countryModel.id);
-    final bool result = await locator<UserCountryPrefsProvider>()
-        .deleteParticularCountry(prefsId: countryPrefsModel.id!);
-    if (result) {
-      locator<UserCountryPrefsProvider>()
-          .removeCountryById(countryPrefsModel.id!);
-      _countryList
-          .removeWhere((element) => element == countryModel.countryName);
-      notifyListeners();
-      await cacheCountryPrefs();
-      showCustomSnackBar(
-          context: locator<NavigationService>().getNavigationContext(),
-          message:
-              'Country ${countryModel.countryName} has been deleted successfully !',
-          isError: !result);
-    } else {
-      showCustomSnackBar(
-          context: locator<NavigationService>().getNavigationContext(),
-          message: 'Failed To Delete Country ${countryModel.countryName} !',
-          isError: result);
-    }
-  }
+  //   final CountryPrefsModel countryPrefsModel =
+  //       locator<UserCountryPrefsProvider>()
+  //           .countryPrefsList
+  //           .firstWhere((element) => element.countryId == countryModel!.id);
+  //   final bool result = await locator<UserCountryPrefsProvider>()
+  //       .deleteParticularCountry(prefsId: countryPrefsModel.id!);
+  //   if (result) {
+  //     locator<UserCountryPrefsProvider>()
+  //         .removeCountryById(countryPrefsModel.id!);
+  //     _countryList!
+  //         .removeWhere((element) => element == countryModel!.countryName);
+  //     notifyListeners();
+  //     await cacheCountryPrefs();
+  //     showCustomSnackBar(
+  //         context: locator<NavigationService>().getNavigationContext(),
+  //         message:
+  //             'Country ${countryModel!.countryName} has been deleted successfully !',
+  //         isError: !result);
+  //   } else {
+  //     showCustomSnackBar(
+  //         context: locator<NavigationService>().getNavigationContext(),
+  //         message: 'Failed To Delete Country ${countryModel!.countryName} !',
+  //         isError: result);
+  //   }
+  // }
 
 // ======================= End To Delete Particular Prefs ==========================
 

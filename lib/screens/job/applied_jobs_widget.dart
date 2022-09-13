@@ -117,14 +117,14 @@ class _AppliedJobsWidgetState extends State<AppliedJobsWidget> {
           child: _index == 0
               ? (locator<AuthProvider>().currentUser == null
                   ? const LoginToContinueWidget()
-                  : const JobAcceptedListView())
+                  :  JobAcceptedListView())
               : _index == 1
                   ? (locator<AuthProvider>().currentUser == null
                       ? const LoginToContinueWidget()
-                      : const JobApplicationListView())
+                      :  JobApplicationListView())
                   : (locator<AuthProvider>().currentUser == null
                       ? const LoginToContinueWidget()
-                      : const JobPendingListView()),
+                      :  JobPendingListView()),
         ),
       ],
     );

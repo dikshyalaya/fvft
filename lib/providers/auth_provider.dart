@@ -12,18 +12,24 @@ class AuthProvider with ChangeNotifier {
 
   UserModel? get currentUser => _currentUser;
 
+  bool _userLoggedIn =false;
+  bool get userLoggedIn => _userLoggedIn;
+
+
+
   void setCurrentUser(UserModel? user) {
     _currentUser = user;
     notifyListeners();
   }
 
-  Future<bool> login({required String email, required String password}) async {
+  Future<bool> login({required String? email, required String? password}) async {
     try {
       final response =
           await AuthRepository.loginUser(email: email, password: password);
       if (response.data != null && response.data['success']) {
         print('Login: ${response.data['data']['user']}');
         _currentUser = UserModel.fromJson(response.data['data']['user']);
+        _userLoggedIn = true;
         notifyListeners();
         await Future.wait([
           _cacheUser(_currentUser!),
@@ -39,12 +45,12 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<bool> signUp(
-      {required String firstName,
+      {required String? firstName,
       String? middleName,
-      required String lastName,
-      required String email,
-      required String password,
-      required String confirmPassword}) async {
+      required String? lastName,
+      required String? email,
+      required String? password,
+      required String? confirmPassword}) async {
     try {
       final response = await AuthRepository.registerUser(
           middleName: middleName,
@@ -55,6 +61,7 @@ class AuthProvider with ChangeNotifier {
           password: password);
       if (response.data != null && response.data['success']) {
         _currentUser = UserModel.fromJson(response.data['data']['user']);
+         _userLoggedIn = true;
         notifyListeners();
         await Future.wait([
           _cacheUser(_currentUser!),
@@ -78,6 +85,7 @@ class AuthProvider with ChangeNotifier {
       final response = await AuthRepository.getUserProfileData();
       if (response.data != null && response.data['success']) {
         _currentUser = UserModel.fromJson(response.data['data']);
+         _userLoggedIn = true;
         notifyListeners();
         await _cacheUser(_currentUser!, isToUpdate: true);
       }
@@ -87,10 +95,10 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<bool> updateUserProfile(
-      {required String firstName,
+      {required String? firstName,
       String? middleName,
-      required String lastName,
-      required String email,
+      required String? lastName,
+      required String? email,
       String? base64,
       String? phone,
       String? imageFileSize}) async {
@@ -125,8 +133,20 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+Future<void> loggedIn()async{
+    bool userLoggedIn =  await locator<HiveService>()
+        .isExists(boxName: HiveBoxName.userData.stringValue);
+
+        _userLoggedIn = userLoggedIn ;
+        notifyListeners();
+
+
+
+}
+
+
   // ============================ Caching Logged In User Token & Data On Hive ===========================
-  Future<void> _cacheUser(UserModel userModel,
+  Future<void> _cacheUser(UserModel? userModel,
       {bool isToUpdate = false}) async {
     bool userExists = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.userData.stringValue);
@@ -138,7 +158,7 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  Future<void> _cacheUserToken(String token, {bool isToUpdate = false}) async {
+  Future<void> _cacheUserToken(String? token, {bool isToUpdate = false}) async {
     bool tokenExists = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.userToken.stringValue);
     if (!tokenExists) {

@@ -1,10 +1,11 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import '../core/constants/assets_source.dart';
-import 'job/temp_job_screen.dart';
+import '../providers/company_provider.dart';
+import 'job/main_job_screen.dart';
 import 'more_info_screen.dart';
 import 'status_screen.dart';
-import 'temp_profile_screen.dart';
+import 'profile_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../core/services/service_locator.dart';
@@ -45,11 +46,16 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
   Widget _switchedScreen() {
     switch (_currentIndex) {
       case 0:
-        return const StatusScreen(); //JobScreen(animationController: animationController);
+        return const StatusScreen(); //takes to the status page of the applied jobs
       case 1:
-        return InformationScreen(); //const CategoryListScreen();
+
+        // TODO : products section implement pressing functionality
+        return const InformationScreen(); //const CategoryListScreen();
       case 2:
-        return const TempJobScreen();
+        return MultiProvider(providers: [
+          ChangeNotifierProvider.value(value: locator<AuthProvider>()),
+          ChangeNotifierProvider.value(value: locator<CompanyProvider>())
+        ], child: const TempJobScreen());
       case 3:
         return const TempProfileScreen();
 
@@ -80,16 +86,8 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
     final bool hasUserData = currentUser != null;
     return AppBar(
       flexibleSpace: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.topRight,
-            tileMode: TileMode.repeated,
-            colors: <Color>[
-              FreeVisaFreeTicketTheme.secondaryColor,
-              FreeVisaFreeTicketTheme.primaryColor,
-            ],
-          ),
+        decoration: BoxDecoration(
+          gradient: FreeVisaFreeTicketTheme.appLinearGradient,
         ),
       ),
       leading: Padding(
@@ -170,12 +168,7 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
 
   Widget _buildBottomNavBar() {
     return ConvexAppBar(
-      gradient: const LinearGradient(
-        colors: [
-          FreeVisaFreeTicketTheme.secondaryColor,
-          FreeVisaFreeTicketTheme.primaryColor,
-        ],
-      ),
+      gradient: FreeVisaFreeTicketTheme.appLinearGradient,
       color: FreeVisaFreeTicketTheme.whiteColor.withOpacity(0.7),
       items: const [
         TabItem(icon: Icons.dashboard, title: 'Status', isIconBlend: true),

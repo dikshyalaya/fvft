@@ -48,38 +48,38 @@ class AuthUISProvider with ChangeNotifier {
 
   GlobalKey<FormState> get editProfileFormKey => _editProfileFormKey;
 
-  void setEmail(String? newEmail) {
+  void setEmail(String?  newEmail) {
     _email = newEmail!;
     notifyListeners();
   }
 
-  void setFullName(String? newFullName) {
+  void setFullName(String ? newFullName) {
     _fullName = newFullName!;
     notifyListeners();
   }
 
-  void setPhone(String? newPhone) {
+  void setPhone(String?  newPhone) {
     _phone = newPhone!;
     notifyListeners();
   }
 
-  void setBase64(String? value) {
+  void setBase64(String?  value) {
     _base64 = value!;
     notifyListeners();
   }
 
-  void setImageSize(String? value) {
+  void setImageSize(String ? value) {
     _imageFileSize = value!;
     notifyListeners();
   }
 
-  void setPassword(String? newPassword) {
-    _password = newPassword!;
+  void setPassword(String ? newPassword) {
+    _password = newPassword !;
     notifyListeners();
   }
 
-  void setConfirmPassword(String? newConfirmPassword) {
-    _confirmPassword = newConfirmPassword!;
+  void setConfirmPassword(String newConfirmPassword) {
+    _confirmPassword = newConfirmPassword;
     notifyListeners();
   }
 
@@ -171,7 +171,7 @@ class AuthUISProvider with ChangeNotifier {
 
   Future<void> loadUserData() async {
     final UserModel? userData =
-        await locator<HiveService>().getBox(HiveBoxName.userData.stringValue);
+        await (locator<HiveService>().getBox(HiveBoxName.userData.stringValue) as Future<UserModel>);
     _fullName = userData!.middleName != null
         ? '${userData.firstName} ${userData.middleName} ${userData.lastName}'
         : '${userData.firstName} ${userData.lastName}';

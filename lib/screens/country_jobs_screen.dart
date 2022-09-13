@@ -4,6 +4,8 @@ import 'package:share_plus/share_plus.dart';
 import '../core/theme/free_visa_free_ticket_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'job/post/job_apply_button.dart';
+
 
 class CountryJobsScreen extends StatelessWidget {
   const CountryJobsScreen({Key? key}) : super(key: key);
@@ -166,10 +168,10 @@ class CountryJobsScreen extends StatelessWidget {
                   topRight: Radius.circular(8.w),
                   bottomRight: Radius.circular(8.w),
                 ),
-                gradient: const LinearGradient(
-                  begin: Alignment(-1.0, -1.0),
-                  end: Alignment(1.0, 4.0),
-                  colors: [
+                gradient:  LinearGradient(
+                  begin:  const Alignment(-1.0, -1.0),
+                  end:const  Alignment(1.0, 4.0),
+                  colors:const  [
                     FreeVisaFreeTicketTheme.primaryColor,
                     FreeVisaFreeTicketTheme.secondaryColor,
                   ],
@@ -198,43 +200,40 @@ class CountryJobsScreen extends StatelessWidget {
           flex: 2,
         ),
         SizedBox(width: 20.w),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Company Name',
-                style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
-                  color: FreeVisaFreeTicketTheme.darkGrayColor,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Company Name',
+              style: FreeVisaFreeTicketTheme.caption1Style.copyWith(
+                color: FreeVisaFreeTicketTheme.darkGrayColor,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              children: [
+                Text(
+                  '🇳🇵',
+                  style: FreeVisaFreeTicketTheme.captionStyle.copyWith(
+                    color: FreeVisaFreeTicketTheme.darkGrayColor,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              SizedBox(height: 20.h),
-              Row(
-                children: [
-                  Text(
-                    '🇳🇵',
-                    style: FreeVisaFreeTicketTheme.captionStyle.copyWith(
-                      color: FreeVisaFreeTicketTheme.darkGrayColor,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                SizedBox(width: 20.w),
+                Text(
+                  'Malaysia',
+                  style: FreeVisaFreeTicketTheme.body1TextStyle.copyWith(
+                    color: FreeVisaFreeTicketTheme.darkGrayColor,
                   ),
-                  SizedBox(width: 20.w),
-                  Text(
-                    'Malaysia',
-                    style: FreeVisaFreeTicketTheme.body1TextStyle.copyWith(
-                      color: FreeVisaFreeTicketTheme.darkGrayColor,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          flex: 3,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     );
@@ -267,9 +266,9 @@ class CountryJobsScreen extends StatelessWidget {
         horizontal: 20.w,
         vertical: 10.h,
       ),
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
         gradient: LinearGradient(
-          colors: [
+          colors:const [
             FreeVisaFreeTicketTheme.primaryColor,
             FreeVisaFreeTicketTheme.secondaryColor,
           ],
@@ -381,7 +380,7 @@ class CountryJobsScreen extends StatelessWidget {
             ],
           ),
         ),
-        // const Expanded(child: JobApplyButton(jobId: 10)),
+      const   Expanded(child: JobApplyButton(jobId: 10)),
         SizedBox(width: 20.w),
       ],
     );

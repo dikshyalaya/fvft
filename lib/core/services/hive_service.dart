@@ -32,8 +32,8 @@ class HiveService {
     }
   }
 
-  Future<List<T>> getBoxes<T>(String boxName) async {
-    List<T> boxList = <T>[];
+  Future<List<T?>> getBoxes<T>(String boxName) async {
+    List<T?> boxList = <T?>[];
 
     final openBox = await Hive.openBox(boxName);
 
@@ -46,7 +46,7 @@ class HiveService {
     return boxList;
   }
 
-  Future<T> getBox<T>(String boxName) async {
+  Future<T?> getBox<T>(String boxName) async {
     final openBox = await Hive.openBox(boxName);
     return openBox.getAt(0);
   }
@@ -68,11 +68,12 @@ class HiveService {
     final appDocumentDir =
         await path_provider.getApplicationDocumentsDirectory();
     Hive.init(appDocumentDir.path);
-    Hive.registerAdapter(JobCategoryAdapter());
+    // Hive.registerAdapter(JobCategoryAdapter());
     Hive.registerAdapter(CountryLSModelAdapter());
-    Hive.registerAdapter(UserModelAdapter());
-    Hive.registerAdapter(CVModelAdapter());
-    Hive.registerAdapter(JobPrefsAdapterName());
-    Hive.registerAdapter(CountryPrefsAdapterName());
+
+    // Hive.registerAdapter(UserModelAdapter());
+    // Hive.registerAdapter(CVModelAdapter());
+    // Hive.registerAdapter(JobPrefsAdapterName());
+    // Hive.registerAdapter(CountryPrefsAdapterName());
   }
 }

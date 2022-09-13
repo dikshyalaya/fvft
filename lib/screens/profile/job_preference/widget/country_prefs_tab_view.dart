@@ -13,8 +13,8 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class CountryPrefsTabView extends StatelessWidget {
-  final Future future;
-  final Function refreshState;
+  final Future? future;
+  final Function? refreshState;
 
   CountryPrefsTabView({
     Key? key,
@@ -73,7 +73,7 @@ class CountryPrefsTabView extends StatelessWidget {
                           listen: false);
                   return snapShotData.connectionState == ConnectionState.waiting
                       ? const Center(child: CircularProgressIndicator())
-                      : jobPrefsUIProvider.countryList.isEmpty
+                      : jobPrefsUIProvider.countryList!.isEmpty
                           ? Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 20.w, vertical: 20.h),
@@ -138,7 +138,7 @@ class CountryPrefsTabView extends StatelessWidget {
         Provider.of<JobPreferenceUIProvider>(context, listen: false);
     return ReorderableListView(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-      children: jobPrefsUIProvider.countryList
+      children: jobPrefsUIProvider.countryList!
           .asMap()
           .map(
             (index, e) => MapEntry(
@@ -150,15 +150,16 @@ class CountryPrefsTabView extends StatelessWidget {
                 child: Column(
                   key: ValueKey(e),
                   children: [
-                    CustomListTile(
-                      key: UniqueKey(),
-                      onTap: () {},
-                      title: e,
-                      date: 'Priority Level: ${index + 1}',
-                      editTap: () async => await jobPrefsUIProvider
-                          .deleteParticularCountryFromPrefs(e),
-                      subTitle: '',
-                    ),
+                    // CustomListTile(
+                    //   key: UniqueKey(),
+                    //   onTap: () {},
+                    //   title: e,
+                    //   date: 'Priority Level: ${index + 1}',
+                    //   editTap: () async => await jobPrefsUIProvider
+                    //       .deleteParticularCountryFromPrefs(e),
+                    //   subTitle: '',
+                    // ),
+                    // ! TODO :  Uncomment this one
                     SizedBox(height: 15.h),
                   ],
                 ),
@@ -174,7 +175,7 @@ class CountryPrefsTabView extends StatelessWidget {
         final element = jobPrefsUIProvider.removeCountryByIndex(oldIndex);
         jobPrefsUIProvider.addNewCountry(
             newIndex: newIndex, value: element, oldIndex: oldIndex);
-        refreshState();
+        refreshState!();
       },
     );
   }

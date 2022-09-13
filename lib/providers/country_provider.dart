@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,25 +12,33 @@ import 'job_filter_provider.dart';
 import '../repositories/country_repository.dart';
 
 class CountryProvider with ChangeNotifier {
-  List<CountryLSModel>? _countriesList = [];
+ 
+  List<CountryLSModel?>? _countriesList = [];
 
-  List<CountryLSModel>? get countriesList => _countriesList;
+  List<CountryLSModel?>? get countriesList => _countriesList;
 
   void setCountriesList(List<CountryLSModel> updatedCountriesList) {
     _countriesList = updatedCountriesList;
     notifyListeners();
   }
 
+  /// FUNCTION TO [_CheckingTheCachedDataAndFetchingFromTheServer] : Display list of country name and its flag in horizontal list view
+
   Future<void> getListOfCountries({int limit = 10, int pageNo = 1}) async {
     try {
       final response = await CountryRepository.getListOfCountries(
           limit: limit, pageNo: pageNo);
-      if (response.data != null && response.data['success']) {
+    
+
+      if (response.data != null) {
         bool exists = await locator<HiveService>()
             .isExists(boxName: HiveBoxName.country.stringValue);
         if (!exists) {
-          _countriesList!.addAll(response.data['data']
-              .map<CountryLSModel>((e) => CountryLSModel.fromJson(e))
+          _countriesList!.addAll(response.data['data']['countries']
+              .map<CountryLSModel>((e) {
+                print(e);
+                return CountryLSModel.fromJson(e);
+              })
               .toList());
           notifyListeners();
           //caching country
@@ -37,9 +47,10 @@ class CountryProvider with ChangeNotifier {
         } else {
           final val = await locator<HiveService>()
               .getBoxes(HiveBoxName.country.stringValue);
-          _countriesList = val.map<CountryLSModel>((e) => e).toList();
+          _countriesList = val.map<CountryLSModel?>((e) => e).toList();
           notifyListeners();
         }
+        notifyListeners();
       }
     } on DioError catch (e) {
       LogUtils.logError('Dio Error to Fetch List of countries: ${e.response}');
@@ -55,25 +66,28 @@ class CountryProvider with ChangeNotifier {
     final bool result = await locator<HiveService>()
         .isExists(boxName: HiveBoxName.allCountry.stringValue);
     if (result) {
-      List<dynamic> va = await locator<HiveService>()
-          .getBox(HiveBoxName.allCountry.stringValue);
-      _countriesList = va.map<CountryLSModel>((e) => e as CountryLSModel).toList();
+      List<dynamic> va = await (locator<HiveService>()
+          .getBox(HiveBoxName.allCountry.stringValue));
+      _countriesList =
+          va.map<CountryLSModel>((e) => e as CountryLSModel).toList();
       locator<JobFilterProvider>().setCountry(_countriesList!);
       return;
     }
     try {
-      List<CountryLSModel> _tempCountriesList = [];
-      final response = await CountryRepository.getListOfCountries(
-          limit: limit, pageNo: pageNo);
-      if (response.data != null && response.data['success']) {
-        final responseResult = await CountryRepository.getListOfCountries(
-            limit: response.data['meta']['total_records'], pageNo: pageNo);
-        _tempCountriesList.addAll(responseResult.data['data']
+      List<CountryLSModel?>? tempCountriesList = [];
+      final response = await CountryRepository
+          .getListOfCountries(); //TODO add the parameters
+      if (response.data != null) {
+        final responseResult =
+            await CountryRepository.getListOfCountries(); //ADD the parameters
+
+            log(responseResult.data['data'].toString());
+        tempCountriesList.addAll(responseResult.data['data']['countries']
             .map<CountryLSModel>((e) => CountryLSModel.fromJson(e))
             .toList());
       }
-      locator<JobFilterProvider>().setCountry(_tempCountriesList);
-      _countriesList = _tempCountriesList;
+      locator<JobFilterProvider>().setCountry(tempCountriesList);
+      _countriesList = tempCountriesList;
       notifyListeners();
       await locator<HiveService>()
           .addBox(_countriesList, HiveBoxName.allCountry.stringValue);

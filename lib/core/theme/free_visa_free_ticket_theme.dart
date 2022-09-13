@@ -11,15 +11,16 @@ class FreeVisaFreeTicketTheme {
     gradient: FreeVisaFreeTicketTheme.appLinearGradient,
   );
 
-  static const Gradient appLinearGradient = LinearGradient(
-    begin: Alignment(-1.0, -1.0),
-    end: Alignment(1.0, 4.0),
-    colors: [
-      FreeVisaFreeTicketTheme.primaryColor,
-      FreeVisaFreeTicketTheme.secondaryColor,
-    ],
+  static Gradient appLinearGradient = LinearGradient(
+    begin: const Alignment(-1.0, -1.0),
+    end: const Alignment(1.0, 4.0),
+    colors: locator<ThemeProvider>().themeMode == ThemeMode.dark
+        ? [Colors.black]
+        : [
+            FreeVisaFreeTicketTheme.primaryColor,
+            FreeVisaFreeTicketTheme.secondaryColor,
+          ],
   );
-
   static const Color primaryColor = Color.fromRGBO(32, 146, 255, 1);
 
   // caption color
@@ -62,8 +63,23 @@ class FreeVisaFreeTicketTheme {
   static const FlexScheme usedFlexScheme = FlexScheme.green;
 
   /// FUNC [primaryThemeData] : get the primary theme for app
-  static ThemeData get primaryThemeData => FlexColorScheme.light(
+  static ThemeData get lightTheme => FlexColorScheme.light(
         scheme: usedFlexScheme,
+
+        textTheme: TextTheme(
+          caption: captionStyle,
+          subtitle1: caption1Style,
+          subtitle2: bodyTextStyle,
+          bodyText1: body1TextStyle,
+          bodyText2: body2TextStyle,
+          headline1: heading1Style,
+          headline2: heading2Style,
+          headline3: heading3Style,
+          headline4: captionStyle,
+          headline5: caption1Style,
+          headline6: bodyTextStyle,
+        ),
+
         colorScheme: ThemeData().colorScheme.copyWith(
               primary: Color.lerp(
                 FreeVisaFreeTicketTheme.primaryColor,
@@ -77,8 +93,21 @@ class FreeVisaFreeTicketTheme {
       ).toTheme;
 
   /// FUNC [darkThemeData] : get the dark theme for app
-  static ThemeData get darkThemeData => FlexColorScheme.dark(
-        scheme: usedFlexScheme,
+  static ThemeData get darkTheme => FlexColorScheme.dark(
+        primary: Colors.black,
+        textTheme: TextTheme(
+          caption: captionStyle,
+          subtitle1: caption1Style,
+          subtitle2: bodyTextStyle,
+          bodyText1: body1TextStyle,
+          bodyText2: body2TextStyle,
+          headline1: heading1Style,
+          headline2: heading2Style,
+          headline3: heading3Style,
+          headline4: captionStyle,
+          headline5: caption1Style,
+          headline6: bodyTextStyle,
+        ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
         fontFamily: 'Poppins',
       ).toTheme;
@@ -113,36 +142,28 @@ class FreeVisaFreeTicketTheme {
   static TextStyle get captionStyle => TextStyle(
         fontSize: 32.sp,
         fontWeight: FontWeight.w500,
-        color: locator<ThemeProvider>().themeMode == ThemeMode.dark
-            ? Colors.white
-            : Colors.black,
+        color: Colors.white,
         fontFamily: 'Poppins',
       );
 
   static TextStyle get caption1Style => TextStyle(
         fontSize: 28.sp,
         fontWeight: FontWeight.w500,
-        color: locator<ThemeProvider>().themeMode == ThemeMode.dark
-            ? Colors.white
-            : Colors.black,
+        color: Colors.white,
         fontFamily: 'Poppins',
       );
 
   static TextStyle get bodyTextStyle => TextStyle(
         fontSize: 28.sp,
         fontWeight: FontWeight.w400,
-        color: locator<ThemeProvider>().themeMode == ThemeMode.dark
-            ? Colors.white
-            : Colors.black,
+        color: Colors.white,
         fontFamily: 'Poppins',
       );
 
   static TextStyle get body1TextStyle => TextStyle(
         fontSize: 26.sp,
         fontWeight: FontWeight.w400,
-        color: locator<ThemeProvider>().themeMode == ThemeMode.dark
-            ? Colors.white
-            : Colors.black,
+        color: Colors.white,
         fontFamily: 'Poppins',
       );
 

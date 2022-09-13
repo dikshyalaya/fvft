@@ -17,7 +17,7 @@ class PasswordResetRequestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar(context, 
         isToShowTitle: false,
         backBtnColor: FreeVisaFreeTicketTheme.whiteColor,
       ),
@@ -100,8 +100,8 @@ class PasswordResetRequestScreen extends StatelessWidget {
   /// Widget [_buildResetRequestButton] : Password reset request button
   Widget _buildResetRequestButton() {
     return Container(
-      decoration: const ShapeDecoration(
-        shape: StadiumBorder(),
+      decoration: ShapeDecoration(
+        shape: const StadiumBorder(),
         gradient: FreeVisaFreeTicketTheme.appLinearGradient,
       ),
       child: MaterialButton(

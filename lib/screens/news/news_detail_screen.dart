@@ -12,14 +12,14 @@ import 'package:intl/intl.dart';
 import 'package:html2md/html2md.dart' as html2md;
 
 class NewsDetailScreen extends StatelessWidget {
-  final NewsModel news;
+  final NewsModel? news;
 
   const NewsDetailScreen({Key? key, required this.news}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar(context, 
         isToShowBackButton: true,
         isToShowTitle: false,
         titleFontSize: 36.sp,
@@ -30,13 +30,13 @@ class NewsDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              news.newsCategoryList!.first.title!,
+              news!.newsCategoryList!.first.title!,
               style: FreeVisaFreeTicketTheme.captionStyle.copyWith(
                 color: const Color(0xFFFD5530),
               ),
             ),
             SizedBox(height: 10.h),
-            Text(news.newsTitle!,
+            Text(news!.newsTitle!,
                 style: FreeVisaFreeTicketTheme.caption1Style,
                 softWrap: true,
                 maxLines: 3),
@@ -46,7 +46,7 @@ class NewsDetailScreen extends StatelessWidget {
             _buildJobPostedBy(),
             SizedBox(height: 10.h),
             MarkdownBody(
-              data: html2md.convert(news.newsContent),
+              data: html2md.convert(news!.newsContent!),
               shrinkWrap: true,
               fitContent: true,
               styleSheet: FreeVisaFreeTicketTheme.markdownStyleSheet,
@@ -54,7 +54,7 @@ class NewsDetailScreen extends StatelessWidget {
                 try {
                   String imageUrl = uri.toString();
                   if (imageUrl.contains('data:image/png;base64,')) {
-                    Uint8List? bytes;
+                    late Uint8List? bytes;
                     try {
                       bytes = base64.decode(
                         imageUrl.replaceAll('data:image/png;base64,', ''),
@@ -92,7 +92,7 @@ class NewsDetailScreen extends StatelessWidget {
   Widget _buildFeatureImage() {
     return ClipRRect(
       child: Image.network(
-        news.featuredImageUrl!,
+        news!.featuredImageUrl!,
         height: 250.w,
         width: double.infinity,
         fit: BoxFit.cover,
@@ -113,10 +113,10 @@ class NewsDetailScreen extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.all(0),
       title: Text(
-        'by ${news.newsPostedUser!.name}',
+        'by ${news!.newsPostedUser!.name}',
         style: FreeVisaFreeTicketTheme.captionStyle,
       ),
-      subtitle: Text(DateFormat.yMMMd().format(news.postedAt!),
+      subtitle: Text(DateFormat.yMMMd().format(news!.postedAt!),
           style: FreeVisaFreeTicketTheme.bodyTextStyle),
       leading: Container(
         width: 100.w,

@@ -39,7 +39,7 @@ class _NewsListViewScreenState extends State<NewsListViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar( context , 
         appBarTitle: 'News',
         titleFontSize: 36.sp,
       ),

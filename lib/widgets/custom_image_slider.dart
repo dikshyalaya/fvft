@@ -41,7 +41,7 @@ class _CustomImageSliderState extends State<CustomImageSlider> {
                     .bannerUrlList
                     .map(
                       (item) => Image.network(
-                        item,
+                        item!,
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: double.infinity,

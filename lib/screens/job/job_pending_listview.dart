@@ -15,7 +15,10 @@ class JobPendingListView extends StatelessWidget {
     return Consumer<JobApplicationProvider>(
       builder: (ctx, data, _) {
         return RefreshIndicator(
-          onRefresh: () async => await data.getPendingJobList(),
+          // onRefresh: () async => await data.getPendingJobList(),
+          onRefresh: () async{
+            // 
+          },
           child: Container(
             width: double.infinity,
             height: double.infinity,

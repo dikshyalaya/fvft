@@ -8,12 +8,12 @@ class AppConfig extends InheritedWidget {
 
   const AppConfig(
       {Key? key,
-      required this.child,
+       required this.child,
       required this.appTitle,
       required this.buildFlavor})
       : super(child: child, key: key);
 
-  static AppConfig? of(BuildContext buildContext) {
+  static AppConfig ? of(BuildContext buildContext) {
     return buildContext.dependOnInheritedWidgetOfExactType();
   }
 

@@ -1,6 +1,7 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:free_visa_free_ticket/core/services/hive_service.dart';
 import '../../core/services/navigation_service.dart';
 import '../../core/services/service_locator.dart';
 import '../../core/theme/free_visa_free_ticket_theme.dart';
@@ -191,6 +192,7 @@ class LoginScreen extends StatelessWidget {
       ),
       child: TextButton.icon(
         onPressed: () {
+  
           locator<NavigationService>()
               .pushReplacementNamed(routes.tempLandingRoute);
           // locator<NavigationService>()

@@ -117,7 +117,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
+      appBar: customAppBar( context , 
         appBarTitle: 'Edit Profile',
       ),
       body: FutureBuilder(
@@ -177,7 +177,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           borderRadius: 10.w,
           onChanged: (value) {
             Provider.of<AuthUISProvider>(context, listen: false)
-                .setFullName(value);
+                .setFullName(value!);
           },
           value: fullName,
           validatorFunc: Validator.fullNameValidator,
@@ -199,7 +199,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           isEnabled: false,
           onChanged: (value) {
             Provider.of<AuthUISProvider>(context, listen: false)
-                .setEmail(value);
+                .setEmail(value!);
           },
           value: email,
           validatorFunc: Validator.emailValidator,
@@ -220,7 +220,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           borderRadius: 10.w,
           onChanged: (value) {
             Provider.of<AuthUISProvider>(context, listen: false)
-                .setPhone(value);
+                .setPhone(value!);
           },
           value: phone,
           validatorFunc: Validator.mobileValidator,

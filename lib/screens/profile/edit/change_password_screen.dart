@@ -89,8 +89,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         vertical: 10.h,
                       ),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [
+                        gradient:  LinearGradient(
+                          colors: const [
                             FreeVisaFreeTicketTheme.primaryColor,
                             FreeVisaFreeTicketTheme.secondaryColor,
                           ],
