@@ -9,18 +9,147 @@ class ProfileHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var h;
     return Scaffold(
       appBar: profileScreenAppBar(),
-      body: Stack(
-        children: [
-          Container(),
-          _profileBackgroundShade(),
-          _profileAvator(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildHeader(),
+            _profileOptionHeader(),
+            _cardHeader(icon: Icons.info, title: 'Personal Information'),
+            const Divider(
+              thickness: 1.5,
+            ),
+            _cardHeader(icon: Icons.email, title: 'Contact Information'),
+            const Divider(
+              thickness: 1.5,
+            ),
+            _cardHeader(icon: Icons.school, title: 'Education'),
+            const Divider(
+              thickness: 1.5,
+            ),
+            _cardHeader(icon: Icons.settings, title: 'Skills'),
+            const Divider(
+              thickness: 1.5,
+            ),
+            _cardHeader(icon: Icons.safety_check, title: 'Experience'),
+            const Divider(
+              thickness: 1.5,
+            ),
+            _cardHeader(icon: Icons.work, title: 'Job Preference'),
+            const Divider(
+              thickness: 1.5,
+            ),
+            _cardHeader(icon: Icons.photo_album, title: 'Photos'),
+            const Divider(
+              thickness: 1.5,
+            ),
+          ],
+        ),
       ),
     );
   }
+
+  Widget _cardHeader({required IconData icon, required String title}) =>
+      ListTile(
+        leading: Icon(
+          icon,
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: Colors.black38,
+            fontSize: 18,
+          ),
+        ),
+      );
+
+  Widget _profileOptionHeader() => Container(
+        height: 54,
+        decoration: const BoxDecoration(
+          color: Colors.black12,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'My Profile',
+                style: TextStyle(
+                  color: Colors.black26,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                ),
+              ),
+              Container(
+                height: 60.h,
+                width: 120.w,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.blue,
+                ),
+                child: const Center(
+                    child: Text(
+                  'View',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                )),
+              )
+            ],
+          ),
+        ),
+      );
+
+  Widget _buildHeader() => Stack(
+        children: [
+          Container(
+            height: 650.h,
+          ),
+          _profileBackgroundShade(),
+          _profileAvator(),
+          _candidateInfo(),
+        ],
+      );
+
+  _candidateInfo() => Positioned(
+        top: 420.h,
+        left: 0,
+        right: 0,
+        child: Column(
+          children: [
+            Text(
+              "SANTOSH THAPa".toUpperCase(),
+              style: TextStyle(
+                fontSize: 40.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Text(
+              "Plumber,Electrican".toUpperCase(),
+              style: TextStyle(
+                fontSize: 30.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Text(
+              "youremail@gmail.com".toUpperCase(),
+              style: TextStyle(
+                fontSize: 25.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Text(
+              "+9779846843336".toUpperCase(),
+              style: TextStyle(
+                fontSize: 25.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      );
 
   _profileBackgroundShade() => Positioned(
         top: -240.h,
@@ -52,7 +181,7 @@ class ProfileHome extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 168.r,
                   backgroundColor: Colors.white,
-                  child:const  Icon(
+                  child: const Icon(
                     Icons.person,
                     size: 100,
                   ),
