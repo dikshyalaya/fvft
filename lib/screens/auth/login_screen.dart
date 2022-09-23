@@ -2,6 +2,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:free_visa_free_ticket/core/services/hive_service.dart';
+import '../../core/constants/route_constants.dart';
 import '../../core/services/navigation_service.dart';
 import '../../core/services/service_locator.dart';
 import '../../core/theme/free_visa_free_ticket_theme.dart';
@@ -10,7 +11,7 @@ import '../../providers/auth_uis_provider.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_image_slider.dart';
 import '../../widgets/custom_textformfield.dart';
-import '../../core/constants/routes.dart' as routes;
+import '../../core/constants/route_constants.dart' as routes;
 import 'package:provider/provider.dart';
 
 /// Screen [LoginScreen] : Login Screen
@@ -127,7 +128,7 @@ class LoginScreen extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
-          locator<NavigationService>().navigateTo(routes.passwordResetReqRoute);
+          locator<NavigationService>().navigateTo(RouteConstants.passwordResetReqRoute);
         },
         child: Text(
           'Forgot Password ?',
@@ -161,7 +162,7 @@ class LoginScreen extends StatelessWidget {
     return InkWell(
       onTap: () {
         // locator<NavigationService>().navigateTo(routes.signUpRoute);
-        locator<NavigationService>().navigateTo(routes.tempSignUpScreen);
+        locator<NavigationService>().navigateTo(RouteConstants.tempSignUpScreen);
       },
       child: Padding(
         padding: EdgeInsets.only(
@@ -194,7 +195,7 @@ class LoginScreen extends StatelessWidget {
         onPressed: () {
   
           locator<NavigationService>()
-              .pushReplacementNamed(routes.tempLandingRoute);
+              .pushReplacementNamed(RouteConstants.tempLandingRoute);
           // locator<NavigationService>()
           //     .pushReplacementNamed(routes.landingRoute);
         },

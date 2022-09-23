@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:free_visa_free_ticket/core/services/navigation_service.dart';
+import 'package:free_visa_free_ticket/core/services/service_locator.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/widgets/appbar.dart';
 
 class ProfileHome extends StatelessWidget {
@@ -16,7 +18,11 @@ class ProfileHome extends StatelessWidget {
           children: [
             _buildHeader(),
             _profileOptionHeader(),
-            _cardHeader(icon: Icons.info, title: 'Personal Information'),
+            InkWell(
+              onTap: () { 
+                // locator<NavigationService>().navigateTo();
+              },
+              child: _cardHeader(icon: Icons.info, title: 'Personal Information')),
             const Divider(
               thickness: 1.5,
             ),

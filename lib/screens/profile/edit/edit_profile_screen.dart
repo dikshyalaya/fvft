@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import '../../../core/constants/route_constants.dart';
 import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/utilities/validators.dart';
@@ -10,7 +11,7 @@ import '../../../providers/theme_provider.dart';
 import '../../../widgets/custom_app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../widgets/custom_button.dart';
-import '../../../core/constants/routes.dart' as routes;
+
 import '../../../widgets/custom_snackbar.dart';
 import '../../../widgets/custom_textformfield.dart';
 import 'package:image_picker/image_picker.dart';
@@ -156,7 +157,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         title: 'Change Password',
                         onTap: () {
                           locator<NavigationService>()
-                              .navigateTo(routes.changePasswordRoute);
+                              .navigateTo(RouteConstants.changePasswordRoute);
                         },
                         // color: FreeVisaFreeTicketTheme.greyText,
                       ),

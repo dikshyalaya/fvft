@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:free_visa_free_ticket/core/constants/route_constants.dart';
 import '../core/services/hive_service.dart';
 import '../core/services/navigation_service.dart';
 import '../core/services/service_locator.dart';
 import '../core/utilities/enum_utils.dart';
 import '../models/local_storage/user_model.dart';
 import '../widgets/custom_snackbar.dart';
-import '../core/constants/routes.dart' as routes;
+
 
 import 'auth_provider.dart';
 
@@ -103,7 +104,7 @@ class AuthUISProvider with ChangeNotifier {
     if (result) {
       clearLoginData();
       // locator<NavigationService>().navigateTo(routes.landingRoute);
-      locator<NavigationService>().navigateTo(routes.tempLandingRoute);
+      locator<NavigationService>().navigateTo(RouteConstants.tempLandingRoute);
     }
     setIsLoading(false);
   }
@@ -150,7 +151,7 @@ class AuthUISProvider with ChangeNotifier {
         isError: !result);
     if (result) {
       clearSignUpData();
-      locator<NavigationService>().navigateTo(routes.tempLandingRoute);
+      locator<NavigationService>().navigateTo(RouteConstants.tempLandingRoute);
       // locator<NavigationService>().navigateTo(routes.landingRoute);
     }
     setIsLoading(false);

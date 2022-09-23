@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:free_visa_free_ticket/main.dart';
 import '../../../core/constants/assets_source.dart';
+import '../../../core/constants/route_constants.dart';
 import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/theme/free_visa_free_ticket_theme.dart';
 import '../../../widgets/custom_app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../widgets/custom_textformfield.dart';
-import '../../../core/constants/routes.dart' as routes;
 
 /// Screen [PasswordResetRequestScreen] : Forgot password reset request screen
 class PasswordResetRequestScreen extends StatelessWidget {
@@ -114,7 +114,7 @@ class PasswordResetRequestScreen extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          locator<NavigationService>().navigateTo(routes.passwordResetRoute);
+          locator<NavigationService>().navigateTo(RouteConstants.passwordResetRoute);
         },
       ),
     );

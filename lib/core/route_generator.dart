@@ -15,6 +15,7 @@ import '../screens/landing_screen.dart';
 import '../screens/language_selection_screen.dart';
 import '../providers/auth_provider.dart';
 import '../screens/job/temp_job_list_post_view_screen.dart';
+import 'constants/route_constants.dart';
 import 'services/service_locator.dart';
 import '../providers/auth_uis_provider.dart';
 import '../providers/country_provider.dart';
@@ -45,7 +46,7 @@ import '../screens/profile/manual_cv/view_cv_screen.dart';
 import '../screens/splash_screen.dart';
 import '../widgets/web_view_screen.dart';
 import 'package:provider/provider.dart';
-import 'constants/routes.dart' as routes;
+import 'constants/route_constants.dart' as routes;
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -54,7 +55,7 @@ class RouteGenerator {
       case '/':
         return MaterialPageRoute(
             settings: settings, builder: (context) => const SplashScreen());
-      case routes.loginRoute:
+      case RouteConstants.loginRoute:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => MultiProvider(
@@ -64,7 +65,7 @@ class RouteGenerator {
             child: const LoginScreen(),
           ),
         );
-      case routes.tempLoginScreen:
+      case RouteConstants.tempLoginScreen:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => MultiProvider(
@@ -74,7 +75,7 @@ class RouteGenerator {
             child: const TempLoginScreen(),
           ),
         );
-      case routes.signUpRoute:
+      case RouteConstants.signUpRoute:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ChangeNotifierProvider(
@@ -82,7 +83,7 @@ class RouteGenerator {
             create: (ctx) => AuthUISProvider(),
           ),
         );
-      case routes.tempSignUpScreen:
+      case RouteConstants.tempSignUpScreen:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ChangeNotifierProvider(
@@ -90,15 +91,15 @@ class RouteGenerator {
             create: (ctx) => AuthUISProvider(),
           ),
         );
-      case routes.passwordResetRoute:
+      case RouteConstants.passwordResetRoute:
         return MaterialPageRoute(
             settings: settings,
             builder: (context) => const PasswordResetScreen());
-      case routes.passwordResetReqRoute:
+      case RouteConstants.passwordResetReqRoute:
         return MaterialPageRoute(
             settings: settings,
             builder: (context) => const PasswordResetRequestScreen());
-      case routes.tempLandingRoute:
+      case RouteConstants.tempLandingRoute:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => MultiProvider(
@@ -118,7 +119,7 @@ class RouteGenerator {
             child: const TempLandingScreen(),
           ),
         );
-      case routes.editProfileRoute:
+      case RouteConstants.editProfileRoute:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ChangeNotifierProvider.value(
@@ -126,11 +127,11 @@ class RouteGenerator {
             value: AuthUISProvider(),
           ),
         );
-      case routes.changePasswordRoute:
+      case RouteConstants.changePasswordRoute:
         return MaterialPageRoute(
             settings: settings,
             builder: (context) => const ChangePasswordScreen());
-      case routes.jobDetailRoute:
+      case RouteConstants.jobDetailRoute:
         final args = arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
             settings: settings,
@@ -140,7 +141,7 @@ class RouteGenerator {
                     jobDetail: args!['jobDetail'],
                   ),
                 ));
-      case routes.jobPreferenceRoute:
+      case RouteConstants.jobPreferenceRoute:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => MultiProvider(
@@ -155,7 +156,7 @@ class RouteGenerator {
             ],
           ),
         );
-      case routes.webViewRoute:
+      case RouteConstants.webViewRoute:
         final args = arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
           settings: settings,
@@ -164,7 +165,7 @@ class RouteGenerator {
             urlToRender: args['urlToRender'],
           ),
         );
-      case routes.categoryJobListRoute:
+      case RouteConstants.categoryJobListRoute:
         final args = arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
             settings: settings,
@@ -181,25 +182,25 @@ class RouteGenerator {
                     jobCategoryName: args['jobCategoryName'],
                   ),
                 ));
-      case routes.settingsRoute:
+      case RouteConstants.settingsRoute:
         return MaterialPageRoute(
             settings: settings, builder: (context) => const SettingScreen());
-      case routes.allNewsRoute:
+      case RouteConstants.allNewsRoute:
         return MaterialPageRoute(
             settings: settings,
             builder: (context) => ChangeNotifierProvider.value(
                   child: const NewsListViewScreen(),
                   value: NewsProvider(),
                 ));
-      case routes.newsDetailRoute:
+      case RouteConstants.newsDetailRoute:
         final Map<String, dynamic>? args = arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
             settings: settings,
             builder: (context) => NewsDetailScreen(news: args!['news']));
-      case routes.latestNewsRoute:
+      case RouteConstants.latestNewsRoute:
         return MaterialPageRoute(
             settings: settings, builder: (context) => const LatestNewsScreen());
-      case routes.uploadCvRoute:
+      case RouteConstants.uploadCvRoute:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ChangeNotifierProvider.value(
@@ -207,7 +208,7 @@ class RouteGenerator {
             value: locator<CVProvider>(),
           ),
         );
-      case routes.viewCvRoute:
+      case RouteConstants.viewCvRoute:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ChangeNotifierProvider.value(
@@ -215,7 +216,7 @@ class RouteGenerator {
             value: locator<CVProvider>(),
           ),
         );
-      case routes.viewAllJobCategory:
+      case RouteConstants.viewAllJobCategory:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ChangeNotifierProvider.value(
@@ -223,12 +224,12 @@ class RouteGenerator {
             child: const TempCategoryListScreen(),
           ),
         );
-      case routes.countryListViewScreen:
+      case RouteConstants.countryListViewScreen:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => const CountryListViewScreen(),
         );
-      case routes.latestJobListScreen:
+      case RouteConstants.latestJobListScreen:
         final Map<String, dynamic>? args = arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
           settings: settings,
@@ -271,7 +272,7 @@ class RouteGenerator {
       //           appBarTitle: args!['appBarTitle'] ?? 'Jobs'),
       //     ),
       //   );
-      case routes.companyListScreen:
+      case RouteConstants.companyListScreen:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ChangeNotifierProvider.value(
@@ -279,12 +280,12 @@ class RouteGenerator {
             child: const CompanyListViewScreen(),
           ),
         );
-      case routes.tempLanguageSelection:
+      case RouteConstants.tempLanguageSelection:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => const TempLanguageSelectionScreen(),
         );
-      case routes.tempAppliedJobScreen:
+      case RouteConstants.tempAppliedJobScreen:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ChangeNotifierProvider.value(
@@ -292,7 +293,7 @@ class RouteGenerator {
             child: const TempJobAppliedScreen(),
           ),
         );
-      case routes.tempShortListedJobScreen:
+      case RouteConstants.tempShortListedJobScreen:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ChangeNotifierProvider.value(
@@ -300,7 +301,7 @@ class RouteGenerator {
             child: const TempJobAcceptedScreen(),
           ),
         );
-      case routes.tempRejectedApplication:
+      case RouteConstants.tempRejectedApplication:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ChangeNotifierProvider.value(
@@ -308,7 +309,7 @@ class RouteGenerator {
             child: const TempJobRejectedScreen(),
           ),
         );
-      case routes.tempJobDetailScreen:
+      case RouteConstants.tempJobDetailScreen:
         final args = arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
             settings: settings,
@@ -318,7 +319,7 @@ class RouteGenerator {
                     jobDetail: args!['jobDetail'],
                   ),
                 ));
-      case routes.countryJobsScreen:
+      case RouteConstants.countryJobsScreen:
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => ChangeNotifierProvider.value(

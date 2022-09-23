@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../core/constants/route_constants.dart';
 import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
-import '../../../core/constants/routes.dart' as routes;
+import '../../../core/constants/route_constants.dart' as routes;
 import '../../../core/theme/free_visa_free_ticket_theme.dart';
 import '../../../providers/job_provider.dart';
 import '../../../screens/job/post/job_post_list_view.dart';
@@ -17,7 +18,8 @@ context ,
     rightHeaderTitle: 'View All',
     onTapToRightTitle: () {
       locator<NavigationService>()
-          .navigateTo(routes.latestJobListScreen, arguments: {
+          .navigateTo(
+          RouteConstants.latestJobListScreen, arguments: {
         'appBarTitle': 'Saved Jobs',
         'jobs' : value.allJobList
       });

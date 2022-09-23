@@ -3,10 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/constants/assets_source.dart';
+import '../../core/constants/route_constants.dart';
 import '../../core/services/navigation_service.dart';
 import '../../core/services/service_locator.dart';
 import '../../core/theme/free_visa_free_ticket_theme.dart';
-import '../../core/constants/routes.dart' as routes;
+import '../../core/constants/route_constants.dart' as routes;
 
 import '../../core/utilities/validators.dart';
 import '../../providers/auth_uis_provider.dart';
@@ -280,7 +281,7 @@ class _TempSignUpScreenState extends State<TempSignUpScreen> {
       onTap: () {
         // locator<NavigationService>().pushReplacementNamed(routes.loginRoute);
         locator<NavigationService>()
-            .pushReplacementNamed(routes.tempLoginScreen);
+            .pushReplacementNamed(RouteConstants.tempLoginScreen);
       },
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -317,7 +318,7 @@ class _TempSignUpScreenState extends State<TempSignUpScreen> {
       child: TextButton.icon(
         onPressed: () {
           locator<NavigationService>()
-              .pushReplacementNamed(routes.tempLandingRoute);
+              .pushReplacementNamed(RouteConstants.tempLandingRoute);
         },
         icon: Icon(
           Icons.arrow_forward,

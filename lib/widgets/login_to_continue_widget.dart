@@ -1,13 +1,12 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../core/constants/route_constants.dart';
 import '../core/services/navigation_service.dart';
 import '../core/services/service_locator.dart';
 import '../core/theme/free_visa_free_ticket_theme.dart';
-import '../core/constants/routes.dart' as routes;
 
 import '../core/constants/assets_source.dart';
-import 'custom_button.dart';
 
 class LoginToContinueWidget extends StatelessWidget {
   const LoginToContinueWidget({Key? key}) : super(key: key);
@@ -26,7 +25,7 @@ class LoginToContinueWidget extends StatelessWidget {
           InkWell(
             onTap: () {
               locator<NavigationService>()
-                  .pushReplacementNamed(routes.tempLoginScreen);
+                  .pushReplacementNamed(RouteConstants.tempLoginScreen);
             },
             borderRadius: BorderRadius.circular(50.w),
             child: Container(
@@ -53,7 +52,7 @@ class LoginToContinueWidget extends StatelessWidget {
           TextButton.icon(
             onPressed: () {
               locator<NavigationService>()
-                  .pushReplacementNamed(routes.tempLandingRoute);
+                  .pushReplacementNamed(RouteConstants.tempLandingRoute);
             },
             icon: Icon(
               Icons.arrow_forward,

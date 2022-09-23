@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/constants/route_constants.dart';
 import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../screens/category/category_list_screen.dart';
 import '../global_view_layout.dart';
-import '../../../core/constants/routes.dart' as routes;
+import '../../../core/constants/route_constants.dart' as routes;
 
 Widget buildJobCategoryList(
   BuildContext context,
@@ -17,7 +18,7 @@ Widget buildJobCategoryList(
     rightHeaderTitle: 'View All',
     onTapToRightTitle: () {
       locator<NavigationService>().navigateTo(
-        routes.viewAllJobCategory,
+        RouteConstants.viewAllJobCategory,
       );
     },
     child: Padding(

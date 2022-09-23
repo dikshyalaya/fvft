@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
+import '../../../core/constants/route_constants.dart';
 import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/theme/free_visa_free_ticket_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../core/constants/routes.dart' as routes;
-import '../../../models/job_model.dart';
 import '../../../models/jobs_model.dart';
 import '../../../providers/paginations/job_pagination_provider.dart';
 
@@ -31,7 +30,7 @@ class JobPostListItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           locator<JobPaginationProvider>().setIsToShowFilterBtn(false);
-          locator<NavigationService>().navigateTo(routes.tempJobDetailScreen,
+          locator<NavigationService>().navigateTo(RouteConstants.tempJobDetailScreen,
               arguments: {'jobDetail': jobs});
         },
         borderRadius: BorderRadius.circular(20.w),

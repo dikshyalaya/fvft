@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../../core/constants/route_constants.dart';
 import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/theme/free_visa_free_ticket_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../core/constants/routes.dart' as routes;
+
 
 class NewsListItem extends StatelessWidget {
   const NewsListItem({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class NewsListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        locator<NavigationService>().navigateTo(routes.newsDetailRoute);
+        locator<NavigationService>().navigateTo(RouteConstants.newsDetailRoute);
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

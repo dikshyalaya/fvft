@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:free_visa_free_ticket/core/constants/routes.dart';
+import 'package:free_visa_free_ticket/core/constants/route_constants.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/contact_info.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/personal_info.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/profile_home.dart';
@@ -58,7 +58,7 @@ class _FreeVisaFreeTicketState extends State<FreeVisaFreeTicket> {
                   // home: const PersonalInformation(),
                   // home: const SkillsInfo(),
 
-                  home: const QualificationInfo(),
+                  // home: const QualificationInfo(),
                   debugShowCheckedModeBanner: false,
                   title: AppConfig.of(context)!.appTitle ??
                       'Free Visa Free Ticket',

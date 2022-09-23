@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:free_visa_free_ticket/core/constants/routes.dart' as routes;
+import 'package:free_visa_free_ticket/core/constants/route_constants.dart' as routes;
 
+import '../../../core/constants/route_constants.dart';
 import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/theme/free_visa_free_ticket_theme.dart';
@@ -27,7 +28,7 @@ List<Widget> buildStatusActions() {
                 locator<JobApplicationProvider>()
                     .setJobStatusBtnName(JobStatus.onProcess);
                 locator<NavigationService>()
-                    .navigateTo(routes.tempAppliedJobScreen);
+                    .navigateTo(RouteConstants.tempAppliedJobScreen);
               },
               color: FreeVisaFreeTicketTheme.lightOrangeColor,
               totalValue: '10',
@@ -68,7 +69,7 @@ List<Widget> buildStatusActions() {
                 locator<JobApplicationProvider>()
                     .setJobStatusBtnName(JobStatus.accepted);
                 locator<NavigationService>()
-                    .navigateTo(routes.tempShortListedJobScreen);
+                    .navigateTo(RouteConstants.tempShortListedJobScreen);
               },
               color: FreeVisaFreeTicketTheme.darkPurpleColor,
               totalValue: '10',
@@ -91,7 +92,7 @@ List<Widget> buildStatusActions() {
                 locator<JobApplicationProvider>()
                     .setJobStatusBtnName(JobStatus.rejected);
                 locator<NavigationService>()
-                    .navigateTo(routes.tempRejectedApplication);
+                    .navigateTo(RouteConstants.tempRejectedApplication);
               },
               color: FreeVisaFreeTicketTheme.darkRedColor,
               totalValue: '10',

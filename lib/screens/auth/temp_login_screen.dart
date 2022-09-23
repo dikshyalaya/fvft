@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/constants/assets_source.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../core/constants/route_constants.dart';
 import '../../core/theme/free_visa_free_ticket_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +11,7 @@ import '../../core/utilities/validators.dart';
 import '../../providers/auth_uis_provider.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_textformfield.dart';
-import '../../core/constants/routes.dart' as routes;
+
 
 class TempLoginScreen extends StatelessWidget {
   const TempLoginScreen({Key? key}) : super(key: key);
@@ -193,7 +194,7 @@ class TempLoginScreen extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
-          locator<NavigationService>().navigateTo(routes.passwordResetReqRoute);
+          locator<NavigationService>().navigateTo(RouteConstants.passwordResetReqRoute);
         },
         child: Text(
           'Forgot Password ?',
@@ -239,7 +240,7 @@ class TempLoginScreen extends StatelessWidget {
       borderRadius: 20.w,
       onTap: () {
         // locator<NavigationService>().navigateTo(routes.signUpRoute);
-        locator<NavigationService>().navigateTo(routes.tempSignUpScreen);
+        locator<NavigationService>().navigateTo(RouteConstants.tempSignUpScreen);
       },
     );
   }
@@ -252,7 +253,7 @@ class TempLoginScreen extends StatelessWidget {
       child: TextButton.icon(
         onPressed: () {
           locator<NavigationService>()
-              .pushReplacementNamed(routes.tempLandingRoute);
+              .pushReplacementNamed(RouteConstants.tempLandingRoute);
           // locator<NavigationService>()
           //     .pushReplacementNamed(routes.landingRoute);
         },

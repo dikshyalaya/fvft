@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/constants/route_constants.dart';
 import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/theme/free_visa_free_ticket_theme.dart';
 import '../../../core/utilities/enum_utils.dart';
 import '../../../providers/job_application_provider.dart';
-import 'package:free_visa_free_ticket/core/constants/routes.dart' as routes;
+import 'package:free_visa_free_ticket/core/constants/route_constants.dart' as routes;
 
 Widget buildSelectedApplication() {
   return Card(
@@ -17,7 +18,7 @@ Widget buildSelectedApplication() {
         locator<JobApplicationProvider>()
             .setJobStatusBtnName(JobStatus.accepted);
         locator<NavigationService>()
-            .navigateTo(routes.tempShortListedJobScreen);
+            .navigateTo(RouteConstants.tempShortListedJobScreen);
       },
       title: Text(
         'Final Selected Application',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../core/constants/route_constants.dart';
 import '../core/theme/free_visa_free_ticket_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +9,7 @@ import '../core/services/navigation_service.dart';
 import '../core/services/service_locator.dart';
 import '../core/utilities/enum_utils.dart';
 import '../providers/auth_provider.dart';
-import '../core/constants/routes.dart' as routes;
+
 
 import '../providers/cv_provider.dart';
 import '../widgets/login_to_continue_widget.dart';
@@ -68,7 +69,7 @@ class MoreInfoScreen extends StatelessWidget {
     return _buildListTile(
       context,
       onTap: () {
-        locator<NavigationService>().navigateTo(routes.allNewsRoute);
+        locator<NavigationService>().navigateTo(RouteConstants.allNewsRoute);
       },
       title: 'News',
       isMenuTitle: true,
@@ -79,7 +80,7 @@ class MoreInfoScreen extends StatelessWidget {
     return _buildListTile(
       context,
       onTap: () {
-        locator<NavigationService>().navigateTo(routes.allNewsRoute);
+        locator<NavigationService>().navigateTo(RouteConstants.allNewsRoute);
       },
       icon: Icons.newspaper,
       title: 'Latest News',
@@ -123,9 +124,10 @@ class MoreInfoScreen extends StatelessWidget {
                           ]);
                           locator<AuthProvider>().setCurrentUser(null);
                           locator<NavigationService>()
-                              .pushReplacementNamed(routes.loginRoute);
+                              .pushReplacementNamed(RouteConstants.loginRoute);
                           locator<NavigationService>()
-                              .pushReplacementNamed(routes.tempLoginScreen);
+                              .pushReplacementNamed(
+                              RouteConstants.tempLoginScreen);
                         },
                         child: Text(
                           'Yes',
@@ -154,7 +156,7 @@ class MoreInfoScreen extends StatelessWidget {
         _buildListTile(
           context,
           onTap: () {
-            locator<NavigationService>().navigateTo(routes.editProfileRoute);
+            locator<NavigationService>().navigateTo(RouteConstants.editProfileRoute);
           },
           icon: Icons.account_circle_outlined,
           title: 'Edit Profile',
@@ -173,9 +175,9 @@ class MoreInfoScreen extends StatelessWidget {
               context,
               onTap: () {
                 if (data.myCv == null) {
-                  locator<NavigationService>().navigateTo(routes.uploadCvRoute);
+                  locator<NavigationService>().navigateTo(RouteConstants.uploadCvRoute);
                 } else {
-                  locator<NavigationService>().navigateTo(routes.viewCvRoute);
+                  locator<NavigationService>().navigateTo(RouteConstants.viewCvRoute);
                 }
               },
               icon: Icons.file_copy_rounded,
@@ -187,7 +189,7 @@ class MoreInfoScreen extends StatelessWidget {
         _buildListTile(
           context,
           onTap: () {
-            locator<NavigationService>().navigateTo(routes.changePasswordRoute);
+            locator<NavigationService>().navigateTo(RouteConstants.changePasswordRoute);
           },
           icon: Icons.lock_outline,
           title: 'Change Password',
@@ -216,7 +218,7 @@ class MoreInfoScreen extends StatelessWidget {
     return _buildListTile(
       context,
       onTap: () {
-        locator<NavigationService>().navigateTo(routes.jobPreferenceRoute);
+        locator<NavigationService>().navigateTo(RouteConstants.jobPreferenceRoute);
       },
       icon: Icons.person_search,
       title: 'Preferred Job',
@@ -245,7 +247,7 @@ class MoreInfoScreen extends StatelessWidget {
     return _buildListTile(
       context,
       onTap: () {
-        locator<NavigationService>().navigateTo(routes.settingsRoute);
+        locator<NavigationService>().navigateTo(RouteConstants.settingsRoute);
       },
       icon: Icons.settings,
       title: 'Settings',
@@ -284,7 +286,7 @@ class MoreInfoScreen extends StatelessWidget {
       context,
       onTap: () {
         locator<NavigationService>().navigateTo(
-          routes.webViewRoute,
+          RouteConstants.webViewRoute,
           arguments: {
             'appBarTitle': 'Terms & Condition',
             'urlToRender': 'https://jagaranmaharjan.github.io/',
@@ -301,7 +303,7 @@ class MoreInfoScreen extends StatelessWidget {
       context,
       onTap: () {
         locator<NavigationService>().navigateTo(
-          routes.webViewRoute,
+          RouteConstants.webViewRoute,
           arguments: {
             'appBarTitle': 'Privacy Policy',
             'urlToRender': 'https://jagaranmaharjan.github.io/',
