@@ -16,7 +16,7 @@ import 'providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'appconfig.dart';
-import 'core/route_generator.dart';
+import 'core/constants/routes.dart';
 import 'core/services/app_localization_service.dart';
 import 'core/services/navigation_service.dart';
 

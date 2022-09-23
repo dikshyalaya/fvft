@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:free_visa_free_ticket/core/constants/route_constants.dart';
 import 'package:free_visa_free_ticket/core/services/navigation_service.dart';
 import 'package:free_visa_free_ticket/core/services/service_locator.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/widgets/appbar.dart';
@@ -12,7 +13,7 @@ class ProfileHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: profileScreenAppBar(title: 'PROFILE'),
+      appBar: profileScreenAppBar(context, title: 'PROFILE'),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -20,34 +21,67 @@ class ProfileHome extends StatelessWidget {
             _profileOptionHeader(),
             InkWell(
                 onTap: () {
-                  // locator<NavigationService>().navigateTo();
+                  locator<NavigationService>()
+                      .navigateTo(RouteConstants.personalInfoScreem);
                 },
                 child: _cardHeader(
                     icon: Icons.info, title: 'Personal Information')),
             const Divider(
               thickness: 1.5,
             ),
-            _cardHeader(icon: Icons.email, title: 'Contact Information'),
+            InkWell(
+                onTap: () {
+                  locator<NavigationService>()
+                      .navigateTo(RouteConstants.personalContactInfo);
+                },
+                child: _cardHeader(
+                    icon: Icons.email, title: 'Contact Information')),
             const Divider(
               thickness: 1.5,
             ),
-            _cardHeader(icon: Icons.school, title: 'Education'),
+            InkWell(
+                onTap: () {
+                  locator<NavigationService>()
+                      .navigateTo(RouteConstants.profileEducation);
+                },
+                child: _cardHeader(icon: Icons.school, title: 'Education')),
             const Divider(
               thickness: 1.5,
             ),
-            _cardHeader(icon: Icons.settings, title: 'Skills'),
+            InkWell(
+                onTap: () {
+                  locator<NavigationService>()
+                      .navigateTo(RouteConstants.profileSkills);
+                },
+                child: _cardHeader(icon: Icons.settings, title: 'Skills')),
             const Divider(
               thickness: 1.5,
             ),
-            _cardHeader(icon: Icons.safety_check, title: 'Experience'),
+            InkWell(
+                onTap: () {
+                  locator<NavigationService>()
+                      .navigateTo(RouteConstants.profileExperience);
+                },
+                child:
+                    _cardHeader(icon: Icons.safety_check, title: 'Experience')),
             const Divider(
               thickness: 1.5,
             ),
-            _cardHeader(icon: Icons.work, title: 'Job Preference'),
+            InkWell(
+                onTap: () {
+                  locator<NavigationService>()
+                      .navigateTo(RouteConstants.jobPreferenceRoute);
+                },
+                child: _cardHeader(icon: Icons.work, title: 'Job Preference')),
             const Divider(
               thickness: 1.5,
             ),
-            _cardHeader(icon: Icons.photo_album, title: 'Photos'),
+            InkWell(
+                onTap: () {
+                  locator<NavigationService>()
+                      .navigateTo(RouteConstants.profilePhotos);
+                },
+                child: _cardHeader(icon: Icons.photo_album, title: 'Photos')),
             const Divider(
               thickness: 1.5,
             ),

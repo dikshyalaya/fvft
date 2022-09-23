@@ -10,7 +10,7 @@ class PersonalInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: profileScreenAppBar(title: 'Personal Information'),
+      appBar: profileScreenAppBar(context , title: 'Personal Information'),
       bottomSheet: bottomSheet(),
       body: SingleChildScrollView(
         child: Column(

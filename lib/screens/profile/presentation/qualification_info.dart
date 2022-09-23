@@ -10,7 +10,7 @@ class QualificationInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: profileScreenAppBar(title: 'Qualifications'),
+      appBar: profileScreenAppBar(context, title: 'Qualifications'),
       bottomSheet: bottomSheet(),
       body: SingleChildScrollView(
         child: Column(

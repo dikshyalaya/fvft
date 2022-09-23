@@ -1,52 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:free_visa_free_ticket/core/utilities/enum_utils.dart';
 import 'package:free_visa_free_ticket/providers/company_provider.dart';
-import '../screens/auth/temp_login_screen.dart';
-import '../screens/auth/temp_signup_screen.dart';
-import '../screens/category/temp_category_list_screen.dart';
-import '../screens/company_listview_screen.dart';
-import '../screens/country_jobs_screen.dart';
-import '../screens/country_listview_screen.dart';
-import '../screens/job/temp_job_accepted_screen.dart';
-import '../screens/job/temp_job_applied_screen.dart';
-import '../screens/job/temp_job_detail_screen.dart';
-import '../screens/job/temp_job_rejected_screen.dart';
-import '../screens/landing_screen.dart';
-import '../screens/language_selection_screen.dart';
-import '../providers/auth_provider.dart';
-import '../screens/job/temp_job_list_post_view_screen.dart';
-import 'constants/route_constants.dart';
-import 'services/service_locator.dart';
-import '../providers/auth_uis_provider.dart';
-import '../providers/country_provider.dart';
-import '../providers/cv_provider.dart';
-import '../providers/job_application_provider.dart';
-import '../providers/job_filter_provider.dart';
-import '../providers/job_prefrences/job_preference_ui_provider.dart';
-import '../providers/job_provider.dart';
-import '../providers/news_provider.dart';
-import '../providers/paginations/category_jobs_pagination_provider.dart';
-import '../providers/paginations/category_pagination_provider.dart';
-import '../providers/paginations/job_pagination_provider.dart';
-import '../screens/auth/forgot_password/password_reset_req_screen.dart';
-import '../screens/auth/forgot_password/password_reset_screen.dart';
-import '../screens/auth/login_screen.dart';
-import '../screens/auth/sign_up_screen.dart';
-import '../screens/category/job/category_job_list_screen.dart';
-import '../screens/profile/job_preference/job_preference_screen.dart';
-import '../screens/profile/setting_screen.dart';
-import '../screens/job/job_detail_screen.dart';
-import '../screens/news/latest_news_screen.dart';
-import '../screens/news/news_detail_screen.dart';
-import '../screens/news/news_list_view_screen.dart';
-import '../screens/profile/edit/change_password_screen.dart';
-import '../screens/profile/edit/edit_profile_screen.dart';
-import '../screens/profile/manual_cv/upload_cv_screen.dart';
-import '../screens/profile/manual_cv/view_cv_screen.dart';
-import '../screens/splash_screen.dart';
-import '../widgets/web_view_screen.dart';
+import 'package:free_visa_free_ticket/screens/profile/presentation/contact_info.dart';
+import 'package:free_visa_free_ticket/screens/profile/presentation/personal_info.dart';
+import 'package:free_visa_free_ticket/screens/profile/presentation/qualification_info.dart';
+import 'package:free_visa_free_ticket/screens/profile/presentation/skills_info.dart';
+import '../../screens/auth/temp_login_screen.dart';
+import '../../screens/auth/temp_signup_screen.dart';
+import '../../screens/category/temp_category_list_screen.dart';
+import '../../screens/company_listview_screen.dart';
+import '../../screens/country_jobs_screen.dart';
+import '../../screens/country_listview_screen.dart';
+import '../../screens/job/temp_job_accepted_screen.dart';
+import '../../screens/job/temp_job_applied_screen.dart';
+import '../../screens/job/temp_job_detail_screen.dart';
+import '../../screens/job/temp_job_rejected_screen.dart';
+import '../../screens/landing_screen.dart';
+import '../../screens/language_selection_screen.dart';
+import '../../providers/auth_provider.dart';
+import '../../screens/job/temp_job_list_post_view_screen.dart';
+import 'route_constants.dart';
+import '../services/service_locator.dart';
+import '../../providers/auth_uis_provider.dart';
+import '../../providers/country_provider.dart';
+import '../../providers/cv_provider.dart';
+import '../../providers/job_application_provider.dart';
+import '../../providers/job_filter_provider.dart';
+import '../../providers/job_prefrences/job_preference_ui_provider.dart';
+import '../../providers/job_provider.dart';
+import '../../providers/news_provider.dart';
+import '../../providers/paginations/category_jobs_pagination_provider.dart';
+import '../../providers/paginations/category_pagination_provider.dart';
+import '../../providers/paginations/job_pagination_provider.dart';
+import '../../screens/auth/forgot_password/password_reset_req_screen.dart';
+import '../../screens/auth/forgot_password/password_reset_screen.dart';
+import '../../screens/auth/login_screen.dart';
+import '../../screens/auth/sign_up_screen.dart';
+import '../../screens/category/job/category_job_list_screen.dart';
+import '../../screens/profile/job_preference/job_preference_screen.dart';
+import '../../screens/profile/setting_screen.dart';
+import '../../screens/job/job_detail_screen.dart';
+import '../../screens/news/latest_news_screen.dart';
+import '../../screens/news/news_detail_screen.dart';
+import '../../screens/news/news_list_view_screen.dart';
+import '../../screens/profile/edit/change_password_screen.dart';
+import '../../screens/profile/edit/edit_profile_screen.dart';
+import '../../screens/profile/manual_cv/upload_cv_screen.dart';
+import '../../screens/profile/manual_cv/view_cv_screen.dart';
+import '../../screens/splash_screen.dart';
+import '../../widgets/web_view_screen.dart';
 import 'package:provider/provider.dart';
-import 'constants/route_constants.dart' as routes;
+import 'route_constants.dart' as routes;
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -248,7 +252,6 @@ class RouteGenerator {
               appBarTitle: args!['appBarTitle'] ?? 'Jobs',
               jobs: args['jobs']!,
               fromScreen: args['screen'],
-              
             ),
           ),
         );
@@ -327,6 +330,42 @@ class RouteGenerator {
             child: const CountryJobsScreen(),
           ),
         );
+
+
+        /// [Profile_Routes]
+      case RouteConstants.personalInfoScreem:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => ChangeNotifierProvider.value(
+            value: locator<AuthProvider>(),
+            child: const PersonalInformation(),
+          ),
+        );
+      case RouteConstants.profileSkills:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => ChangeNotifierProvider.value(
+            value: locator<AuthProvider>(),
+            child: const SkillsInfo(),
+          ),
+        );
+      case RouteConstants.personalContactInfo:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => ChangeNotifierProvider.value(
+            value: locator<AuthProvider>(),
+            child: const ContactInformation(),
+          ),
+        );
+      case RouteConstants.profileEducation:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => ChangeNotifierProvider.value(
+            value: locator<AuthProvider>(),
+            child: const QualificationInfo(),
+          ),
+        );
+     
       default:
         return MaterialPageRoute(
             settings: settings, builder: (context) => const SplashScreen());

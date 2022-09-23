@@ -10,7 +10,7 @@ class ContactInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: profileScreenAppBar(title: 'Contact Information'),
+      appBar: profileScreenAppBar(context, title: 'Contact Information'),
       bottomSheet: bottomSheet(),
       body: SingleChildScrollView(
         child: Column(
@@ -104,7 +104,7 @@ class ContactInformation extends StatelessWidget {
               ),
             ]),
             const SizedBox(
-              height: 10,
+              height: 100,
             ),
             const SizedBox(
               height: 10,
@@ -118,7 +118,7 @@ class ContactInformation extends StatelessWidget {
   _customLabelField({required String label, required List<Widget> fields}) =>
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
@@ -136,15 +136,18 @@ class ContactInformation extends StatelessWidget {
   Widget _textField({
     String? hint,
   }) =>
-      SizedBox(
-        height: 40,
-        width: 250,
-        child: TextField(
-          style: const TextStyle(color: Colors.black38),
-          decoration: InputDecoration(
-              hintText: hint,
-              contentPadding: const EdgeInsets.only(left: 10),
-              border: const OutlineInputBorder(borderSide: BorderSide.none)),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 40.0),
+        child: SizedBox(
+          height: 40,
+          child: TextField(
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.black38),
+            decoration: InputDecoration(
+                hintText: hint,
+                contentPadding: const EdgeInsets.only(left: 10),
+                border: const OutlineInputBorder(borderSide: BorderSide.none)),
+          ),
         ),
       );
 }

@@ -10,7 +10,7 @@ class SkillsInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: profileScreenAppBar(title: 'Skills'),
+      appBar: profileScreenAppBar( context , title: 'Skills'),
       bottomSheet: bottomSheet(),
       body: SingleChildScrollView(
         child: Column(

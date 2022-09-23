@@ -3,12 +3,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:free_visa_free_ticket/core/theme/free_visa_free_ticket_theme.dart';
 
 import '../../../../core/constants/assets_source.dart';
+import '../../../../core/services/navigation_service.dart';
+import '../../../../core/services/service_locator.dart';
 
-AppBar profileScreenAppBar({required String title}) => AppBar(
-      leading: Padding(
-        padding: const EdgeInsets.all(2.0),
-        child: Image.asset(
-          AssetsSource.freeVisaFreeTicketLogo,
+AppBar profileScreenAppBar(BuildContext context, {required String title}) =>
+    AppBar(
+      leading: InkWell(
+        onTap: () {
+          if (Navigator.canPop(context)) {
+            locator<NavigationService>().pop(context);
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: Image.asset(
+            AssetsSource.freeVisaFreeTicketLogo,
+          ),
         ),
       ),
       title: Text(
@@ -24,13 +34,10 @@ AppBar profileScreenAppBar({required String title}) => AppBar(
           ),
         ),
         _iconWithNotification(icon: Icons.email_outlined, notificationCount: 4),
-        const SizedBox(
-          width: 2,
-        ),
         _iconWithNotification(
             icon: Icons.notifications_on_outlined, notificationCount: 3),
         const SizedBox(
-          width: 2,
+          width: 8,
         ),
         CircleAvatar(
           radius: 18,
@@ -42,7 +49,7 @@ AppBar profileScreenAppBar({required String title}) => AppBar(
           ),
         ),
         const SizedBox(
-          width: 2,
+          width: 4,
         )
       ],
     );
