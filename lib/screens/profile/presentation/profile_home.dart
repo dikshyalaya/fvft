@@ -16,13 +16,14 @@ class ProfileHome extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _buildHeader(),
+            _buildHeader(context),
             _profileOptionHeader(),
             InkWell(
-              onTap: () { 
-                // locator<NavigationService>().navigateTo();
-              },
-              child: _cardHeader(icon: Icons.info, title: 'Personal Information')),
+                onTap: () {
+                  // locator<NavigationService>().navigateTo();
+                },
+                child: _cardHeader(
+                    icon: Icons.info, title: 'Personal Information')),
             const Divider(
               thickness: 1.5,
             ),
@@ -187,19 +188,19 @@ class ProfileHome extends StatelessWidget {
         ),
       );
 
-  Widget _buildHeader() => Stack(
+  Widget _buildHeader(BuildContext context) => Stack(
         children: [
           Container(
-            height: 650.h,
+            height: 550.h,
           ),
-          _profileBackgroundShade(),
+          _profileBackgroundShade(context),
           _profileAvator(),
           _candidateInfo(),
         ],
       );
 
   _candidateInfo() => Positioned(
-        top: 420.h,
+        top: 320.h,
         left: 0,
         right: 0,
         child: Column(
@@ -236,17 +237,16 @@ class ProfileHome extends StatelessWidget {
         ),
       );
 
-  _profileBackgroundShade() => Positioned(
-        top: -240.h,
+  _profileBackgroundShade(BuildContext context) => Positioned(
         left: 0.h,
         right: 0.h,
-        child: Container(
-          height: 440.h,
-          decoration: BoxDecoration(
-            color: Colors.black12,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(250.r),
-              bottomRight: Radius.circular(250.r),
+        child: ClipPath(
+          clipper: ProfileHomeShadeClipper(),
+          child: Container(
+            height: 350.h,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Colors.black12,
             ),
           ),
         ),
@@ -262,9 +262,9 @@ class ProfileHome extends StatelessWidget {
             children: [
               CircleAvatar(
                 backgroundColor: Colors.black,
-                radius: 170.r,
+                radius: 120.r,
                 child: CircleAvatar(
-                  radius: 168.r,
+                  radius: 118.r,
                   backgroundColor: Colors.white,
                   child: const Icon(
                     Icons.person,
@@ -273,17 +273,17 @@ class ProfileHome extends StatelessWidget {
                 ),
               ),
               Positioned(
-                  right: 12.w,
-                  child: const CircleAvatar(
+                  right: 22.w,
+                  child: CircleAvatar(
                     backgroundColor: Colors.blue,
-                    radius: 24,
+                    radius: 24.r,
                     child: CircleAvatar(
                       backgroundColor: Colors.white,
-                      radius: 20,
+                      radius: 20.r,
                       child: Icon(
                         Icons.edit,
                         color: Colors.blue,
-                        size: 25,
+                        size: 25.sp,
                       ),
                     ),
                   ))
@@ -291,4 +291,18 @@ class ProfileHome extends StatelessWidget {
           ),
         ),
       );
+}
+
+class ProfileHomeShadeClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    // path.addOval(Rect.fromCircle(center: Offset.zero, radius: 100));
+    path.quadraticBezierTo(size.width / 2, size.height, size.width, 0);
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
 }
