@@ -59,8 +59,8 @@ class ProfileHome extends StatelessWidget {
             ),
             InkWell(
                 onTap: () {
-                  locator<NavigationService>()
-                      .navigateTo(RouteConstants.profileExperience);
+                  // locator<NavigationService>()
+                  //     .navigateTo(RouteConstants.profileExperience);
                 },
                 child:
                     _cardHeader(icon: Icons.safety_check, title: 'Experience')),
@@ -69,8 +69,8 @@ class ProfileHome extends StatelessWidget {
             ),
             InkWell(
                 onTap: () {
-                  locator<NavigationService>()
-                      .navigateTo(RouteConstants.jobPreferenceRoute);
+                  // locator<NavigationService>()
+                  //     .navigateTo(RouteConstants.jobPreferenceRoute);
                 },
                 child: _cardHeader(icon: Icons.work, title: 'Job Preference')),
             const Divider(
@@ -78,8 +78,8 @@ class ProfileHome extends StatelessWidget {
             ),
             InkWell(
                 onTap: () {
-                  locator<NavigationService>()
-                      .navigateTo(RouteConstants.profilePhotos);
+                  // locator<NavigationService>()
+                  //     .navigateTo(RouteConstants.profilePhotos);
                 },
                 child: _cardHeader(icon: Icons.photo_album, title: 'Photos')),
             const Divider(
