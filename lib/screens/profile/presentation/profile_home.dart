@@ -105,20 +105,7 @@ class ProfileHome extends StatelessWidget {
     );
   }
 
-  // Widget _saveButton() => Container(
-  //       height: 50,
-  //       width: 150,
-  //       decoration: BoxDecoration(
-  //         color: Colors.blue,
-  //         borderRadius: BorderRadius.circular(10),
-  //       ),
-  //       child: const Center(
-  //         child: Text(
-  //           'Save',
-  //           style: TextStyle(color: Colors.white, fontSize: 18),
-  //         ),
-  //       ),
-  //     );
+ 
 
   Widget _profileCompletionStatus() => Container(
         height: 250.h,
