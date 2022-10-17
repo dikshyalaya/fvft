@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:free_visa_free_ticket/core/constants/route_constants.dart';
 import 'package:free_visa_free_ticket/core/services/navigation_service.dart';
@@ -225,16 +226,23 @@ class ProfileHome extends StatelessWidget {
   Widget _buildHeader(BuildContext context) => Stack(
         children: [
           Container(
-            height: 550.h,
+            height: 500.h,
           ),
-          _profileBackgroundShade(context),
+          ClipPath(
+            clipper: OvalBottomBorderClipper(),
+            child: Container(
+              height: 80,
+              width: MediaQuery.of(context).size.width,
+              color: Colors.grey.shade200,
+            ),
+          ),
           _profileAvator(),
           _candidateInfo(),
         ],
       );
 
   _candidateInfo() => Positioned(
-        top: 320.h,
+        top: 280.h,
         left: 0,
         right: 0,
         child: Column(
@@ -242,30 +250,30 @@ class ProfileHome extends StatelessWidget {
             Text(
               "SANTOSH THAPa".toUpperCase(),
               style: TextStyle(
-                fontSize: 40.sp,
-                fontWeight: FontWeight.w600,
-              ),
+                  fontSize: 35.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black54),
             ),
             Text(
               "Plumber,Electrican".toUpperCase(),
               style: TextStyle(
-                fontSize: 30.sp,
-                fontWeight: FontWeight.w600,
-              ),
+                  fontSize: 25.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black54),
             ),
             Text(
               "youremail@gmail.com".toUpperCase(),
               style: TextStyle(
-                fontSize: 25.sp,
-                fontWeight: FontWeight.w600,
-              ),
+                  fontSize: 25.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black54),
             ),
             Text(
               "+9779846843336".toUpperCase(),
               style: TextStyle(
-                fontSize: 25.sp,
-                fontWeight: FontWeight.w600,
-              ),
+                  fontSize: 25.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black54),
             ),
           ],
         ),
@@ -280,7 +288,7 @@ class ProfileHome extends StatelessWidget {
             height: 350.h,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              color: Colors.black12,
+              color: Colors.red,
             ),
           ),
         ),
@@ -289,25 +297,25 @@ class ProfileHome extends StatelessWidget {
   _profileAvator() => Positioned(
         right: 0.h,
         left: 0.h,
-        top: 50.h,
+        top: 80.h,
         child: Align(
           alignment: Alignment.center,
           child: Stack(
             children: [
               CircleAvatar(
-                backgroundColor: Colors.black,
-                radius: 120.r,
+                backgroundColor: Colors.black26,
+                radius: 80.r,
                 child: CircleAvatar(
-                  radius: 118.r,
+                  radius: 78.r,
                   backgroundColor: Colors.white,
                   child: const Icon(
                     Icons.person,
-                    size: 100,
+                    size: 60,
                   ),
                 ),
               ),
               Positioned(
-                  right: 22.w,
+                  right: 2.w,
                   child: CircleAvatar(
                     backgroundColor: Colors.blue,
                     radius: 24.r,

@@ -15,11 +15,7 @@ AppBar profileScreenAppBar(BuildContext context, {required String title}) =>
           }
         },
         child: Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: Image.asset(
-            AssetsSource.freeVisaFreeTicketLogo,
-          ),
-        ),
+            padding: const EdgeInsets.all(2.0), child: Icon(Icons.menu)),
       ),
       title: Text(
         title,
