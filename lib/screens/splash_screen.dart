@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:free_visa_free_ticket/providers/company_provider.dart';
 
 import '../core/constants/assets_source.dart';
-import '../core/constants/routes.dart' as routes;
+import '../core/constants/route_constants.dart' as routes;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../core/constants/route_constants.dart';
 import '../core/services/hive_service.dart';
 import '../core/services/navigation_service.dart';
 import '../core/services/service_locator.dart';
@@ -102,10 +103,10 @@ class _SplashScreenState extends State<SplashScreen>
     }
     if (languageCode == null) {
       locator<NavigationService>()
-          .pushReplacementNamed(routes.tempLanguageSelection);
+          .pushReplacementNamed(RouteConstants.tempLanguageSelection);
     } else {
       locator<NavigationService>()
-          .pushReplacementNamed(routes.tempLandingRoute);
+          .pushReplacementNamed(RouteConstants.tempLandingRoute);
     }
   }
 

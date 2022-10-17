@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/constants/route_constants.dart';
 import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/theme/free_visa_free_ticket_theme.dart';
-import '../../../core/constants/routes.dart' as routes;
+import '../../../core/constants/route_constants.dart' as routes;
 import '../../../models/jobs_model.dart';
 import '../../../providers/job_provider.dart';
 
@@ -30,7 +31,8 @@ final value = locator<JobProvider>();
 final List<Widget> _tagList = [
   _buildTag(
     onTap: () {
-      locator<NavigationService>().navigateTo(routes.latestJobListScreen,
+      locator<NavigationService>().navigateTo(
+          RouteConstants.latestJobListScreen,
           arguments: {'appBarTitle': 'All Jobs', 'jobs': value.allJobList!});
     },
     color: FreeVisaFreeTicketTheme.darkGreenColor,
@@ -39,7 +41,7 @@ final List<Widget> _tagList = [
   _buildTag(
     onTap: () {
       locator<NavigationService>()
-          .navigateTo(routes.latestJobListScreen, arguments: {
+          .navigateTo(RouteConstants.latestJobListScreen, arguments: {
         'appBarTitle': 'Latest Jobs',
         'jobs': value.newJobList!,
       });
@@ -50,7 +52,7 @@ final List<Widget> _tagList = [
   _buildTag(
     onTap: () {
       locator<NavigationService>().navigateTo(
-        routes.viewAllJobCategory,
+        RouteConstants.viewAllJobCategory,
       );
     },
     color: FreeVisaFreeTicketTheme.lightOrangeColor,
@@ -59,7 +61,7 @@ final List<Widget> _tagList = [
   _buildTag(
     onTap: () {
       locator<NavigationService>()
-          .navigateTo(routes.latestJobListScreen, arguments: {
+          .navigateTo(RouteConstants.latestJobListScreen, arguments: {
         'appBarTitle': 'Preferred Jobs',
       });
     },
@@ -69,7 +71,7 @@ final List<Widget> _tagList = [
   _buildTag(
     onTap: () {
       locator<NavigationService>()
-          .navigateTo(routes.latestJobListScreen, arguments: {
+          .navigateTo(RouteConstants.latestJobListScreen, arguments: {
         'appBarTitle': 'Saved Jobs',
       });
     },
@@ -79,7 +81,7 @@ final List<Widget> _tagList = [
   _buildTag(
     onTap: () {
       locator<NavigationService>()
-          .navigateTo(routes.latestJobListScreen, arguments: {
+          .navigateTo(RouteConstants.latestJobListScreen, arguments: {
         'appBarTitle': 'Featured',
       });
     },
@@ -88,7 +90,7 @@ final List<Widget> _tagList = [
   ),
   _buildTag(
     onTap: () {
-      locator<NavigationService>().navigateTo(routes.countryListViewScreen);
+      locator<NavigationService>().navigateTo(RouteConstants.countryListViewScreen);
     },
     color: FreeVisaFreeTicketTheme.darkGrayColor,
     text: 'Country',

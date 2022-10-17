@@ -2,6 +2,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../core/constants/assets_source.dart';
+import '../../../core/constants/route_constants.dart';
 import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/theme/free_visa_free_ticket_theme.dart';
@@ -9,7 +10,7 @@ import '../../../widgets/custom_app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_textformfield.dart';
-import '../../../core/constants/routes.dart' as routes;
+
 
 /// Screen [PasswordResetScreen] : Forgot password reset screen with reset verification code
 class PasswordResetScreen extends StatelessWidget {
@@ -144,7 +145,7 @@ class PasswordResetScreen extends StatelessWidget {
         title: 'Save',
         onTap: () {
           // locator<NavigationService>().navigateTo(routes.loginRoute);
-          locator<NavigationService>().navigateTo(routes.tempLoginScreen);
+          locator<NavigationService>().navigateTo(RouteConstants.tempLoginScreen);
         },
       ),
     );

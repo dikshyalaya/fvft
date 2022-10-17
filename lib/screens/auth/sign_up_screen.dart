@@ -1,5 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import '../../core/constants/route_constants.dart';
 import '../../core/services/navigation_service.dart';
 import '../../core/services/service_locator.dart';
 import '../../core/theme/free_visa_free_ticket_theme.dart';
@@ -9,7 +10,6 @@ import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_textformfield.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../core/constants/routes.dart' as routes;
 import 'package:provider/provider.dart';
 
 /// Screen [SignUpScreen] : Sign up screen
@@ -168,7 +168,7 @@ class SignUpScreen extends StatelessWidget {
     return InkWell(
       onTap: () {
         // locator<NavigationService>().pushReplacementNamed(routes.loginRoute);
-        locator<NavigationService>().pushReplacementNamed(routes.tempLoginScreen);
+        locator<NavigationService>().pushReplacementNamed(RouteConstants.tempLoginScreen);
       },
       child: Padding(
         padding: EdgeInsets.symmetric(

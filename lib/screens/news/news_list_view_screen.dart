@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../core/constants/route_constants.dart';
 import '../../core/services/navigation_service.dart';
 import '../../core/services/service_locator.dart';
 import '../../core/theme/free_visa_free_ticket_theme.dart';
@@ -7,7 +8,7 @@ import '../../models/news_model.dart';
 import '../../providers/news_provider.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/custom_image_slider.dart';
-import '../../core/constants/routes.dart' as routes;
+import '../../core/constants/route_constants.dart' as routes;
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -81,7 +82,7 @@ class _NewsListViewScreenState extends State<NewsListViewScreen> {
         Text('Latest News', style: FreeVisaFreeTicketTheme.heading1Style),
         InkWell(
           onTap: () {
-            locator<NavigationService>().navigateTo(routes.latestNewsRoute);
+            locator<NavigationService>().navigateTo(RouteConstants.latestNewsRoute);
           },
           borderRadius: BorderRadius.circular(10.w),
           child: Padding(
@@ -121,7 +122,7 @@ class _NewsListViewScreenState extends State<NewsListViewScreen> {
     return InkWell(
       onTap: () {
         locator<NavigationService>()
-            .navigateTo(routes.newsDetailRoute, arguments: {'news': news});
+            .navigateTo(RouteConstants.newsDetailRoute, arguments: {'news': news});
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

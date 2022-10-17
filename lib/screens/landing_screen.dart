@@ -1,5 +1,6 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:free_visa_free_ticket/screens/profile/presentation/profile_home.dart';
 import '../core/constants/assets_source.dart';
 import '../providers/company_provider.dart';
 import 'job/main_job_screen.dart';
@@ -57,7 +58,7 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
           ChangeNotifierProvider.value(value: locator<CompanyProvider>())
         ], child: const TempJobScreen());
       case 3:
-        return const TempProfileScreen();
+        return const ProfileHome();
 
       case 4:
         return MultiProvider(
@@ -75,7 +76,7 @@ class _TempLandingScreenState extends State<TempLandingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _currentIndex == 3 ? null : _buildAppBar(),
       body: _switchedScreen(),
       bottomNavigationBar: _buildBottomNavBar(),
     );

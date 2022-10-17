@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:free_visa_free_ticket/main.dart';
+import '../../core/constants/route_constants.dart';
 import '../../core/services/navigation_service.dart';
 import '../../core/services/service_locator.dart';
 import '../../core/theme/free_visa_free_ticket_theme.dart';
-import '../../core/constants/routes.dart' as routes;
+import '../../core/constants/route_constants.dart' as routes;
 import '../../models/local_storage/job_category_model.dart';
 import '../../providers/paginations/category_pagination_provider.dart';
 import 'package:provider/provider.dart';
@@ -123,7 +124,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
       children: [
         ListTile(
           onTap: () {
-            locator<NavigationService>().navigateTo(routes.categoryJobListRoute,
+            locator<NavigationService>().navigateTo(RouteConstants.categoryJobListRoute,
                 arguments: {
                   'jobCategoryId': e.id,
                   'jobCategoryName': e.jobCategory
@@ -225,7 +226,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
       ),
       child: InkWell(
         onTap: () {
-          locator<NavigationService>().navigateTo(routes.categoryJobListRoute,
+          locator<NavigationService>().navigateTo(RouteConstants.categoryJobListRoute,
               arguments: {
                 'jobCategoryId': e.id,
                 'jobCategoryName': e.jobCategory

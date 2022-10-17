@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../core/constants/assets_source.dart';
+import '../core/constants/route_constants.dart';
 import '../core/services/navigation_service.dart';
 import '../core/services/service_locator.dart';
 import '../core/theme/free_visa_free_ticket_theme.dart';
@@ -12,7 +13,6 @@ import 'paginations/category_jobs_pagination_provider.dart';
 import 'paginations/job_pagination_provider.dart';
 import '../repositories/job_repository.dart';
 import '../widgets/custom_snackbar.dart';
-import '../core/constants/routes.dart' as routes;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
@@ -150,7 +150,7 @@ class JobApplicationProvider with ChangeNotifier {
                 onPressed: () {
                   locator<NavigationService>().goBack();
                   locator<NavigationService>()
-                      .pushReplacementNamed(routes.tempLoginScreen);
+                      .pushReplacementNamed(RouteConstants.tempLoginScreen);
                   // locator<NavigationService>()
                   //     .pushReplacementNamed(routes.loginRoute);
                 },

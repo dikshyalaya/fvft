@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../core/constants/route_constants.dart';
 import '../../../core/services/navigation_service.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/theme/free_visa_free_ticket_theme.dart';
 import '../../../providers/country_provider.dart';
 import '../global_view_layout.dart';
-import '../../../core/constants/routes.dart' as routes;
+import '../../../core/constants/route_constants.dart' as routes;
 
 Widget buildCountriesList(
   BuildContext context,
@@ -21,7 +22,7 @@ Widget buildCountriesList(
     rightHeaderTitle: 'View All',
     onTapToRightTitle: () {
       locator<NavigationService>().navigateTo(
-        routes.countryListViewScreen,
+        RouteConstants.countryListViewScreen,
       );
     },
     child: _buildCountriesItem(context),
@@ -45,7 +46,7 @@ Widget _buildCountriesItem(
         log(countryList[index].toString());
         return InkWell(
           onTap: () {
-            locator<NavigationService>().navigateTo(routes.countryJobsScreen);
+            locator<NavigationService>().navigateTo(RouteConstants.countryJobsScreen);
           },
           child: Padding(
             padding: EdgeInsets.only(left: 20.w, bottom: 10.h),

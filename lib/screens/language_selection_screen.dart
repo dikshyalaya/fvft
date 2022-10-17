@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/constants/assets_source.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../core/constants/route_constants.dart';
 import '../core/theme/free_visa_free_ticket_theme.dart';
 import '../widgets/custom_button.dart';
 
@@ -8,7 +9,7 @@ import '../core/services/hive_service.dart';
 import '../core/services/navigation_service.dart';
 import '../core/services/service_locator.dart';
 import '../core/utilities/enum_utils.dart';
-import '../core/constants/routes.dart' as routes;
+
 
 class TempLanguageSelectionScreen extends StatefulWidget {
   const TempLanguageSelectionScreen({Key? key}) : super(key: key);
@@ -36,7 +37,7 @@ class _TempLanguageSelectionScreenState
       await locator<HiveService>()
           .addBox('en', HiveBoxName.selectedLanCode.stringValue);
     }
-    locator<NavigationService>().pushReplacementNamed(routes.tempLandingRoute);
+    locator<NavigationService>().pushReplacementNamed(RouteConstants.tempLandingRoute);
 // locator<NavigationService>()
 //     .pushReplacementNamed(routes.landingRoute);
     setState(() {
@@ -57,7 +58,7 @@ class _TempLanguageSelectionScreenState
       await locator<HiveService>()
           .addBox('ne', HiveBoxName.selectedLanCode.stringValue);
     }
-    locator<NavigationService>().pushReplacementNamed(routes.tempLandingRoute);
+    locator<NavigationService>().pushReplacementNamed(RouteConstants.tempLandingRoute);
     // locator<NavigationService>()
     //     .pushReplacementNamed(routes.landingRoute);
     setState(() {

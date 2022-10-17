@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:free_visa_free_ticket/core/constants/route_constants.dart';
 import '../core/services/navigation_service.dart';
 
 import '../core/services/service_locator.dart';
@@ -7,7 +8,7 @@ import '../core/theme/free_visa_free_ticket_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../providers/country_provider.dart';
-import '../core/constants/routes.dart' as routes;
+
 
 class CountryListViewScreen extends StatelessWidget {
   const CountryListViewScreen({Key? key}) : super(key: key);
@@ -42,7 +43,7 @@ class CountryListViewScreen extends StatelessWidget {
             ListTile(
               onTap: () {
                 locator<NavigationService>()
-                    .navigateTo(routes.countryJobsScreen);
+                    .navigateTo(RouteConstants.countryJobsScreen);
               },
               leading: SvgPicture.network(
                 'https://demo.freevisafreeticket.com/${countryList[index]!.flag}',
