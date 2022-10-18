@@ -61,8 +61,8 @@ class ProfileHome extends StatelessWidget {
             ),
             InkWell(
                 onTap: () {
-                  // locator<NavigationService>()
-                  //     .navigateTo(RouteConstants.jobPreferenceRoute);
+                  locator<NavigationService>()
+                      .navigateTo(RouteConstants.profileJobPreference);
                 },
                 child: _cardHeader(icon: Icons.work, title: 'Job Preference')),
             const Divider(

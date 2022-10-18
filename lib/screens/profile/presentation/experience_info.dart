@@ -130,9 +130,9 @@ class Experience extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.lightBlue[800],
                         borderRadius: BorderRadius.circular(10)),
-                    child: Center(
+                    child: const Center(
                       child: Text(
-                        "Add",
+                        'Add',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -158,7 +158,7 @@ class Experience extends StatelessWidget {
   }
 
   _experienceCard(BuildContext context) => Card(
-        child: Container(
+        child: SizedBox(
           height: 200,
           width: MediaQuery.of(context).size.width * .9,
           child: Stack(
@@ -170,7 +170,7 @@ class Experience extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
+                   const  Text(
                       "Senior SuperVisior",
                       style: TextStyle(color: Colors.white),
                     ),
