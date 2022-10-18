@@ -8,7 +8,7 @@ class ProfileJobPreference extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: profileScreenAppBar(context, title: 'Experience'),
+      appBar: profileScreenAppBar(context, title: 'Preference'),
       bottomSheet: bottomSheet(),
       body: GestureDetector(
         onTap: () {
@@ -28,7 +28,7 @@ class ProfileJobPreference extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: const [
                         Icon(Icons.person, size: 40, color: Colors.black26),
-                        Text('Experience',
+                        Text('Preference',
                             style:
                                 TextStyle(color: Colors.black54, fontSize: 20)),
                         CircleAvatar(
@@ -38,7 +38,7 @@ class ProfileJobPreference extends StatelessWidget {
                             radius: 25,
                             backgroundColor: Colors.white,
                             child: Text(
-                              '4/6',
+                              '5/6',
                               style: TextStyle(
                                   color: Colors.black26, fontSize: 17),
                             ),
@@ -58,20 +58,57 @@ class ProfileJobPreference extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 22.0),
+                        child: Text(
+                          "Country",
+                        ),
+                      )),
                   _customLabelField(label: 'First name*', fields: [
-                    _textField(context, hint: 'Select Country'),
+                    _textField(context, hint: 'Country 1'),
                     const SizedBox(
                       height: 10,
                     ),
                   ]),
                   _customLabelField(label: 'Last Name*', fields: [
-                    _textField(context, hint: 'Select Job Category'),
+                    _textField(context, hint: 'Country 2'),
                   ]),
                   const SizedBox(
                     height: 10,
                   ),
                   _customLabelField(label: 'Gender*', fields: [
-                    _textField(context, hint: 'Select Job Title'),
+                    _textField(context, hint: 'Country 3'),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ]),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 22.0),
+                        child: Text(
+                          "Industry",
+                        ),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  _customLabelField(label: 'First name*', fields: [
+                    _textField(context, hint: 'Industry 1'),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ]),
+                  _customLabelField(label: 'Last Name*', fields: [
+                    _textField(context, hint: 'Industry 2'),
+                  ]),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  _customLabelField(label: 'Gender*', fields: [
+                    _textField(context, hint: 'Industry 3'),
                     const SizedBox(
                       height: 5,
                     ),
@@ -79,74 +116,34 @@ class ProfileJobPreference extends StatelessWidget {
                   Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 35.0),
+                        padding: const EdgeInsets.only(left: 22.0),
                         child: Text(
-                          "Working Duration",
+                          "Job Category",
                         ),
                       )),
                   const SizedBox(
                     height: 5,
                   ),
-                  _customLabelField(label: 'Martial Status', fields: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _textField(context,
-                            readonly: true,
-                            hint: 'Years',
-                            width: MediaQuery.of(context).size.width * 0.44,
-                            icon: Icons.arrow_drop_down),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        _textField(context,
-                            readonly: true,
-                            hint: 'Months',
-                            width: MediaQuery.of(context).size.width * 0.42,
-                            icon: Icons.arrow_drop_down),
-                      ],
-                    ),
+                  _customLabelField(label: 'First name*', fields: [
+                    _textField(context, hint: 'Category 1'),
                     const SizedBox(
                       height: 10,
                     ),
                   ]),
-                  const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 35.0),
-                        child: Text(
-                          'More Details',
-                        ),
-                      )),
-                  _customLabelField(label: 'Date of Birth(B.S)', fields: [
-                    _textField(context, hint: 'Company Name, Address etc'),
+                  _customLabelField(label: 'Last Name*', fields: [
+                    _textField(context, hint: 'Category 2'),
+                  ]),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  _customLabelField(label: 'Gender*', fields: [
+                    _textField(context, hint: 'Category 3'),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                   ]),
-                  Container(
-                    height: 45,
-                    width: 120,
-                    decoration: BoxDecoration(
-                        color: Colors.lightBlue[800],
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Center(
-                      child: Text(
-                        'Add',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
                   const SizedBox(
-                    height: 10,
-                  ),
-                  _experienceCard(context),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  _experienceCard(context),
-                  const SizedBox(
-                    height: 10,
+                    height: 70,
                   ),
                 ],
               ),
