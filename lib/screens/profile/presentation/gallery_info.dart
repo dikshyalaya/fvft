@@ -12,7 +12,21 @@ class GalleryInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: profileScreenAppBar(context, title: 'Preference'),
-        bottomSheet: bottomSheet(),
+        bottomSheet: Container(
+          height: 55,
+          width: MediaQuery.of(context).size.width,
+          color: Colors.red,
+          child: Center(
+            child: const Text(
+              'DELETE',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+        ),
         body: Stack(
           children: [
             Container(),
