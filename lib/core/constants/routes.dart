@@ -6,6 +6,7 @@ import 'package:free_visa_free_ticket/screens/profile/presentation/experience_in
 import 'package:free_visa_free_ticket/screens/profile/presentation/gallery_info.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/personal_info.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/preference_info.dart';
+import 'package:free_visa_free_ticket/screens/profile/presentation/profile_preview.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/qualification_info.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/skills_info.dart';
 import '../../screens/auth/temp_login_screen.dart';
@@ -392,6 +393,14 @@ class RouteGenerator {
           builder: (context) => ChangeNotifierProvider.value(
             value: locator<AuthProvider>(),
             child: const GalleryInfo(),
+          ),
+        );
+      case RouteConstants.profilePreview:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => ChangeNotifierProvider.value(
+            value: locator<AuthProvider>(),
+            child: const ProfilePreview(),
           ),
         );
 

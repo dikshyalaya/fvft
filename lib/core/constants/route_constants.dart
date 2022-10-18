@@ -41,4 +41,5 @@ class RouteConstants {
   static const String profileJobPreference = 'profile/job/preference';
   static const String profilePhotos = 'profile/photos';
   static const String profileExperience = 'profile/experience';
+  static const String profilePreview = 'profile/preview';
 }
