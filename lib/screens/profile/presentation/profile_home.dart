@@ -52,16 +52,7 @@ class ProfileHome extends StatelessWidget {
             InkWell(
                 onTap: () {
                   locator<NavigationService>()
-                      .navigateTo(RouteConstants.profileSkills);
-                },
-                child: _cardHeader(icon: Icons.settings, title: 'Skills')),
-            const Divider(
-              thickness: 1.5,
-            ),
-            InkWell(
-                onTap: () {
-                  // locator<NavigationService>()
-                  //     .navigateTo(RouteConstants.profileExperience);
+                      .navigateTo(RouteConstants.profileExperience);
                 },
                 child:
                     _cardHeader(icon: Icons.safety_check, title: 'Experience')),
@@ -104,8 +95,6 @@ class ProfileHome extends StatelessWidget {
       ),
     );
   }
-
- 
 
   Widget _profileCompletionStatus() => Container(
         height: 250.h,
@@ -158,16 +147,24 @@ class ProfileHome extends StatelessWidget {
       );
 
   Widget _cardHeader({required IconData icon, required String title}) =>
-      ListTile(
-        leading: Icon(
-          icon,
-        ),
-        title: Text(
-          title,
-          style: const TextStyle(
-            color: Colors.black38,
-            fontSize: 18,
-          ),
+      Container(
+        height: 40,
+        child: Row(
+          children: [
+            const SizedBox(width: 12),
+            Icon(
+              icon,
+              color: Colors.black54,
+            ),
+            const SizedBox(width: 30),
+            Text(
+              title,
+              style: const TextStyle(
+                color: Colors.black38,
+                fontSize: 18,
+              ),
+            ),
+          ],
         ),
       );
 
@@ -184,7 +181,7 @@ class ProfileHome extends StatelessWidget {
               const Text(
                 'My Profile',
                 style: TextStyle(
-                  color: Colors.black26,
+                  color: Colors.black54,
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
                 ),

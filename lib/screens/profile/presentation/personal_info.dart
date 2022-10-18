@@ -33,7 +33,7 @@ class PersonalInformation extends StatelessWidget {
                         radius: 25,
                         backgroundColor: Colors.white,
                         child: Text(
-                          '1 of 6',
+                          '4/6',
                           style: TextStyle(color: Colors.black26, fontSize: 17),
                         ),
                       ),
@@ -48,6 +48,9 @@ class PersonalInformation extends StatelessWidget {
                   thickness: 2,
                   color: Colors.black12,
                 ),
+              ),
+              SizedBox(
+                height: 30,
               ),
               _customLabelField(label: 'First name*', fields: [
                 _textField(label: 'First Name'),
