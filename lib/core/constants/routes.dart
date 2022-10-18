@@ -3,6 +3,7 @@ import 'package:free_visa_free_ticket/core/utilities/enum_utils.dart';
 import 'package:free_visa_free_ticket/providers/company_provider.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/contact_info.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/experience_info.dart';
+import 'package:free_visa_free_ticket/screens/profile/presentation/gallery_info.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/personal_info.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/preference_info.dart';
 import 'package:free_visa_free_ticket/screens/profile/presentation/qualification_info.dart';
@@ -382,6 +383,15 @@ class RouteGenerator {
           builder: (context) => ChangeNotifierProvider.value(
             value: locator<AuthProvider>(),
             child: const ProfileJobPreference(),
+          ),
+        );
+
+      case RouteConstants.profilePhotos:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => ChangeNotifierProvider.value(
+            value: locator<AuthProvider>(),
+            child: const GalleryInfo(),
           ),
         );
 

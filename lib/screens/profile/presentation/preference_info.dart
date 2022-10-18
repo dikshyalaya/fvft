@@ -22,7 +22,7 @@ class ProfileJobPreference extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,

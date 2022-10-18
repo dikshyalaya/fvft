@@ -70,8 +70,8 @@ class ProfileHome extends StatelessWidget {
             ),
             InkWell(
                 onTap: () {
-                  // locator<NavigationService>()
-                  //     .navigateTo(RouteConstants.profilePhotos);
+                  locator<NavigationService>()
+                      .navigateTo(RouteConstants.profilePhotos);
                 },
                 child: _cardHeader(icon: Icons.photo_album, title: 'Photos')),
             const Divider(
