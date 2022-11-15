@@ -14,32 +14,31 @@ class QualificationInfo extends StatelessWidget {
       bottomSheet: bottomSheet(),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: const [
                   Icon(Icons.school, size: 40, color: Colors.black26),
-                  Text('Education',
+                  Text('Qualification',
                       style: TextStyle(color: Colors.black54, fontSize: 20)),
                   CircleAvatar(
-                    radius: 60,
+                    radius: 30,
                     backgroundColor: Colors.blue,
                     child: CircleAvatar(
-                      radius: 50,
+                      radius: 25,
                       backgroundColor: Colors.white,
                       child: Text(
-                        '3 of 6',
-                        style: TextStyle(color: Colors.black26, fontSize: 24),
+                        '3/6',
+                        style: TextStyle(color: Colors.black26, fontSize: 17),
                       ),
                     ),
                   ),
                 ]),
-            const SizedBox(
-              height: 10,
-            ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Divider(
@@ -47,62 +46,71 @@ class QualificationInfo extends StatelessWidget {
                 color: Colors.black12,
               ),
             ),
+            const SizedBox(
+            
+              height: 40,
+            ),
             _customLabelField(label: 'Education Level', fields: [
-              const SizedBox(
-                height: 10,
-              ),
-              _textField(hint: 'Select Level'),
+              _textField(context,
+                  hint: 'Highest Education Level',
+                  icon: Icons.arrow_drop_down,
+                  readonly: true),
               const SizedBox(
                 height: 10,
               ),
             ]),
-            const SizedBox(
-              height: 10,
-            ),
             _customLabelField(label: 'Training', fields: [
-              _textField(hint: 'Select Training'),
-              const SizedBox(
-                height: 10,
-              ),
-            ]),
-            const Text('Add Training +'),
-            const SizedBox(
-              height: 10,
-            ),
-            _customLabelField(label: 'Skill', fields: [
-              const SizedBox(
-                height: 10,
-              ),
-              _textField(hint: 'Skill'),
-              const SizedBox(
-                height: 10,
-              ),
-            ]),
-            const Text('Add Skills +'),
-            const SizedBox(
-              height: 10,
-            ),
-            _customLabelField(label: 'Language', fields: [
-              const SizedBox(
-                height: 10,
-              ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _textField(hint: 'Language', width: 120),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  _textField(hint: 'Level', width: 120),
+                  _textField(context,
+                      hint: 'Training',
+                      width: MediaQuery.of(context).size.width * .8),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.add,
+                        color: Colors.blue,
+                      ))
                 ],
               ),
               const SizedBox(
                 height: 10,
               ),
             ]),
-            const Text(
-              'Add Language +',
-            ),
+            _customLabelField(label: 'Skill', fields: [
+              Row(
+                children: [
+                  _textField(context,
+                      hint: 'Skill',
+                      width: MediaQuery.of(context).size.width * .8),
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.add,
+                        color: Colors.blue,
+                      ))
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+            ]),
+            _customLabelField(label: 'Language', fields: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  _textField(context, hint: 'Language', width: 200),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  _textField(context, hint: 'Level', width: 120),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+            ]),
             const SizedBox(
               height: 100,
             ),
@@ -118,10 +126,6 @@ class QualificationInfo extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              label,
-              style: const TextStyle(color: Colors.black45),
-            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: fields,
@@ -130,19 +134,25 @@ class QualificationInfo extends StatelessWidget {
         ),
       );
 
-  Widget _textField({
-    String? hint,
-    double? width,
-  }) =>
+  Widget _textField(BuildContext context,
+          {String? hint,
+          double? width,
+          IconData? icon,
+          bool readonly = false}) =>
       SizedBox(
         height: 40,
-        width: width ?? 250,
+        width: width != null ? width : MediaQuery.of(context).size.width * 0.9,
         child: TextField(
+          readOnly: readonly,
           style: const TextStyle(color: Colors.black38),
           decoration: InputDecoration(
+              suffixIcon: Icon(icon),
               hintText: hint,
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2, color: Colors.black38)),
               contentPadding: const EdgeInsets.only(left: 10),
-              border: const OutlineInputBorder(borderSide: BorderSide.none)),
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(width: 2, color: Colors.black12))),
         ),
       );
 }

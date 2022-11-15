@@ -14,12 +14,8 @@ AppBar profileScreenAppBar(BuildContext context, {required String title}) =>
             locator<NavigationService>().pop(context);
           }
         },
-        child: Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: Image.asset(
-            AssetsSource.freeVisaFreeTicketLogo,
-          ),
-        ),
+        child: const Padding(
+            padding: EdgeInsets.all(2.0), child: Icon(Icons.menu)),
       ),
       title: Text(
         title,

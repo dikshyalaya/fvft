@@ -38,7 +38,8 @@ class RouteConstants {
   static const String personalContactInfo = 'profile/contact/info';
   static const String profileEducation = 'profile/education/info';
   static const String profileSkills = 'profile/skills/info';
-  static const String jobPreferences = 'profile/job-preference/info';
-  static const String profilePhotos = 'profile/job-preference/info';
-  static const String profileExperience = 'profile/job-preference/info';
+  static const String profileJobPreference = 'profile/job/preference';
+  static const String profilePhotos = 'profile/photos';
+  static const String profileExperience = 'profile/experience';
+  static const String profilePreview = 'profile/preview';
 }
